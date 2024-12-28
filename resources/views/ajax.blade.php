@@ -16,6 +16,7 @@
 
 
 <script>
+
 //register
 $(document).ready(function () {
     $.ajaxSetup({
@@ -274,8 +275,6 @@ $(document).ready(function() {
   
   $('.logoutuser').click(function(e) {
       e.preventDefault();  
-
-       
       $.ajax({
           url: '/logoutuser',   
           type: 'POST',
@@ -558,5 +557,58 @@ $(document).on('click', '.deluser', function() {
         }
     });
 });
+
+
+//to open story page
+$(document).ready(function() {
+    $('.storypage').on('click', function() {
+        $.ajax({
+            url: '/pages/about-us',
+            method: 'GET',
+            success: function(response) {
+                window.location.href = '/pages/about-us';
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.statusText);
+            }
+        });
+    });
+});
+
+$('.home').click(function () {
+
+ 
+$.ajax({
+    url:'/',
+    type: 'GET',
+    success: function (response) {
+        window.location.href ='/';
+         
+    },
+    error: function (xhr, status, error) {
+        console.error('AJAX Error: ', status, error);
+    }
+});
+});
+$(document).ready(function () {
+    const phoneNumber = "03457281472";  
+    const countryCode = "92";  
+    const formattedNumber = phoneNumber.replace(/^0/, countryCode);  
+    const whatsappLink = `https://wa.me/${formattedNumber}`; 
+
+   
+    $('.whatsapp').click(function (e) {
+        e.preventDefault();   
+        
+        console.log("whatsapp link clicked!");
+        console.log("Formatted WhatsApp link:", whatsappLink);
+
+         $(this).attr("href", whatsappLink);
+        
+         window.open(whatsappLink, "_blank");
+    });
+});
+
+
 </script>
 </body>

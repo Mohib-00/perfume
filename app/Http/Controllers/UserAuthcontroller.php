@@ -129,9 +129,9 @@ public function logout() {
     }
  
      
-     public function home(){ 
-         //$user = Auth::user();         
-         return view('userpages.home');
+    public function home(){ 
+        $user = Auth::check() ? Auth::user() : null;
+         return view('userpages.home', compact('user'));
      }
  
      public function admin(){ 
@@ -194,6 +194,13 @@ public function logout() {
           }
       
           return response()->json(['success' => false, 'message' => 'User not found']);
+      }
+
+
+      public function aboutUs()
+      {
+        $user = Auth::check() ? Auth::user() : null;
+          return view('userpages.aboutus', compact('user'));
       }
      
 }

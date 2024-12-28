@@ -23,6 +23,9 @@ Route::get("login", [RegisterController::class, "login"]);
 Route::post("register",[UserAuthcontroller::class,"register"]);
 //Login
 Route::post("login",[UserAuthcontroller::class,"login"]);
+//to open about us page
+Route::get('/pages/about-us', [UserAuthcontroller::class, 'aboutUs'])->name('about-us');
+
 
 Route::group([
     "middleware" => ["auth:sanctum"]
