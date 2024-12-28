@@ -590,6 +590,58 @@ $.ajax({
     }
 });
 });
+
+
+
+//to open sale page
+$(document).ready(function() {
+    $('.saleeeee').on('click', function() {
+        $.ajax({
+            url: '/collection/sale-products',
+            method: 'GET',
+            success: function(response) {
+                window.location.href = '/collection/sale-products';
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.statusText);
+            }
+        });
+    });
+});
+
+
+//to open contact page
+$(document).ready(function() {
+    $('.contacttttttt').on('click', function() {
+        $.ajax({
+            url: '/contact-us',
+            method: 'GET',
+            success: function(response) {
+                window.location.href = '/contact-us';
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.statusText);
+            }
+        });
+    });
+});
+
+//to open collection page
+$(document).ready(function() {
+    $('.viewcollection').on('click', function() {
+        $.ajax({
+            url: '/collections',
+            method: 'GET',
+            success: function(response) {
+                window.location.href = '/collections';
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.statusText);
+            }
+        });
+    });
+});
+
 $(document).ready(function () {
     const phoneNumber = "03457281472";  
     const countryCode = "92";  
@@ -609,6 +661,128 @@ $(document).ready(function () {
     });
 });
 
+
+//for pagination
+const productsPerPage = 12;  
+const categoryClass = '.all';  
+const paginationClass = '.paginationforall';  
+
+const $container = $(categoryClass);
+const $items = $container.find(".col-12.col-sm-6.col-lg-4");  
+const totalItems = $items.length;  
+const totalPages = Math.ceil(totalItems / productsPerPage);  
+
+function showPage(page) {
+    $items.hide();  
+
+    
+    const start = (page - 1) * productsPerPage;
+    const end = start + productsPerPage;
+
+    
+    $items.slice(start, end).show();
+
+    
+    $(paginationClass + " .page-item").removeClass("active");
+    $(paginationClass + " .page-item[data-page='" + page + "']").addClass("active");
+}
+
+function createPagination() {
+    const $pagination = $(paginationClass);
+    $pagination.empty();  
+    $pagination.append('<li class="page-item" data-page="prev"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>');
+
+     for (let i = 1; i <= totalPages; i++) {
+        $pagination.append(`<li class="page-item" data-page="${i}"><a class="page-link" href="#">${i}</a></li>`);
+    }
+
+     $pagination.append('<li class="page-item" data-page="next"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>');
+
+     showPage(1);
+}
+
+ $(paginationClass).on("click", ".page-item", function (event) {
+    event.preventDefault();
+    let page = $(this).data("page");
+
+    const currentPage = $(paginationClass + " .page-item.active").data("page");
+
+     if (page === "prev") {
+        page = currentPage > 1 ? currentPage - 1 : 1;
+    } else if (page === "next") {
+        page = currentPage < totalPages ? currentPage + 1 : totalPages;
+    }
+
+     showPage(page);
+});
+
+ createPagination();
+
+
+ 
+//to open womenfragrances page
+$(document).ready(function() {
+    $('.womenfragrances').on('click', function() {
+        $.ajax({
+            url: '/collections/womens-fragrances',
+            method: 'GET',
+            success: function(response) {
+                window.location.href = '/collections/womens-fragrances';
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.statusText);
+            }
+        });
+    });
+});
+
+//to open menfragrances page
+$(document).ready(function() {
+    $('.menfragrances').on('click', function() {
+        $.ajax({
+            url: '/collections/mens-fragrances',
+            method: 'GET',
+            success: function(response) {
+                window.location.href = '/collections/mens-fragrances';
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.statusText);
+            }
+        });
+    });
+});
+
+//to open travel-size page
+$(document).ready(function() {
+    $('.travel').on('click', function() {
+        $.ajax({
+            url: '/collections',
+            method: 'GET',
+            success: function(response) {
+                window.location.href = '/collections/travel-size';
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.statusText);
+            }
+        });
+    });
+});
+
+//to open discovery page
+$(document).ready(function() {
+    $('.discovery').on('click', function() {
+        $.ajax({
+            url: '/collections/discovery',
+            method: 'GET',
+            success: function(response) {
+                window.location.href = '/collections/discovery';
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.statusText);
+            }
+        });
+    });
+});
 
 </script>
 </body>

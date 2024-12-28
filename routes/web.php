@@ -25,7 +25,21 @@ Route::post("register",[UserAuthcontroller::class,"register"]);
 Route::post("login",[UserAuthcontroller::class,"login"]);
 //to open about us page
 Route::get('/pages/about-us', [UserAuthcontroller::class, 'aboutUs'])->name('about-us');
+//to open sale page
+Route::get('/collection/sale-products', [UserAuthcontroller::class, 'sale'])->name('sale');
+//to open sale page
+Route::get('/contact-us', [UserAuthcontroller::class, 'contactus'])->name('contactus');
+//to open collections page
+Route::get('/collections', [UserAuthcontroller::class, 'collections'])->name('collections');
 
+//to open womens-fragrances page
+Route::get('/collections/womens-fragrances', [UserAuthcontroller::class, 'womensfragrances']);
+//to open mens-fragrances page
+Route::get('/collections/mens-fragrances', [UserAuthcontroller::class, 'mensfragrances']);
+//to open sale page
+Route::get('/collections/travel-size', [UserAuthcontroller::class, 'travelsize']);
+//to open sale page
+Route::get('/collections/discovery', [UserAuthcontroller::class, 'discovery']);
 
 Route::group([
     "middleware" => ["auth:sanctum"]

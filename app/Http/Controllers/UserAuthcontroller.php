@@ -202,5 +202,51 @@ public function logout() {
         $user = Auth::check() ? Auth::user() : null;
           return view('userpages.aboutus', compact('user'));
       }
+
+      public function sale()
+      {
+        $user = Auth::check() ? Auth::user() : null;
+          return view('userpages.sale', compact('user'));
+      }
+
+      public function contactus()
+      {
+        $user = Auth::check() ? Auth::user() : null;
+          return view('userpages.contact', compact('user'));
+      }
+
+      public function womensfragrances()
+      {
+        $user = Auth::check() ? Auth::user() : null;
+          return view('userpages.womensfragrance', compact('user'));
+      }
+
+
+      public function mensfragrances()
+      {
+        $user = Auth::check() ? Auth::user() : null;
+          return view('userpages.mensfragrance', compact('user'));
+      }
+
+
+      public function travelsize()
+      {
+        $user = Auth::check() ? Auth::user() : null;
+          return view('userpages.travel', compact('user'));
+      }
+
+
+      public function discovery()
+      {
+        $user = Auth::check() ? Auth::user() : null;
+          return view('userpages.discover', compact('user'));
+      }
+
+
+      public function collections()
+      {
+        $user = Auth::check() ? Auth::user() : null;
+          return view('userpages.collection', compact('user'));
+      }
      
 }

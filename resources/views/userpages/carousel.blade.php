@@ -5,8 +5,8 @@
             <div class="col-12">
                 <div class="hero-content">
                     <h6>asoss</h6>
-                    <h2>New Collection</h2>
-                    <a href="#" class="btn essence-btn">view collection</a>
+                    <h2>View Collection</h2>
+                    <a class="btn essence-btn viewcollection">view collection</a>
                 </div>
             </div>
         </div>

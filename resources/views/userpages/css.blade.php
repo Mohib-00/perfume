@@ -183,4 +183,48 @@
 }
 
 
+.paginationforall .page-item {
+    display: inline-block;
+    margin: 2px;
+    text-align: center;
+}
+
+.paginationforall .page-link {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #333;
+}
+
+.paginationforall .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+}
+
+.paginationforall .page-item a {
+    text-decoration: none;
+}
+
+.paginationforall .page-item .page-link i {
+    font-size: 16px;
+}
+
+.paginationforall {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.paginationforall .page-item {
+    width: auto;
+    margin: 5px;
+}
+
+
+
     </style>

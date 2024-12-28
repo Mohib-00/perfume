@@ -32,12 +32,30 @@
                 <div class="classynav">
                     <ul>
                         <li><a class="home">Home</a></li>
-                        <li><a>Shop</a>
-                            <ul class="dropdown">
-                                <li><a class="shop">Women's Collection</a></li>
-                                <li><a class="mens-collection">Men's Collection</a></li>
-                                <li><a class="kids-collection">Kid's Collection</a></li>
-                            </ul>
+                        <li><a href="#">Perfumes</a>
+                            <div class="megamenu">
+                                <ul class="single-mega cn-col-4">
+                                    <li style="font-size:25px" class="title womenfragrances">Women's Fragrances</li>
+                                </ul>
+                                
+                                <ul class="single-mega cn-col-4">
+                                    <li style="font-size:25px" class="title menfragrances">Men's Fragrances</li>
+                                     
+                                </ul>
+                                <ul class="single-mega cn-col-4">
+                                    <li style="font-size:25px" class="title travel">Travel Size</li>
+                                </ul>
+                                
+
+                                <div class="single-mega cn-col-4">
+                                    <img style="width:100%" src="{{asset('fragrance.jpg')}}" alt="">
+                                </div>
+
+                                <ul class="single-mega cn-col-4">
+                                    <li style="font-size:25px" class="title discovery">Discovery</li>
+                                </ul>
+                                 
+                            </div>
                         </li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
@@ -49,10 +67,13 @@
                                 <li><a>Single Blog</a></li>
                                 <li><a>Regular Page</a></li>
                                 <li><a>Contact</a></li>
+                                <li><a>Sale</a></li>
+
                             </ul>
                         </li>
                         <li><a>Blog</a></li>
-                        <li><a>Contact</a></li>
+                        <li><a class="contacttttttt">Contact</a></li>
+                        <li><a class="saleeeee">Sale</a></li>
                      </ul>
                 </div>
                 <!-- Nav End -->
