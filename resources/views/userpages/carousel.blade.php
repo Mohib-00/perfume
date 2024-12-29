@@ -6,7 +6,7 @@
                 <div class="hero-content">
                     <h6>asoss</h6>
                     <h2>View Collection</h2>
-                    <a class="btn essence-btn viewcollection">view collection</a>
+                    <a style="color:white" class="btn essence-btn viewcollection">view collection</a>
                 </div>
             </div>
         </div>

@@ -40,6 +40,11 @@ Route::get('/collections/mens-fragrances', [UserAuthcontroller::class, 'mensfrag
 Route::get('/collections/travel-size', [UserAuthcontroller::class, 'travelsize']);
 //to open sale page
 Route::get('/collections/discovery', [UserAuthcontroller::class, 'discovery']);
+//to open blogs page
+Route::get('/blogs', [UserAuthcontroller::class, 'blogs']);
+//to open product details page
+Route::get('/product-details', [UserAuthcontroller::class, 'details']);
+
 
 Route::group([
     "middleware" => ["auth:sanctum"]

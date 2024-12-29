@@ -57,21 +57,8 @@
                                  
                             </div>
                         </li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a class="home">Home</a></li>
-                                <li><a class="shop">Shop</a></li>
-                                <li><a>Product Details</a></li>
-                                <li><a>Checkout</a></li>
-                                <li><a>Blog</a></li>
-                                <li><a>Single Blog</a></li>
-                                <li><a>Regular Page</a></li>
-                                <li><a>Contact</a></li>
-                                <li><a>Sale</a></li>
-
-                            </ul>
-                        </li>
-                        <li><a>Blog</a></li>
+                        
+                        <li><a class="openblogs">Blog</a></li>
                         <li><a class="contacttttttt">Contact</a></li>
                         <li><a class="saleeeee">Sale</a></li>
                      </ul>

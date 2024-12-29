@@ -249,4 +249,15 @@ public function logout() {
           return view('userpages.collection', compact('user'));
       }
      
+      public function blogs()
+      {
+        $user = Auth::check() ? Auth::user() : null;
+          return view('userpages.blogs', compact('user'));
+      }
+
+      public function details()
+      {
+        $user = Auth::check() ? Auth::user() : null;
+          return view('userpages.productdetails', compact('user'));
+      }
 }

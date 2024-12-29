@@ -784,5 +784,39 @@ $(document).ready(function() {
     });
 });
 
+
+//to open blogs page
+$(document).ready(function() {
+    $('.openblogs').on('click', function() {
+        $.ajax({
+            url: '/blogs',
+            method: 'GET',
+            success: function(response) {
+                window.location.href = '/blogs';
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.statusText);
+            }
+        });
+    });
+});
+
+
+//to open product details page
+$(document).ready(function() {
+    $('.single-product-wrapper').on('click', function() {
+        $.ajax({
+            url: '/product-details',
+            method: 'GET',
+            success: function(response) {
+                window.location.href = '/product-details';
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.statusText);
+            }
+        });
+    });
+});
+
 </script>
 </body>

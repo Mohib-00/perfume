@@ -28,7 +28,7 @@
                     <div class="shop_sidebar_area">
 
                          <div class="widget catagory mb-50">
-                            <h2 class="mx-5 mt-5">Travel Size</h2>
+                            <h2 class="mx-5 mt-5">Explore</h2>
                             <p style="margin:0px 20px 0px 50px">Discover our Travel Collection, featuring pocket-sized 10ml bottles that are perfect for your on-the-go lifestyle. Easily slip one into your bag for a quick refresh throughout the day or pack several for your next adventure. Whether you're commuting to work or embarking on a journey, our travel size perfumes are the ideal companions for keeping you beautifully scented wherever you go.</p>
                         </div>
 
