@@ -297,11 +297,96 @@ $(document).ready(function() {
 
 
         
-if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/users') && !localStorage.getItem('token')) {
+if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
         window.location.href = '/';  
     }
 
-     //to open admin page
+     //to open details  page
+   $('.opeingdetails').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/add-details',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/add-details';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
+
+    //to open products  page
+   $('.addproductssssss').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/add-products',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/add-products';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
+
+     //to open showcase  page
+   $('.showcaseimage').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/add-showcase-data',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/add-showcase-data';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
+
+
+    //to open carousel  page
+   $('.carousel').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/add-carousel-data',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/add-carousel-data';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
+
+   //to open admin page
    $('.admin').click(function () {
     if (!localStorage.getItem('token')) {
         alert('You need to be logged in to access this page.');
@@ -815,6 +900,435 @@ $(document).ready(function() {
                 alert('Error: ' + xhr.statusText);
             }
         });
+    });
+});
+
+$(document).ready(function() {
+        
+        $('.addsettingsbtn').click(function() {
+            $('.custom-modal.addsettings').fadeIn();  
+        });
+
+        
+        $('.closeModal').click(function() {
+            $('.custom-modal.addsettings').fadeOut(); 
+        });
+ 
+        $(document).click(function(event) {
+            if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.addsettingsbtn')) {
+                $('.custom-modal.addsettings').fadeOut(); 
+            }
+        });
+    });
+
+
+
+    //to add carousel data
+    $(document).ready(function () {
+    $('#settingsform').on('submit', function (e) {
+        e.preventDefault();
+
+        let formData = new FormData(this);
+
+        $.ajax({
+            url: "{{ route('carousel.store') }}",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Settings Saved!',
+                        text: response.message || 'The settings were saved successfully.',
+                        confirmButtonText: 'Ok',
+                    }).then(() => {
+                        
+                        $('#settingsform')[0].reset();
+                        $('#aboutimage').val('');  
+                        $('.custom-modal.addsettings').fadeOut();
+
+                        const carousel = response.carousel;
+
+                        const newRow = `
+                            <tr data-setting-id="${carousel.id}">
+                                <td>${$('.table tbody tr').length + 1}</td> 
+                                <td><img height="100" width="100" src="{{ asset('images/') }}/${carousel.image}" /></td>
+                                <td>${carousel.name}</td>
+                                <td>
+                                    <a class="btn btn-warning mx-5 edit-product-btn" data-carousel-id="${carousel.id}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a.5.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger delcarousel" data-carousel-id="${carousel.id}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                                        </svg>     
+                                    </a>                                                 
+                                </td>
+                            </tr>
+                        `;
+
+                        $('table tbody').append(newRow);
+                    });
+                }
+            },
+            error: function (xhr) {
+                let errors = xhr.responseJSON.errors;
+                if (errors) {
+                    let errorMessages = Object.values(errors)
+                        .map(err => err.join('\n'))
+                        .join('\n');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: errorMessages,
+                        confirmButtonText: 'Ok',
+                    });
+                }
+            },
+        });
+    });
+
+
+    //to get carousel data
+     $('table tbody').on('click', '.edit-product-btn', function () {
+        const carouselId = $(this).data('carousel-id');
+
+        $.ajax({
+            url: '/get-carousel/' + carouselId,
+            method: 'GET',
+            success: function (response) {
+                $('#settingsforminput').val(response.id);
+                $('#name1').val(response.name);
+                $('.custom-modal1').attr('aria-hidden', 'false').show();
+            },
+            error: function () {
+                alert('Error fetching settings data');
+            },
+        });
+    });
+
+    $('.closeModal').on('click', function () {
+        $('.custom-modal1').attr('aria-hidden', 'true').hide();
+    });
+});
+
+//to edit carousel
+$('#settingsformm').on('submit', function (e) {
+    e.preventDefault();
+
+    const carouselId = $('#settingsforminput').val(); 
+    const formData = new FormData(this);
+
+    $.ajax({
+        url: `/update-carousel/${carouselId}`,
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            const carousel = $(`a[data-carousel-id="${carouselId}"]`).closest('tr');
+
+            carousel.find('td:nth-child(2) img').attr('src', `/images/${response.carousel.image}`);
+            carousel.find('td:nth-child(3)').text(response.carousel.name);
+            
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Updated!',
+                text: response.message,
+                confirmButtonText: 'OK',
+            }).then(() => {
+                $('.custom-modal1').hide();   
+            });
+        },
+        error: function (xhr) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Error updating setting: ' + xhr.responseJSON.message,
+                confirmButtonText: 'OK',
+            });
+        }
+    });
+});
+
+//to del carousel
+$(document).on('click', '.delcarousel', function() {
+    const carouselId = $(this).data('carousel-id');
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const row = $(this).closest('tr');  
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete this carousel?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            });
+
+            $.ajax({
+                url: '/delete-carousel',
+                type: 'POST',
+                data: { carousel_id: carouselId },  
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        row.remove(); 
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    Swal.fire(
+                        'Error',
+                        'An error occurred while deleting the message.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
+
+
+
+//to open add showcase model
+$(document).ready(function() {
+     $('.addshowcase').click(function() {
+         $('.custom-modal.showcase').fadeIn();  
+    });
+
+     $('.closeModal').click(function() {
+        $('.custom-modal.showcase').fadeOut(); 
+    });
+
+     $(document).click(function(event) {
+        if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.addshowcase')) {
+            $('.custom-modal.showcase').fadeOut(); 
+        }
+    });
+});
+
+//to del showcase
+$(document).on('click', '.delshowcase', function() {
+    const showcaseId = $(this).data('showcase-id');
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const row = $(this).closest('tr');  
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete this showcase?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            });
+
+            $.ajax({
+                url: '/delete-showcase',
+                type: 'POST',
+                data: { showcase_id: showcaseId },  
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        row.remove(); 
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    Swal.fire(
+                        'Error',
+                        'An error occurred while deleting the showcase.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
+
+
+
+
+//to open add product model
+$(document).ready(function() {
+     $('.addproduct').click(function() {
+         $('.custom-modal.product').fadeIn();  
+    });
+
+     $('.closeModal').click(function() {
+        $('.custom-modal.product').fadeOut(); 
+    });
+
+     $(document).click(function(event) {
+        if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.addproduct')) {
+            $('.custom-modal.product').fadeOut(); 
+        }
+    });
+});
+
+//to del product
+$(document).on('click', '.delproduct', function() {
+    const productId = $(this).data('product-id');
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const row = $(this).closest('tr');  
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete this product?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            });
+
+            $.ajax({
+                url: '/delete-product',
+                type: 'POST',
+                data: { product_id: productId },  
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        row.remove(); 
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    Swal.fire(
+                        'Error',
+                        'An error occurred while deleting the product.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
+
+
+
+//to open add detail model
+$(document).ready(function() {
+     $('.adddetail').click(function() {
+         $('.custom-modal.detail').fadeIn();  
+    });
+
+     $('.closeModal').click(function() {
+        $('.custom-modal.detail').fadeOut(); 
+    });
+
+     $(document).click(function(event) {
+        if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.adddetail')) {
+            $('.custom-modal.detail').fadeOut(); 
+        }
+    });
+});
+
+//to del detail
+$(document).on('click', '.deldetail', function() {
+    const detailId = $(this).data('detail-id');
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const row = $(this).closest('tr');  
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete this detail?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            });
+
+            $.ajax({
+                url: '/delete-detail',
+                type: 'POST',
+                data: { detail_id: detailId },  
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        row.remove(); 
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    Swal.fire(
+                        'Error',
+                        'An error occurred while deleting the detail.',
+                        'error'
+                    );
+                }
+            });
+        }
     });
 });
 
