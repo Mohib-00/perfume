@@ -58,8 +58,8 @@
                         </div>
 
                         <div class="row all">
-                            <!-- Repeat this product structure for each product -->
-                            @foreach($relatedProducts as $relatedProduct)
+                            @if ($relatedProducts->isNotEmpty())
+                             @foreach($relatedProducts as $relatedProduct)
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="single-product-wrapper">
                                     <div class="product-img">
@@ -92,6 +92,7 @@
                                 </div>
                             </div>
                         @endforeach
+                        @endif
                           
                         </div>
                         

@@ -35,6 +35,18 @@
     align-items: center;
  }
 
+ .custom-modal.option {
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+ }
+
  .custom-modal.productedit {
      position: fixed;
     z-index: 1050;
@@ -251,6 +263,7 @@
                                             <th style="white-space: nowrap;">ShowOn Explore Page</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
+                                            <th style="white-space: nowrap;">Add Size Options</th>
                                          </tr>
                                     </thead>
                                     <tbody>
@@ -336,7 +349,7 @@
 
                                                 
                                                 <td>
-                                                    <a id="productedittttt" data-product-id="{{ $product->id }}" class="btn btn-warning mx-5">
+                                                    <a id="productedittttt" data-product-id="{{ $product->id }}" class="btn btn-warning ">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
                                                             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
                                                         </svg>
@@ -347,6 +360,11 @@
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                                             <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
                                                         </svg>                                                        
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a style="color:white" data-product-id="{{ $product->id }}" class="btn btn-primary addoption">
+                                                         Add Option                                                        
                                                     </a>
                                                 </td>
                                                  
@@ -377,6 +395,41 @@
             </div>
          </div>
       </div>
+
+
+
+      <!-- Add option data Modal -->
+      <div style="display:none;" class="custom-modal option" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h2 style="font-weight: bolder" class="modal-title">Add Option</h2>
+                    <button type="button" class="close closeModal" style="background: transparent; border: none; font-size: 2.5rem; color: #333;">
+                        &times;
+                    </button>
+                </div>
+    
+                <form id="optionform">
+                    <input type="hidden" id="optionforminput_add" value=""/>
+                    <input type="hidden" id="product_id" name="product_id" value="" />
+                    <div class="row mt-5">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="option_add">Option</label>
+                                <input type="text" id="option_add" name="image" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer mt-5" style="justify-content: flex-end; display: flex;">
+                        <button id="optionadd" type="submit" class="btn btn-primary" style="margin-right: 10px;">Submit</button>
+                        <button type="button" class="btn btn-secondary closeModal">Close</button>
+                    </div>
+                </form>
+                
+                
+            </div>
+        </div>
+    </div>
 
         <!-- Add product data Modal -->
         <div style="display:none;" class="custom-modal product" aria-hidden="true" tabindex="-1">

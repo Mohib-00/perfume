@@ -6,6 +6,7 @@ use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\RegisterController;
@@ -69,6 +70,8 @@ Route::group(['middleware' => ['admin.auth'], 'prefix' => 'admin'], function() {
     Route::get("add-showcase-data", [ShowcaseController::class, "addshowcasedata"]);
     Route::get("add-products", [ProductsController::class, "addproducts"]);
     Route::get("add-details", [DetailsController::class, "adddetails"]);
+    Route::get("product-options", [OptionController::class, "productoptions"]);
+
 });
 
 //to get user data
@@ -109,8 +112,15 @@ Route::get('/detail/{id}', [DetailsController::class, 'show'])->name('detail.sho
 Route::post('/detail/{id}', [DetailsController::class, 'update'])->name('detail.update');
 //to delet detail
 Route::post('/delete-detail', [DetailsController::class, 'deletedetail'])->name('delete.detail');
-
-
 //to show explore page
 Route::get('/explore-product/{slug}', [ProductsController::class, 'exploreProduct'])->name('single.product.page');
+//to add option
+Route::post('/api/add-option', [OptionController::class, 'addOption']);
+ //to get option data
+Route::get('/option/{id}', [OptionController::class, 'show'])->name('option.show');
+// Update option data
+Route::post('/option/{id}', [OptionController::class, 'update'])->name('option.update');
+//to delet option
+Route::post('/delete-options', [OptionController::class, 'deleteoption'])->name('delete.option');
+
  

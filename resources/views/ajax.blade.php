@@ -297,9 +297,30 @@ $(document).ready(function() {
 
 
         
-if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
+if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
         window.location.href = '/';  
     }
+
+     //to open options  page
+   $('.seeproductoptions').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/product-options',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/product-options';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
 
      //to open details  page
    $('.opeingdetails').click(function () {
@@ -1354,6 +1375,138 @@ $(document).ready(function () {
         });
     });
 });
+
+
+//to open add option model
+$(document).ready(function() {
+     $('.addoption').click(function() {
+         $('.custom-modal.option').fadeIn();  
+    });
+
+     $('.closeModal').click(function() {
+        $('.custom-modal.option').fadeOut(); 
+    });
+
+     $(document).click(function(event) {
+        if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.addoption')) {
+            $('.custom-modal.option').fadeOut(); 
+        }
+    });
+});
+
+
+$(document).ready(function () {
+     $('.addoption').click(function () {
+        const productId = $(this).data('product-id');
+        $('#product_id').val(productId);   
+        $('.custom-modal.option').fadeIn();
+    });
+
+     $('.closeModal').click(function () {
+        $('.custom-modal.option').fadeOut();
+    });
+
+     $('#optionform').submit(function (e) {
+        e.preventDefault();
+
+        const productId = $('#product_id').val();
+        const optionData = $('#option_add').val();
+
+        $.ajax({
+            url: '/api/add-option',   
+            method: 'POST',
+            data: {
+                product_id: productId,
+                option: optionData
+            },
+            success: function (response) {
+                if (response.success) {
+                     Swal.fire({
+                        icon: 'success',
+                        title: 'Option Added',
+                        text: 'The option has been added successfully!',
+                    }).then(() => {
+                         $('#option_add').val('');
+                        $('#product_id').val('');
+                        $('.custom-modal.option').fadeOut();   
+                    });
+                } else {
+                     Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message || 'An error occurred while adding the option.',
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+                 Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred. Please try again later.',
+                });
+            }
+        });
+    });
+});
+
+
+ 
+
+//to del options
+$(document).on('click', '.deloptions', function() {
+    const optionsId = $(this).data('option-id'); // Corrected to 'option-id'
+    const csrfToken = $('meta[name="csrf-token"]').attr('content'); // Get CSRF token
+    const row = $(this).closest('tr');  // Get the row for the deleted option
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete this option?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            });
+
+            $.ajax({
+                url: '/delete-options',  // Make sure the URL matches your route
+                type: 'POST',
+                data: { options_id: optionsId },  // Send the options_id
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        row.remove();  // Remove the row from the table
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    Swal.fire(
+                        'Error',
+                        'An error occurred while deleting the option.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
+
 
 
 </script>

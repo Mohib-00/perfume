@@ -25,7 +25,7 @@
           <li class="showcaseimage"><a><i class="fa fa-user purple_color"></i><span>Add Showcase </span></a></li>
           <li class="addproductssssss"><a><i class="fa fa-star green_color"></i><span>Add Products</span></a></li>
           <li class="opeingdetails"><a><i class="fa fa-folder red_color"></i><span>Add Opening Details</span></a></li>
-          <li class="feedbackkkkkkkkk"><a><i class="fa fa-comment white_color"></i><span></span></a></li>
+          <li class="seeproductoptions"><a><i class="fa fa-comment white_color"></i><span>See Product Options</span></a></li>
           <li class="bloggggggg"><a><i style="color:black" class="fa fa-globe white_color"></i><span> </span></a></li>
           <li class="aboutusservice"><a><i style="color:black" class="fa fa-star orange_color"></i><span> </span></a></li>
           <li class="addwebdetails"><a><i style="color:black" class="fa fa-folder white_color"></i><span> </span></a></li>
