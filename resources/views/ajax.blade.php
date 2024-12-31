@@ -1332,5 +1332,29 @@ $(document).on('click', '.deldetail', function() {
     });
 });
 
+
+$(document).ready(function () {
+    $('.explore-product').on('click', function () {
+        const slug = $(this).data('slug');   
+
+        $.ajax({
+            url: `/explore-product/${slug}`,   
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    window.location.href = data.redirect_url;  
+                } else {
+                    alert('Error: Product not found!');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+});
+
+
 </script>
 </body>

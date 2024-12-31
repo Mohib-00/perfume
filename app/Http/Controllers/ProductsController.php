@@ -185,6 +185,27 @@ public function deleteproduct(Request $request)
       
           return response()->json(['success' => false, 'message' => 'Product not found']);
       }
+      public function exploreProduct($slug)
+      {
+          $user = Auth::user();
+          $product = Product::where('slug', $slug)->firstOrFail();
+          $relatedProducts = Product::where('slug', $slug)->where('id', '!=', $product->id)->get();
+      
+          if (request()->ajax()) {
+              return response()->json([
+                  'success' => true,
+                  'redirect_url' => route('single.product.page', ['slug' => $slug]),
+              ]);
+          }
+      
+          return view('userpages.showexplore', compact('product', 'user', 'relatedProducts'));
+      }
+      
 
+      
+
+      
+
+ 
     }
 

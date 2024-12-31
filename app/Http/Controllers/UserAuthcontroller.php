@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -129,10 +130,13 @@ public function logout() {
     }
  
      
-    public function home(){ 
-        $user = Auth::check() ? Auth::user() : null;
-         return view('userpages.home', compact('user'));
-     }
+    public function home()
+{
+    $user = Auth::check() ? Auth::user() : null;
+    $favouriteProducts = Product::where('show_favourite_product', 1)->get();
+    return view('userpages.home', compact('user', 'favouriteProducts'));
+}
+
  
      public function admin(){ 
         $user = Auth::user(); 

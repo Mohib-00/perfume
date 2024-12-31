@@ -109,3 +109,8 @@ Route::get('/detail/{id}', [DetailsController::class, 'show'])->name('detail.sho
 Route::post('/detail/{id}', [DetailsController::class, 'update'])->name('detail.update');
 //to delet detail
 Route::post('/delete-detail', [DetailsController::class, 'deletedetail'])->name('delete.detail');
+
+
+//to show explore page
+Route::get('/explore-product/{slug}', [ProductsController::class, 'exploreProduct'])->name('single.product.page');
+ 
