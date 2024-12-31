@@ -260,7 +260,7 @@
                                             <th style="white-space: nowrap;">ShowOn Discovery Page</th>
                                             <th style="white-space: nowrap;">ShowOn Sale Page</th>
                                             <th style="white-space: nowrap;">ShowOn Collection Page</th>
-                                            <th style="white-space: nowrap;">ShowOn Explore Page</th>
+                                            <th style="white-space: nowrap;">ShowOn Travel Page</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                             <th style="white-space: nowrap;">Add Size Options</th>
@@ -561,7 +561,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowexplore">Show on Explore Page</span><br>
+                                <span for="isShowexplore">Show on Travel Page</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowexplore" name="showon_explore_page">
                                     <span class="slider"></span>
@@ -712,7 +712,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowexplore_edit">Show on Explore Page</span><br>
+                                <span for="isShowexplore_edit">Show on Travel Page</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowexplore_edit" name="showon_explore_page">
                                     <span class="slider"></span>
@@ -848,7 +848,7 @@
                                 </h4>
                             </td>
                             <td>
-                                <a id="productedittttt" data-product-id="${product.id}" class="btn btn-warning mx-5  ">
+                                <a id="productedittttt" data-product-id="${product.id}" class="btn btn-warning">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
                                         <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
                                     </svg>
@@ -859,6 +859,11 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528"/>
                                     </svg>
+                                </a>
+                            </td>
+                             <td>
+                                <a style="color:white" data-product-id="${product.id}" class="btn btn-primary addoption">
+                                    Add Option                                                        
                                 </a>
                             </td>
                         </tr>`;

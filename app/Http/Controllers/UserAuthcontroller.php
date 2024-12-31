@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carousel;
 use App\Models\Product;
+use App\Models\SectionDetail;
+use App\Models\ShowcaseImage;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -134,7 +137,15 @@ public function logout() {
 {
     $user = Auth::check() ? Auth::user() : null;
     $favouriteProducts = Product::where('show_favourite_product', 1)->get();
-    return view('userpages.home', compact('user', 'favouriteProducts'));
+    $saleProducts = Product::where('show_sale_product', 1)->get();
+    $selectionProducts = Product::where('show_selection_product', 1)->get();
+    $showcaseimages = ShowcaseImage::all();
+    $carousels = Carousel::first() ?? new Carousel([
+        'name' => '',
+        'image' => '',
+    ]);
+    $openings = SectionDetail::all();
+    return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings'));
 }
 
  
@@ -210,7 +221,8 @@ public function logout() {
       public function sale()
       {
         $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.sale', compact('user'));
+        $saleselections = Product::where('showon_sale_page', 1)->get();
+        return view('userpages.sale', compact('user','saleselections'));
       }
 
       public function contactus()
@@ -222,35 +234,40 @@ public function logout() {
       public function womensfragrances()
       {
         $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.womensfragrance', compact('user'));
+        $womenselections = Product::where('showon_women_page', 1)->get();
+        return view('userpages.womensfragrance', compact('user','womenselections'));
       }
 
 
       public function mensfragrances()
       {
         $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.mensfragrance', compact('user'));
+        $menselections = Product::where('showon_men_page', 1)->get();
+        return view('userpages.mensfragrance', compact('user','menselections'));
       }
 
 
       public function travelsize()
       {
         $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.travel', compact('user'));
+        $travelselections = Product::where('showon_explore_page', 1)->get();
+        return view('userpages.travel', compact('user','travelselections'));
       }
 
 
       public function discovery()
       {
         $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.discover', compact('user'));
+        $discoveryselections = Product::where('showon_discovery_page', 1)->get();
+        return view('userpages.discover', compact('user','discoveryselections'));
       }
 
 
       public function collections()
       {
         $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.collection', compact('user'));
+        $collectionselections = Product::where('showon_collection_page', 1)->get();
+        return view('userpages.collection', compact('user','collectionselections'));
       }
      
       public function blogs()

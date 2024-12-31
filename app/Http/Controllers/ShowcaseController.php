@@ -20,7 +20,7 @@ class ShowcaseController extends Controller
       {
           $validator = Validator::make($request->all(), [
                'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-               'name' => 'required|string|max:255',
+               'name' => 'nullable|string|max:255',
            ]);
       
           if ($validator->fails()) {
@@ -43,7 +43,7 @@ class ShowcaseController extends Controller
       
           return response()->json([
               'success' => true,
-              'message' => 'Service added successfully!',
+              'message' => 'Showcase added successfully!',
               'showcase' => $showcase
           ], 200);
       }

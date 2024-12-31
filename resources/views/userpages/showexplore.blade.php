@@ -70,8 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="{{ route('single.product.page', ['slug' => $relatedProduct->slug]) }}">
+                                         <a>
                                             <h6>{{ $relatedProduct->name }}</h6>
                                         </a>
                                         <p class="product-price">

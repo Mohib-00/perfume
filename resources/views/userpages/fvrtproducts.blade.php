@@ -6,6 +6,7 @@
             <p style="font-size: 18px; color: #777;">Explore some of our most popular items</p>
         </div>
         <div class="row">
+            @if ($favouriteProducts->isNotEmpty())
             @foreach ($favouriteProducts as $product)
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="single-favourite-item" style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-bottom: 30px;">
@@ -22,10 +23,11 @@
                             onmouseout="this.style.backgroundColor='#007bff'; this.style.color='#fff'">
                             Explore
                          </a>
-                                             </div>
+                        </div>
                 </div>
             </div>
         @endforeach
+        @endif
         </div>
     </div>
 </section>

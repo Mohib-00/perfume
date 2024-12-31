@@ -297,9 +297,30 @@ $(document).ready(function() {
 
 
         
-if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
+if ((window.location.pathname === '/admin'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
         window.location.href = '/';  
     }
+
+     //to open story  page
+   $('.addstoryyyyyy').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/add-story',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/add-story';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
 
      //to open options  page
    $('.seeproductoptions').click(function () {
@@ -1450,14 +1471,11 @@ $(document).ready(function () {
     });
 });
 
-
- 
-
 //to del options
 $(document).on('click', '.deloptions', function() {
-    const optionsId = $(this).data('option-id'); // Corrected to 'option-id'
-    const csrfToken = $('meta[name="csrf-token"]').attr('content'); // Get CSRF token
-    const row = $(this).closest('tr');  // Get the row for the deleted option
+    const optionsId = $(this).data('option-id');  
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');  
+    const row = $(this).closest('tr'); 
 
     Swal.fire({
         title: 'Are you sure?',
@@ -1474,13 +1492,13 @@ $(document).on('click', '.deloptions', function() {
             });
 
             $.ajax({
-                url: '/delete-options',  // Make sure the URL matches your route
+                url: '/delete-options',   
                 type: 'POST',
-                data: { options_id: optionsId },  // Send the options_id
+                data: { options_id: optionsId }, 
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
-                        row.remove();  // Remove the row from the table
+                        row.remove();   
                         Swal.fire(
                             'Deleted!',
                             response.message,
@@ -1509,5 +1527,75 @@ $(document).on('click', '.deloptions', function() {
 
 
 
+//to open add story model
+$(document).ready(function() {
+     $('.addstory').click(function() {
+         $('.custom-modal.story').fadeIn();  
+    });
+
+     $('.closeModal').click(function() {
+        $('.custom-modal.story').fadeOut(); 
+    });
+
+     $(document).click(function(event) {
+        if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.addstory')) {
+            $('.custom-modal.story').fadeOut(); 
+        }
+    });
+});
+
+//to del story
+$(document).on('click', '.delstory', function() {
+    const storyId = $(this).data('story-id');
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const row = $(this).closest('tr');  
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete this story?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            });
+
+            $.ajax({
+                url: '/delete-story',
+                type: 'POST',
+                data: { story_id: storyId },  
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        row.remove(); 
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    Swal.fire(
+                        'Error',
+                        'An error occurred while deleting the story.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
 </script>
 </body>

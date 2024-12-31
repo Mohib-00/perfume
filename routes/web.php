@@ -13,6 +13,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ShowcaseController;
+use App\Http\Controllers\StoryController;
 use App\Http\Controllers\UserAuthcontroller;
 use App\Http\Controllers\Websitecontroller;
 use Illuminate\Support\Facades\Route;
@@ -71,7 +72,7 @@ Route::group(['middleware' => ['admin.auth'], 'prefix' => 'admin'], function() {
     Route::get("add-products", [ProductsController::class, "addproducts"]);
     Route::get("add-details", [DetailsController::class, "adddetails"]);
     Route::get("product-options", [OptionController::class, "productoptions"]);
-
+    Route::get("add-story", [StoryController::class, "addstory"]);
 });
 
 //to get user data
@@ -122,5 +123,11 @@ Route::get('/option/{id}', [OptionController::class, 'show'])->name('option.show
 Route::post('/option/{id}', [OptionController::class, 'update'])->name('option.update');
 //to delet option
 Route::post('/delete-options', [OptionController::class, 'deleteoption'])->name('delete.option');
-
- 
+//to add story data
+Route::post('/story/store', [StoryController::class, 'store'])->name('story.store');
+//to get story data
+Route::get('/story/{id}', [StoryController::class, 'show'])->name('story.show');
+// Update story data
+Route::post('/story/{id}', [StoryController::class, 'update'])->name('story.update');
+//to delet story
+Route::post('/delete-story', [StoryController::class, 'deletestory'])->name('delete.story');
