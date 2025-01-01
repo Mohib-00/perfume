@@ -49,6 +49,12 @@ class CartController extends Controller
         }
         return response()->json(['message' => 'Product added to cart successfully.']);
     }
+
+    public function cart(){
+        $user = Auth::check() ? Auth::user() : null;
+
+        return view('userpages.cart', compact('user'));
+    }
     
     
 }

@@ -51,6 +51,8 @@ Route::get('/collections/discovery', [UserAuthcontroller::class, 'discovery']);
 Route::get('/blogs', [UserAuthcontroller::class, 'blogs']);
 //to open product details page
 Route::get('/product-details/{product_name}', [UserAuthController::class, 'details'])->name('product.options');
+//to open cart page
+Route::get('/cart', [Cartcontroller::class, 'cart']);
 
 
 Route::group([

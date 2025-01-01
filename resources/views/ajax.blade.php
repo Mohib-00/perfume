@@ -781,6 +781,21 @@ $.ajax({
 });
 });
 
+//to open cart page
+$('.opencart').click(function () {
+$.ajax({
+    url:'/cart',
+    type: 'GET',
+    success: function (response) {
+        window.location.href ='/cart';
+         
+    },
+    error: function (xhr, status, error) {
+        console.error('AJAX Error: ', status, error);
+    }
+});
+});
+
 
 
 //to open sale page
@@ -1961,6 +1976,8 @@ $(document).on('click', '.addtocartproduct', function (e) {
                 title: 'Success!',
                 text: response.message,
                 confirmButtonText: 'OK'
+            }).then(() => {
+                 window.location.href = '/cart'; 
             });
         },
         error: function (xhr) {
@@ -1986,6 +2003,7 @@ $(document).on('click', '.addtocartproduct', function (e) {
         }
     });
 });
+
 
 
 

@@ -100,8 +100,8 @@
             @endif
 
             <!-- Cart Area -->
-            <div class="cart-area">
-                <a href="#" id="essenceCartBtn"><img src="{{asset('essence/img/core-img/bag.svg')}}" alt=""> <span>3</span></a>
+            <div class="cart-area opencart">
+                <a id="essenceCartBtn"><img  src="{{asset('essence/img/core-img/bag.svg')}}" alt=""> <span>3</span></a>
             </div>
         </div>
     </div>
