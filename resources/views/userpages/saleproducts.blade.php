@@ -1,4 +1,4 @@
-<section class="new_arrivals_area section-padding-80 clearfix">
+<section class="new_arrivals_area section-padding-80 clearfix my-5" style="background-color:#fafafa">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -16,7 +16,7 @@
 
                     @if ($saleProducts->isNotEmpty())
                     @foreach ($saleProducts as $product)
-                     <div class="single-product-wrapper">
+                     <div class="single-product-wrapper" style="background-color: #ffffff;border-radius:10px">
                         <!-- Product Image -->
                         <div class="product-img">
                             <img style="height:500px" src="{{ asset('images/'.$product->hover_image) }}" alt="">
@@ -49,10 +49,15 @@
                                 <i class="fa fa-star-half-o" style="margin-right: 3px;"></i>
                                 <i class="fa fa-star-o" style="margin-right: 3px;"></i>
                             </div>
-                             <div class="hover-content">
-                                 <div class="add-to-cart-btn">
-                                    <a href="#" class="btn essence-btn">Add to Cart</a>
-                                </div>
+                            <div class="add-to-cart-btn">
+                                @if ($product->quantity == 0)
+                                   
+                                <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; background-color: #ccc; display: flex; justify-content: center; align-items: center; cursor: not-allowed;">Sold Out</a>
+                                @elseif ($product->options->isNotEmpty()) 
+                                <a class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;color:white;">View Options</a>
+                                @else
+                                    <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;">Add to Cart</a>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -149,20 +149,31 @@ public function logout() {
  
      
     public function home()
-{
-    $user = Auth::check() ? Auth::user() : null;
-    $favouriteProducts = Product::where('show_favourite_product', 1)->get();
-    $saleProducts = Product::where('show_sale_product', 1)->get();
-    $selectionProducts = Product::where('show_selection_product', 1)->get();
-    $showcaseimages = ShowcaseImage::all();
-    $carousels = Carousel::first() ?? new Carousel([
-        'name' => '',
-        'image' => '',
-    ]);
-    $openings = SectionDetail::all();
-    $stories = Story::all();
-    return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories'));
-}
+    {
+        
+        $user = Auth::check() ? Auth::user() : null;
+    
+       
+        $favouriteProducts = Product::where('show_favourite_product', 1)->get();
+        $saleProducts = Product::where('show_sale_product', 1)
+            ->with('options') 
+            ->get();
+
+        $selectionProducts = Product::where('show_selection_product', 1)
+        ->with('options')
+        ->get();
+
+        $showcaseimages = ShowcaseImage::all();
+        $carousels = Carousel::first() ?? new Carousel([
+            'name' => '',
+            'image' => '',
+        ]);
+        $openings = SectionDetail::all();
+        $stories = Story::all();
+    
+        return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories'));
+    }
+    
 
  
      public function admin(){ 
@@ -244,7 +255,9 @@ public function logout() {
       public function sale()
       {
         $user = Auth::check() ? Auth::user() : null;
-        $saleselections = Product::where('showon_sale_page', 1)->get();
+        $saleselections = Product::where('showon_sale_page', 1)
+        ->with('options')
+        ->get();
         return view('userpages.sale', compact('user','saleselections'));
       }
 
@@ -257,7 +270,9 @@ public function logout() {
       public function womensfragrances()
       {
         $user = Auth::check() ? Auth::user() : null;
-        $womenselections = Product::where('showon_women_page', 1)->get();
+        $womenselections = Product::where('showon_women_page', 1)
+        ->with('options')
+        ->get();
         return view('userpages.womensfragrance', compact('user','womenselections'));
       }
 
@@ -265,7 +280,9 @@ public function logout() {
       public function mensfragrances()
       {
         $user = Auth::check() ? Auth::user() : null;
-        $menselections = Product::where('showon_men_page', 1)->get();
+        $menselections = Product::where('showon_men_page', 1)
+        ->with('options')
+        ->get();
         return view('userpages.mensfragrance', compact('user','menselections'));
       }
 
@@ -273,7 +290,9 @@ public function logout() {
       public function travelsize()
       {
         $user = Auth::check() ? Auth::user() : null;
-        $travelselections = Product::where('showon_explore_page', 1)->get();
+        $travelselections = Product::where('showon_explore_page', 1)
+        ->with('options')
+        ->get();
         return view('userpages.travel', compact('user','travelselections'));
       }
 
@@ -281,7 +300,9 @@ public function logout() {
       public function discovery()
       {
         $user = Auth::check() ? Auth::user() : null;
-        $discoveryselections = Product::where('showon_discovery_page', 1)->get();
+        $discoveryselections = Product::where('showon_discovery_page', 1)
+        ->with('options')
+        ->get();
         return view('userpages.discover', compact('user','discoveryselections'));
       }
 
@@ -289,7 +310,9 @@ public function logout() {
       public function collections()
       {
         $user = Auth::check() ? Auth::user() : null;
-        $collectionselections = Product::where('showon_collection_page', 1)->get();
+        $collectionselections = Product::where('showon_collection_page', 1)
+        ->with('options')
+        ->get();
         return view('userpages.collection', compact('user','collectionselections'));
       }
      
