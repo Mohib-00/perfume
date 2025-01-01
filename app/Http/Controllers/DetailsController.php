@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\SectionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,10 @@ class DetailsController extends Controller
     public function  adddetails(){ 
         $user = Auth::user();
         $details = SectionDetail::all();
-        return view('adminpages.sectiondetails', ['userName' => $user->name],compact('details'));
+        $count = Message::whereHas('messageStatus', function ($query) {
+            $query->where('status', 1);
+            })->count();
+        return view('adminpages.sectiondetails', ['userName' => $user->name, 'count' => $count],compact('details'));
       }
 
 

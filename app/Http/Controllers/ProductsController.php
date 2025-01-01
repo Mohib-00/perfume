@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,10 @@ class ProductsController extends Controller
     public function  addproducts(){ 
         $user = Auth::user();
         $products = Product::all();
-        return view('adminpages.products', ['userName' => $user->name],compact('products'));
+        $count = Message::whereHas('messageStatus', function ($query) {
+            $query->where('status', 1);
+            })->count();
+        return view('adminpages.products', ['userName' => $user->name, 'count' => $count],compact('products'));
       }
 
 

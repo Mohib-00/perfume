@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Option;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,11 @@ class OptionController extends Controller
     public function  productoptions(){ 
         $user = Auth::user();
         $options = Option::with('product')->get();
-        return view('adminpages.productoptions', ['userName' => $user->name],compact('options'));
+        $count = Message::whereHas('messageStatus', function ($query) {
+            $query->where('status', 1);
+            })->count();
+
+        return view('adminpages.productoptions', ['userName' => $user->name, 'count' => $count],compact('options'));
       }
 
 

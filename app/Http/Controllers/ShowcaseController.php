@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\ShowcaseImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,10 @@ class ShowcaseController extends Controller
     public function  addshowcasedata(){ 
         $user = Auth::user();
         $showcases = ShowcaseImage::all();
-        return view('adminpages.showcseimage', ['userName' => $user->name],compact('showcases'));
+        $count = Message::whereHas('messageStatus', function ($query) {
+            $query->where('status', 1);
+            })->count();
+        return view('adminpages.showcseimage', ['userName' => $user->name, 'count' => $count],compact('showcases'));
       }
 
 

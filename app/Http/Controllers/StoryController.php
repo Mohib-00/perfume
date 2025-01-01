@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Story;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,10 @@ class StoryController extends Controller
         $user = Auth::user();
         $stories = Story::all();
         $hasStoryData = Story::whereNotNull('image')->exists();
-        return view('adminpages.addstory', ['userName' => $user->name],compact('stories','hasStoryData'));
+        $count = Message::whereHas('messageStatus', function ($query) {
+            $query->where('status', 1);
+            })->count();
+        return view('adminpages.addstory', ['userName' => $user->name, 'count' => $count],compact('stories','hasStoryData'));
     }
 
 

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carousel;
+use App\Models\Message;
 use App\Models\Product;
 use App\Models\SectionDetail;
 use App\Models\ShowcaseImage;
+use App\Models\Story;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -145,19 +147,26 @@ public function logout() {
         'image' => '',
     ]);
     $openings = SectionDetail::all();
-    return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings'));
+    $stories = Story::all();
+    return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories'));
 }
 
  
      public function admin(){ 
         $user = Auth::user(); 
-         return view('adminpages.admin',['userName' => $user->name]);
+        $count = Message::whereHas('messageStatus', function ($query) {
+            $query->where('status', 1);
+            })->count();
+         return view('adminpages.admin',['userName' => $user->name, 'count' => $count]);
      }
  
      public function  users(){ 
         $user = Auth::user();
         $users = User::all();
-        return view('adminpages.users', ['userName' => $user->name],compact('users'));
+        $count = Message::whereHas('messageStatus', function ($query) {
+            $query->where('status', 1);
+            })->count();
+        return view('adminpages.users', ['userName' => $user->name, 'count' => $count],compact('users'));
       }
 
 
@@ -215,7 +224,8 @@ public function logout() {
       public function aboutUs()
       {
         $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.aboutus', compact('user'));
+        $stories = Story::all();
+        return view('userpages.aboutus', compact('user','stories'));
       }
 
       public function sale()

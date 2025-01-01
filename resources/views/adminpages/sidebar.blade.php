@@ -27,7 +27,7 @@
           <li class="opeingdetails"><a><i class="fa fa-folder red_color"></i><span>Add Opening Details</span></a></li>
           <li class="seeproductoptions"><a><i class="fa fa-comment white_color"></i><span>See Product Options</span></a></li>
           <li class="addstoryyyyyy"><a><i style="color:black" class="fa fa-globe white_color"></i><span>Add Story</span></a></li>
-          <li class="aboutusservice"><a><i style="color:black" class="fa fa-star orange_color"></i><span> </span></a></li>
+          <li class="messagessss"><a><i style="color:black" class="fa fa-star orange_color"></i><span>Messages</span></a></li>
           <li class="addwebdetails"><a><i style="color:black" class="fa fa-folder white_color"></i><span> </span></a></li>
           <li class="addgraphicdetails"><a><i style="color:black" class="fa fa-comment red_color"></i><span> </span></a></li>
           <li class="addmarketingdetails"><a><i style="color:black" class="fa fa-star green_color"></i><span> </span></a></li>

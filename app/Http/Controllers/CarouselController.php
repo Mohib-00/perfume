@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carousel;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,10 @@ class CarouselController extends Controller
     public function  addcarouseldata(){ 
         $user = Auth::user();
         $carousels = Carousel::all();
-        return view('adminpages.addcarousel', ['userName' => $user->name],compact('carousels'));
+        $count = Message::whereHas('messageStatus', function ($query) {
+            $query->where('status', 1);
+            })->count();
+        return view('adminpages.addcarousel', ['userName' => $user->name, 'count' => $count],compact('carousels'));
       }
 
 

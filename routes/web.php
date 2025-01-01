@@ -73,6 +73,8 @@ Route::group(['middleware' => ['admin.auth'], 'prefix' => 'admin'], function() {
     Route::get("add-details", [DetailsController::class, "adddetails"]);
     Route::get("product-options", [OptionController::class, "productoptions"]);
     Route::get("add-story", [StoryController::class, "addstory"]);
+    Route::get("messages", [MessageController::class, "message"]);
+
 });
 
 //to get user data
@@ -131,3 +133,9 @@ Route::get('/story/{id}', [StoryController::class, 'show'])->name('story.show');
 Route::post('/story/{id}', [StoryController::class, 'update'])->name('story.update');
 //to delet story
 Route::post('/delete-story', [StoryController::class, 'deletestory'])->name('delete.story');
+// to save customer message
+Route::post('/submit-message', [MessageController::class, 'submitMessage'])->name('submit.message');
+//to chng msg status
+Route::post('/update-status', [MessageController::class, 'updateStatus']);
+//to delet msg
+Route::post('/delete-message', [MessageController::class, 'deletemessage'])->name('delete.message');
