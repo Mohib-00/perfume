@@ -28,13 +28,10 @@
           <li class="seeproductoptions"><a><i class="fa fa-comment white_color"></i><span>See Product Options</span></a></li>
           <li class="addstoryyyyyy"><a><i style="color:black" class="fa fa-globe white_color"></i><span>Add Story</span></a></li>
           <li class="messagessss"><a><i style="color:black" class="fa fa-star orange_color"></i><span>Messages</span></a></li>
-          <li class="addwebdetails"><a><i style="color:black" class="fa fa-folder white_color"></i><span> </span></a></li>
-          <li class="addgraphicdetails"><a><i style="color:black" class="fa fa-comment red_color"></i><span> </span></a></li>
-          <li class="addmarketingdetails"><a><i style="color:black" class="fa fa-star green_color"></i><span> </span></a></li>
-          <li class="addposdetails"><a><i style="color:black" class="fa fa-comment grey_color"></i><span></span></a></li>
           <li>
              <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cog yellow_color"></i><span>Settings</span></a>
              <ul class="collapse list-unstyled" id="element">
+               <li class="addsettingggss"><a><span>Add Setting</span></a></li>
                 <li class="logout"><a> <span>Logout</span></a></li>
              </ul>
           </li>

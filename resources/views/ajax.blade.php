@@ -297,9 +297,30 @@ $(document).ready(function() {
 
 
         
-if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
+if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
         window.location.href = '/';  
     }
+
+     //to open settings  page
+    $('.addsettingggss').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/settings',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/settings';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
 
      //to open message  page
    $('.messagessss').click(function () {
@@ -1760,6 +1781,80 @@ $(document).on('click', '.delmsg', function() {
         }
     });
 });
+
+
+
+//to open add setting model
+$(document).ready(function() {
+     $('.addsetting').click(function() {
+         $('.custom-modal.setting').fadeIn();  
+    });
+
+     $('.closeModal').click(function() {
+        $('.custom-modal.setting').fadeOut(); 
+    });
+
+     $(document).click(function(event) {
+        if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.addsetting')) {
+            $('.custom-modal.setting').fadeOut(); 
+        }
+    });
+});
+
+//to del setting
+$(document).on('click', '.delsetting', function() {
+    const settingId = $(this).data('setting-id');
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const row = $(this).closest('tr');  
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete this setting?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            });
+
+            $.ajax({
+                url: '/delete-setting',
+                type: 'POST',
+                data: { setting_id: settingId },  
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        row.remove(); 
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    Swal.fire(
+                        'Error',
+                        'An error occurred while deleting the setting.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
+
 
 </script>
 </body>

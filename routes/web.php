@@ -74,7 +74,7 @@ Route::group(['middleware' => ['admin.auth'], 'prefix' => 'admin'], function() {
     Route::get("product-options", [OptionController::class, "productoptions"]);
     Route::get("add-story", [StoryController::class, "addstory"]);
     Route::get("messages", [MessageController::class, "message"]);
-
+    Route::get("settings", [SettingsController::class, "setting"]);
 });
 
 //to get user data
@@ -139,3 +139,11 @@ Route::post('/submit-message', [MessageController::class, 'submitMessage'])->nam
 Route::post('/update-status', [MessageController::class, 'updateStatus']);
 //to delet msg
 Route::post('/delete-message', [MessageController::class, 'deletemessage'])->name('delete.message');
+//to add setting data
+Route::post('/setting/store', [SettingsController::class, 'store'])->name('setting.store');
+//to get setting data
+Route::get('/setting/{id}', [SettingsController::class, 'show'])->name('setting.show');
+// Update setting data
+Route::post('/setting/{id}', [SettingsController::class, 'update'])->name('setting.update');
+//to delet Settings
+Route::post('/delete-setting', [SettingsController::class, 'deletesetting'])->name('delete.setting');
