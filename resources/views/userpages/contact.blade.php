@@ -19,34 +19,36 @@
         <!-- Form Section -->
         <div class="row justify-content-center">
             <div class="col-lg-12">
-                <form class="p-4 shadow rounded" style="background-color: #f8f9fa;">
-                    <!-- Row 1: Name and Phone -->
+                <form id="contactForm" class="bg-light p-4 p-md-5 contact-form">
+                    @csrf
                     <div class="row">
-                        <div class="col-lg-6 col-md-12 mb-3">
+                        <div class="col-md-6 form-group">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control border-0 shadow-sm" id="name" required>
+                            <input type="text" name="name" class="form-control" placeholder="Your Name">
+                            <small class="text-danger" id="error-name"></small>
                         </div>
-                        <div class="col-lg-6 col-md-12 mb-3">
+                
+                        <div class="col-md-6 form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" name="email" class="form-control" placeholder="Your Email">
+                            <small class="text-danger" id="error-email"></small>
+                        </div>
+                
+                        <div class="col-md-12 form-group">
                             <label for="phone" class="form-label">Phone</label>
-                            <input type="number" class="form-control border-0 shadow-sm" id="phone"" required>
+                            <input type="number" name="phone" class="form-control" placeholder="Phone">
+                            <small class="text-danger" id="error-phone"></small>
                         </div>
-                    </div>
-    
-                    <!-- Row 2: Email -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control border-0 shadow-sm" id="email" required>
-                    </div>
-    
-                    <!-- Row 3: Message -->
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea rows="10" class="form-control border-0 shadow-sm" id="message" placeholder="Write your message here" required></textarea>
-                    </div>
-    
-                    <!-- Submit Button -->
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary px-5 py-2 shadow-sm">Send Message</button>
+                
+                        <div class="col-md-12 form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea rows="10" name="message" class="form-control" placeholder="Message"></textarea>
+                            <small class="text-danger" id="error-message"></small>
+                        </div>
+                
+                        <div class="col-md-12 form-group">
+                            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                        </div>
                     </div>
                 </form>
             </div>

@@ -54,7 +54,7 @@
                                 <a  data-product-name="{{ $product->name }}"class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;">View Options</a>
                                 @else
                                    
-                                    <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;">Add to Cart</a>
+                                    <a data-product-id="{{ $product->id }}" class="btn essence-btn addtocartproduct" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;">Add to Cart</a>
                                 @endif
                             </div>
                             

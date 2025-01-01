@@ -58,379 +58,47 @@
                         </div>
 
                         <div class="row all">
-                            <!-- Repeat this product structure for each product -->
-                           
-                            <!-- Repeat for other products -->
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
-                                    <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
-                                        </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                            @if ($collectionselections->isNotEmpty())
+                            @foreach ($collectionselections as $product)
                              <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
+                                <div data-product-name="{{ $product->name }}" class="single-product-wrapper">
                                     <div class="product-img">
-                                        <img src="{{asset('essence/img/product-img/product-2.jpg')}}" alt="">
-                                        <img class="hover-img" src="{{asset('essence/img/product-img/product-3.jpg')}}" alt="">
+                                        <img style="height:500px;border-radius:10px 10px 0px 0px" src="{{ asset('images/'.$product->hover_image) }}" alt="">
+                                        <img style="height:500px;border-radius:10px 10px 0px 0px" class="hover-img" src="{{ asset('images/'.$product->image) }}" alt="">
                                         <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
+                                         <a href="#" class="favme fa fa-heart"></a>
                                         </div>
                                     </div>
-                                    <div class="product-description">
-                                        <span>topshop</span>
-                                        <a href="single-product-details.html">
-                                            <h6>Knot Front Mini Dress</h6>
+                                    <div class="product-description" style="background-color: whitesmoke">
+                                         <a>
+                                            <h6>{{$product->name}}</h6>
                                         </a>
-                                        <p class="product-price">$80.00</p>
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
+                                        <p class="product-price">
+                                            @if($product->discount_price)
+                                                <span style="text-decoration: line-through; color: #999;">${{ $product->price }}</span>
+                                            @else
+                                                ${{ $product->price }}
+                                            @endif
+                                            </p>
+                                            <p class="product-price">{{ $product->discount_price }}</p>
+                                            <div class="add-to-cart-btn" >
+                                                @if ($product->quantity == 0)
+                                                   
+                                                <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; background-color: #ccc; display: flex; justify-content: center; align-items: center; cursor: not-allowed;border-radius:0px 0px 10px 10px">Sold Out</a>
+                                                @elseif ($product->options->isNotEmpty()) 
+                                                <a  data-product-name="{{ $product->name }}" class="btn essence-btn single-product-wrapper" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">View Options</a>
+                                                @else
+                                                   
+                                                    <a data-product-id="{{ $product->id }}" class="btn essence-btn addtocartproduct" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">Add to Cart</a>
+                                                @endif
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        
+                            @endforeach
+                            @endif
+
                          </div>
                         
                        

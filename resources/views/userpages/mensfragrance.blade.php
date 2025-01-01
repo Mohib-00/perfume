@@ -90,7 +90,7 @@
                                                 <a data-product-name="{{ $product->name }}" class="btn essence-btn single-product-wrapper" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">View Options</a>
                                                 @else
                                                    
-                                                    <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">Add to Cart</a>
+                                                    <a data-product-id="{{ $product->id }}" class="btn essence-btn addtocartproduct" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">Add to Cart</a>
                                                 @endif
                                             </div>
                                     </div>

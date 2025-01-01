@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutServiceController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MessageController;
@@ -149,3 +150,6 @@ Route::get('/setting/{id}', [SettingsController::class, 'show'])->name('setting.
 Route::post('/setting/{id}', [SettingsController::class, 'update'])->name('setting.update');
 //to delet Settings
 Route::post('/delete-setting', [SettingsController::class, 'deletesetting'])->name('delete.setting');
+
+//to add product to cart
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');

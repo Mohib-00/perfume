@@ -1923,5 +1923,71 @@ $(document).on('click', '#submitpassword', function(e) {
      }
  });
 });
+
+
+$(document).on('click', '.addtocartproduct', function (e) {
+    e.preventDefault();
+
+    var token = localStorage.getItem('token');
+
+    if (!token) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'You need to log in to add items to your cart.',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.href = '/login';
+        });
+        return;
+    }
+
+    var productId = $(this).data('product-id');
+    var optionId = $('#productSize').val();  
+    var quantity = 1;  
+
+    $.ajax({
+        url: '/add-to-cart',
+        type: 'POST',
+        data: {
+            product_id: productId,
+            option_id: optionId,
+            quantity: quantity,
+            _token: $('meta[name="csrf-token"]').attr('content') 
+        },
+        success: function (response) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: response.message,
+                confirmButtonText: 'OK'
+            });
+        },
+        error: function (xhr) {
+            var errorMessage = xhr.responseJSON.message || 'An error occurred.';
+
+            if (errorMessage === 'User not logged in.') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: errorMessage,
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = '/login';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: errorMessage,
+                    confirmButtonText: 'OK'
+                });
+            }
+        }
+    });
+});
+
+
+
 </script>
 </body>

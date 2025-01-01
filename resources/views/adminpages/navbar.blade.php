@@ -10,7 +10,7 @@
                 <ul>
                    <li><a href="#"> </a></li>
                    <li><a href="#"> </a></li>
-                   <li class="messages"><a><i class="fa fa-bell-o"></i><span class="badge">{{$count}}</span></a></li>
+                   <li class="messagessss"><a><i class="fa fa-bell-o"></i><span class="badge">{{$count}}</span></a></li>
                 </ul>
                 <ul class="user_profile_dd">
                    <li>
