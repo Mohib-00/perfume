@@ -107,6 +107,19 @@ class UserAuthcontroller extends Controller
     }
 }
 
+public function changePassword(Request $request){
+    $request->validate([
+        'password' => 'required|confirmed',
+    ]);
+    $loggeduser = auth()->user();
+    $loggeduser->password = Hash::make($request->password);
+    $loggeduser->save();
+    return response()->json([
+        'message' => 'Password change succesfully',
+        'status' => 'Success'   
+    ], 200);
+}
+
 
 public function logout() {
        

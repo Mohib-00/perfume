@@ -16,7 +16,7 @@
                    <li>
                       <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user">{{$userName}}</span></a>
                       <div class="dropdown-menu">
-                         <a class="dropdown-item profile">My Profile</a>
+                         <a class="dropdown-item changepassword">My Profile</a>
                          <a class="dropdown-item logout"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                       </div>
                    </li>

@@ -32,6 +32,7 @@
              <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cog yellow_color"></i><span>Settings</span></a>
              <ul class="collapse list-unstyled" id="element">
                <li class="addsettingggss"><a><span>Add Setting</span></a></li>
+               <li class="changepassword"><a><span>Change Password</span></a></li>
                 <li class="logout"><a> <span>Logout</span></a></li>
              </ul>
           </li>

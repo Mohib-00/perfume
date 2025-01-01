@@ -75,6 +75,7 @@ Route::group(['middleware' => ['admin.auth'], 'prefix' => 'admin'], function() {
     Route::get("add-story", [StoryController::class, "addstory"]);
     Route::get("messages", [MessageController::class, "message"]);
     Route::get("settings", [SettingsController::class, "setting"]);
+    Route::get("change-password", [SettingsController::class, "changepassword"]);
 });
 
 //to get user data

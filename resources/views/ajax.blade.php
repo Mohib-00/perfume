@@ -297,11 +297,32 @@ $(document).ready(function() {
 
 
         
-if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
+if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/change-password' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
         window.location.href = '/';  
     }
 
-     //to open settings  page
+     //to open profile  page
+    $('.changepassword').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/change-password',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/change-password';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
+
+    //to open settings  page
     $('.addsettingggss').click(function () {
     if (!localStorage.getItem('token')) {
         alert('You need to be logged in to access this page.');
@@ -1854,7 +1875,54 @@ $(document).on('click', '.delsetting', function() {
         }
     });
 });
+//to chnage password
+$(document).on('click', '#submitpassword', function(e) {
+ 
+ $('#passwordError').text('');
+ $('#confirmPasswordError').text('');
+ $('#message').html('');
 
+ const password = document.getElementById('password').value;
+ const confirmPassword = document.getElementById('confirm_password').value;
 
+ $.ajax({
+     url: '/changePassword',
+     type: 'POST',
+     data: {
+         password: password,
+         password_confirmation: confirmPassword
+     },
+     headers: {
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+     },
+     success: function (response) {
+         Swal.fire({
+             icon: 'success',
+             title: 'Success',
+             text: response.message,
+             confirmButtonText: 'OK'
+         });
+         $('#changePasswordForm')[0].reset();  
+     },
+     error: function (xhr) {
+         if (xhr.status === 422) {
+             const errors = xhr.responseJSON.errors;
+             if (errors.password) {
+                 $('#passwordError').text(errors.password[0]);
+             }
+             if (errors.password_confirmation) {
+                 $('#confirmPasswordError').text(errors.password_confirmation[0]);
+             }
+         } else {
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Error',
+                 text: 'An error occurred. Please try again.',
+                 confirmButtonText: 'OK'
+             });
+         }
+     }
+ });
+});
 </script>
 </body>

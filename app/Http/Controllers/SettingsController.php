@@ -92,4 +92,14 @@ return response()->json(['success' => false, 'message' => 'setting not found']);
 }
    
 
+public function changepassword()
+{
+$user = Auth::user();   
+$count = Message::whereHas('messageStatus', function ($query) {
+ $query->where('status', 1);
+ })->count();
+ 
+ return view('adminpages.profile', ['userName' => $user->name, 'count' => $count]);
+}
+
 }
