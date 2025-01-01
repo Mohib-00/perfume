@@ -17,7 +17,7 @@
                     
                     @if ($selectionProducts->isNotEmpty())
                     @foreach ($selectionProducts as $product)
-                     <div class="single-product-wrapper" style="background-color: #ffffff;border-radius:10px">
+                     <div  data-product-name="{{ $product->name }}" class="single-product-wrapper" style="background-color: #ffffff;border-radius:10px">
                          <div class="product-img">
                             <img style="height:500px" src="{{ asset('images/'.$product->hover_image) }}" alt="">
                              <img style="height:500px" class="hover-img" src="{{ asset('images/'.$product->image) }}" alt="">
@@ -51,7 +51,7 @@
                                    
                                 <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; background-color: #ccc; display: flex; justify-content: center; align-items: center; cursor: not-allowed;">Sold Out</a>
                                 @elseif ($product->options->isNotEmpty()) 
-                                <a class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;">View Options</a>
+                                <a  data-product-name="{{ $product->name }}"class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;">View Options</a>
                                 @else
                                    
                                     <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;">Add to Cart</a>

@@ -61,15 +61,15 @@
                             @if ($relatedProducts->isNotEmpty())
                              @foreach($relatedProducts as $relatedProduct)
                             <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
+                                <div data-product-name="{{ $product->name }}" class="single-product-wrapper">
                                     <div class="product-img">
-                                        <img style="height:500px" src="{{ asset('images/'.$relatedProduct->image) }}" alt="">
-                                        <img style="height:500px" class="hover-img" src="{{ asset('images/'.$relatedProduct->hover_image) }}" alt="">
+                                        <img style="height:500px;border-radius:10px 10px 0px 0px" src="{{ asset('images/'.$relatedProduct->image) }}" alt="">
+                                        <img style="height:500px;border-radius:10px 10px 0px 0px" class="hover-img" src="{{ asset('images/'.$relatedProduct->hover_image) }}" alt="">
                                         <div class="product-favourite">
                                             <a href="#" class="favme fa fa-heart"></a>
                                         </div>
                                     </div>
-                                    <div class="product-description">
+                                    <div class="product-description" style="background-color: whitesmoke">
                                          <a>
                                             <h6>{{ $relatedProduct->name }}</h6>
                                         </a>
@@ -82,10 +82,16 @@
                                         </p>
                                         <p class="product-price">{{ $relatedProduct->discount_price }}</p>
                 
-                                        <div class="hover-content">
-                                            <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
-                                            </div>
+                                        <div class="add-to-cart-btn" >
+                                            @if ($product->quantity == 0)
+                                               
+                                            <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; background-color: #ccc; display: flex; justify-content: center; align-items: center; cursor: not-allowed;border-radius:0px 0px 10px 10px">Sold Out</a>
+                                            @elseif ($product->options->isNotEmpty()) 
+                                            <a data-product-name="{{ $product->name }}" class="btn essence-btn single-product-wrapper" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">View Options</a>
+                                            @else
+                                               
+                                                <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">Add to Cart</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

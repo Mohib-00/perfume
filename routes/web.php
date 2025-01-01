@@ -49,7 +49,8 @@ Route::get('/collections/discovery', [UserAuthcontroller::class, 'discovery']);
 //to open blogs page
 Route::get('/blogs', [UserAuthcontroller::class, 'blogs']);
 //to open product details page
-Route::get('/product-details', [UserAuthcontroller::class, 'details']);
+Route::get('/product-details/{product_name}', [UserAuthController::class, 'details'])->name('product.options');
+
 
 Route::group([
     "middleware" => ["auth:sanctum"]

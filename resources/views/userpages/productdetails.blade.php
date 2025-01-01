@@ -9,31 +9,36 @@
     @include('userpages.header')
     @include('userpages.cartmodel')
  
-     <section class="single_product_details_area d-flex align-items-center">
+     <section style="margin-top:10px" class="single_product_details_area d-flex align-items-center">
 
-         <div class="single_product_thumb clearfix">
+         <div class="single_product_thumb clearfix my-5">
             <div class="product_thumbnail_slides owl-carousel">
-                <img src="{{asset('essence/img/product-img/product-big-1.jpg')}}" alt="">
-                <img src="{{asset('essence/img/product-img/product-big-2.jpg')}}" alt="">
-                <img src="{{asset('essence/img/product-img/product-big-3.jpg')}}" alt="">
-            </div>
+                <img style="height:600px" src="{{ asset('images/'.$product->image) }}" alt="">
+                <img style="height:600px" src="{{ asset('images/'.$product->hover_image) }}" alt="">
+             </div>
         </div>
 
-         <div class="single_product_desc clearfix">
+         <div class="single_product_desc clearfix ">
             <span>mango</span>
             <a href="cart.html">
-                <h2>One Shoulder Glitter Midi Dress</h2>
+                <h2>{{ $product->name }}</h2>
             </a>
-            <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>
-            <p class="product-desc">Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
+            <p class="product-price">
+                @if($product->discount_price)
+                    <span style="text-decoration: line-through; color: #999;">${{ $product->price }}</span>
+                @else
+                    ${{ $product->price }}
+                @endif
+            </p>
+            <p class="product-price">${{ $product->discount_price }}</p>
+            <p class="product-desc">{{ $product->description }}</p>
 
              <form class="cart-form clearfix" method="post">
                  <div class="select-box d-flex mt-50 mb-30">
-                    <select name="select" id="productSize" class="mr-5">
-                        <option value="value">Size: XL</option>
-                        <option value="value">Size: X</option>
-                        <option value="value">Size: M</option>
-                        <option value="value">Size: S</option>
+                    <select name="size" id="productSize" class="mr-5">
+                        @foreach($product->options as $option)
+                            <option value="{{ $option->id }}">Size: {{ $option->option }}</option>
+                        @endforeach
                     </select>
                     
                 </div>

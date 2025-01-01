@@ -322,9 +322,12 @@ public function logout() {
           return view('userpages.blogs', compact('user'));
       }
 
-      public function details()
+      public function details($productName)
       {
-        $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.productdetails', compact('user'));
+          $user = Auth::check() ? Auth::user() : null;
+           $product = Product::with('options')->where('name', $productName)->firstOrFail();
+      
+          return view('userpages.productdetails', compact('user', 'product'));
       }
+      
 }

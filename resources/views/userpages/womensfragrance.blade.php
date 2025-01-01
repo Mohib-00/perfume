@@ -62,7 +62,7 @@
                             @if ($womenselections->isNotEmpty())
                             @foreach ($womenselections as $product)
                              <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-wrapper">
+                                <div data-product-name="{{ $product->name }}" class="single-product-wrapper">
                                     <div class="product-img">
                                         <img style="height:500px;border-radius:10px 10px 0px 0px" src="{{ asset('images/'.$product->hover_image) }}" alt="">
                                         <img style="height:500px; border-radius:10px 10px 0px 0px" class="hover-img" src="{{ asset('images/'.$product->image) }}" alt="">
@@ -87,7 +87,7 @@
                                                    
                                                 <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; background-color: #ccc; display: flex; justify-content: center; align-items: center; cursor: not-allowed;border-radius:0px 0px 10px 10px">Sold Out</a>
                                                 @elseif ($product->options->isNotEmpty()) 
-                                                <a class="btn essence-btn single-product-wrapper" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">View Options</a>
+                                                <a data-product-name="{{ $product->name }}" class="btn essence-btn single-product-wrapper" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">View Options</a>
                                                 @else
                                                    
                                                     <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">Add to Cart</a>

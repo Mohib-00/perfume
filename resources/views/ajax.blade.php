@@ -991,22 +991,21 @@ $(document).ready(function() {
     });
 });
 
-
-//to open product details page
 $(document).ready(function() {
     $('.single-product-wrapper').on('click', function() {
-        $.ajax({
-            url: '/product-details',
-            method: 'GET',
-            success: function(response) {
-                window.location.href = '/product-details';
-            },
-            error: function(xhr) {
-                alert('Error: ' + xhr.statusText);
-            }
-        });
+         var productName = $(this).data('product-name');
+        
+        if (productName) {
+             var encodedProductName = encodeURIComponent(productName);
+            
+             window.location.href = '/product-details/' + encodedProductName;
+        } else {
+            alert('Product name not found!');
+        }
     });
 });
+
+
 
 $(document).ready(function() {
         
