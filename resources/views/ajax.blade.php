@@ -1571,6 +1571,7 @@ $(document).on('click', '.delstory', function() {
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
+                        $('.addstory').show();
                         row.remove(); 
                         Swal.fire(
                             'Deleted!',

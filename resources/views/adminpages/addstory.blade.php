@@ -99,10 +99,12 @@
                             <div class="full graph_head">
                                 <div class="search-container" style="display: inline-block; float: right; margin-top: 10px;">
                                    <input type="text" class="form-control search-input" placeholder="Search Story...">
-                               </div>
-                               <div class="heading1 margin_0">
+                                </div>
+                                <div class="heading1 margin_0">
+                                @if(!$hasStoryData)
                                 <button class="addstory">Add Story Data</button>
-                               </div>
+                                @endif
+                                </div>
                            </div>
                              <div class="table_section padding_infor_info">
                                 <div class="table-responsive-sm">
@@ -111,12 +113,12 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Image</th>
-                                            <th>Image Story</th>
-                                            <th>Image Story Container</th>
+                                            <th style="white-space: nowrap;">Image Story</th>
+                                            <th style="white-space: nowrap;">Image Story Container</th>
                                             <th>Heading</th>
-                                            <th>Heading Story</th>
+                                            <th style="white-space: nowrap;">Heading Story</th>
                                             <th>Paragraph</th>
-                                            <th>Paragraph Story</th>
+                                            <th style="white-space: nowrap;">Paragraph Story</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                          </tr>
@@ -380,6 +382,7 @@
                     `;
 
                     $('table tbody').append(newRow);
+                    $('.addstory').hide();
                 });
             }
         },

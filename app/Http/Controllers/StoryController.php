@@ -12,7 +12,8 @@ class StoryController extends Controller
     public function  addstory(){ 
         $user = Auth::user();
         $stories = Story::all();
-        return view('adminpages.addstory', ['userName' => $user->name],compact('stories'));
+        $hasStoryData = Story::whereNotNull('image')->exists();
+        return view('adminpages.addstory', ['userName' => $user->name],compact('stories','hasStoryData'));
     }
 
 
