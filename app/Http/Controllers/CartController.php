@@ -54,10 +54,6 @@ class CartController extends Controller
     public function cart(){
         $user = Auth::check() ? Auth::user() : null;
         $userId = Auth::id();
-
-        if (!$userId) {
-            return redirect('/login')->with('message', 'Please log in to view your cart.');
-        }
     
         $cartItems = CartItem::with('product', 'product.options')  
             ->where('user_id', $userId)
