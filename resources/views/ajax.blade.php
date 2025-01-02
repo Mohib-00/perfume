@@ -2156,6 +2156,72 @@ $(document).on('click', '#submitReviewBtn', function(e) {
     $(".review-form").css("transform", "translateY(-100%)");
 });
 
+$(document).on('click', '.remove-cart-item', function (e) {
+    e.preventDefault();  
+    const cartItemId = $(this).data('id');  
+    const row = $(`#cart-item-${cartItemId}`);  
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to undo this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, remove it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/cart/remove/${cartItemId}`,
+                type: 'DELETE',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content') 
+                },
+                success: function (response) {
+                    if (response.status === 'success') {
+                        row.remove();
+
+                        $('#subtotal').text(`Rs:${response.newSubtotal}`);
+                        $('#total-price').text(`Rs:${response.newTotalPrice}`);
+
+                         if (response.cartEmpty) {
+                            $('.checkout').hide();   
+                            $('.cart-empty-message').show();  
+                        }
+
+                        Swal.fire({
+                            title: 'Removed!',
+                            text: 'The item has been removed from your cart.',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: response.message || 'Failed to remove the cart item.',
+                            icon: 'error',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'An error occurred. Please try again.',
+                        icon: 'error',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                }
+            });
+        }
+    });
+});
+
+
+
 
 
 </script>

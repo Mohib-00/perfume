@@ -157,8 +157,9 @@ Route::get('/setting/{id}', [SettingsController::class, 'show'])->name('setting.
 Route::post('/setting/{id}', [SettingsController::class, 'update'])->name('setting.update');
 //to delet Settings
 Route::post('/delete-setting', [SettingsController::class, 'deletesetting'])->name('delete.setting');
-
 //to add product to cart
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::post('/save-review', [ReviewController::class, 'store']);
+Route::delete('/cart/remove/{id}', [CartController::class, 'removeCartItem'])->name('cart.remove');
+

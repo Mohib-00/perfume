@@ -95,6 +95,41 @@ class CartController extends Controller
             'newTotalPrice' => number_format($totalPrice), 
         ]);
     }
+
+    public function removeCartItem($id)
+    {
+        $user = Auth::user();
+    
+        $cartItem = CartItem::where('id', $id)->where('user_id', $user->id)->first();
+    
+        if ($cartItem) {
+            $cartItem->delete();
+    
+             $subtotal = CartItem::where('user_id', $user->id)->sum('total');
+    
+             $deliveryCharges = Setting::first()->delivery_charges ?? 0;
+    
+             $totalPrice = $subtotal + $deliveryCharges;
+    
+             $cartEmpty = CartItem::where('user_id', $user->id)->count() == 0;
+    
+            return response()->json([
+                'status' => 'success',
+                'newSubtotal' => number_format($subtotal),    
+                'rawSubtotal' => $subtotal,                    
+                'newTotalPrice' => number_format($totalPrice), 
+                'rawTotalPrice' => $totalPrice,               
+                'cartEmpty' => $cartEmpty,                     
+            ]);
+        }
+    
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Cart item not found.'
+        ]);
+    }
+    
+
     
     
 }
