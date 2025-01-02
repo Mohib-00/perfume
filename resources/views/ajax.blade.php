@@ -767,7 +767,6 @@ $(document).ready(function() {
 
 $('.home').click(function () {
 
- 
 $.ajax({
     url:'/',
     type: 'GET',
@@ -780,6 +779,24 @@ $.ajax({
     }
 });
 });
+
+
+
+$('.checkout').click(function () {
+
+$.ajax({
+    url:'/checkout',
+    type: 'GET',
+    success: function (response) {
+        window.location.href ='/checkout';
+         
+    },
+    error: function (xhr, status, error) {
+        console.error('AJAX Error: ', status, error);
+    }
+});
+});
+
 
 //to open cart page
 $('.opencart').click(function () {

@@ -220,7 +220,7 @@
                             <h5 id="total-price">Rs:{{ number_format($subtotal + $deliveryCharges) }}</h5>
                         </div>
                         @if ($cartItems->isNotEmpty())
-                         <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                         <button class="btn btn-block btn-primary my-3 py-3 checkout">Proceed To Checkout</button>
                     @else
                          <button class="btn btn-block btn-secondary my-3 py-3" style="cursor: not-allowed;" disabled>
                             Cart is Empty

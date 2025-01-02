@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutServiceController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MessageController;
@@ -54,6 +55,9 @@ Route::get('/blogs', [UserAuthcontroller::class, 'blogs']);
 Route::get('/product-details/{product_name}', [UserAuthController::class, 'details'])->name('product.options');
 //to open cart page
 Route::get('/cart', [Cartcontroller::class, 'cart']);
+//to open checkout page
+Route::get('/checkout', [CheckoutController::class, 'checkout']);
+
 
 
 Route::group([
