@@ -11,6 +11,7 @@ use App\Http\Controllers\OptionController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ShowcaseController;
@@ -156,4 +157,4 @@ Route::post('/delete-setting', [SettingsController::class, 'deletesetting'])->na
 //to add product to cart
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
-
+Route::post('/save-review', [ReviewController::class, 'store']);

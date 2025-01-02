@@ -2004,31 +2004,29 @@ $(document).on('click', '.addtocartproduct', function (e) {
     });
 });
 
-
 $(document).ready(function() {
-     $('.update-quantity').on('click', function() {
+    $('.update-quantity').on('click', function() {
         var action = $(this).data('action');  
         var cartItemId = $(this).data('id');
         var quantityInput = $('#quantity-' + cartItemId);
         var currentQuantity = parseInt(quantityInput.val());
 
-         var newQuantity = action === 'increase' ? currentQuantity + 1 : currentQuantity - 1;
+        var newQuantity = action === 'increase' ? currentQuantity + 1 : currentQuantity - 1;
         
         if (newQuantity > 0) {
-             $.ajax({
-                url: '{{ route('cart.update') }}',   
+            $.ajax({
+                url: '{{ route('cart.update') }}',
                 method: 'POST',
                 data: {
-                    _token: '{{ csrf_token() }}',   
+                    _token: '{{ csrf_token() }}',
                     cart_item_id: cartItemId,
                     quantity: newQuantity
                 },
                 success: function(response) {
                      $('#quantity-' + cartItemId).val(response.newQuantity);
-                    $('#total-' + cartItemId).text('Rs:' + response.newTotal);
-
+                     $('#total-' + cartItemId).text('Rs:' + response.newTotal);
                      $('#subtotal').text('Rs:' + response.newSubtotal);
-                    $('#total-price').text('Rs:' + response.newTotalPrice);
+                     $('#total-price').text('Rs:' + response.newTotalPrice);
                 },
                 error: function() {
                     alert('Error updating the quantity. Please try again.');
@@ -2036,6 +2034,109 @@ $(document).ready(function() {
             });
         }
     });
+});
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+     const writeReviewBtn = document.getElementById('writeReviewBtn');
+    if (writeReviewBtn) {
+        writeReviewBtn.addEventListener('click', function() {
+            var reviewForm = document.querySelector('.review-form');
+            reviewForm.style.display = 'block';  
+            setTimeout(function() {
+                reviewForm.style.transform = 'translateY(0)';   
+            }, 10);
+        });
+    }
+
+     const cancelBtn = document.querySelector('.cancel-btn');
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            var reviewForm = document.querySelector('.review-form');
+            reviewForm.style.transform = 'translateY(-100%)';   
+            setTimeout(function() {
+                reviewForm.style.display = 'none';   
+            }, 300);  
+        });
+    }
+
+     document.querySelectorAll('.star').forEach(function(star) {
+        star.addEventListener('click', function() {
+            var rating = this.getAttribute('for').replace('star', '');  
+            document.querySelectorAll('.star').forEach(function(s) {
+                s.style.color = s.getAttribute('for').replace('star', '') <= rating ? 'yellow' : '#ccc';
+            });
+        });
+    });
+});
+
+
+$(document).on('click', '#writeReviewBtn', function() {
+     $(".review-form").css("transform", "translateY(0)");  
+    $(".review-form").fadeIn();
+});
+
+$(document).on('click', '#submitReviewBtn', function(e) {
+    e.preventDefault();
+     var productId = $("#writeReviewBtn").data('product-id');
+    
+     var rating = $("input[name='rating']:checked").val();
+    var reviewTitle = $("#reviewTitle").val();
+    var reviewerName = $("#reviewerName").val();
+    var reviewerEmail = $("#reviewerEmail").val();
+    var messageReview = $("#reviewText").val();
+    
+     if (!rating || !reviewTitle || !reviewerName || !reviewerEmail || !messageReview) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please fill in all fields.',
+        });
+        return;
+    }
+
+     $.ajax({
+        url: '/save-review',  
+        method: 'POST',
+        data: {
+            product_id: productId,
+            rating: rating,
+            review_title: reviewTitle,
+            name: reviewerName,
+            email: reviewerEmail,
+            message_review: messageReview,
+            _token: $('meta[name="csrf-token"]').attr('content')  
+        },
+        success: function(response) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Review submitted successfully!',
+            }).then(function() {
+                 $("#reviewTitle").val('');
+                $("#reviewerName").val('');
+                $("#reviewerEmail").val('');
+                $("#reviewText").val('');
+                
+                 $(".review-form").fadeOut();
+                $(".review-form").css("transform", "translateY(-100%)");
+            });
+        },
+        error: function(xhr, status, error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'There was an error submitting your review.',
+            });
+        }
+    });
+});
+
+ $(document).on('click', '.cancel-btn', function() {
+    $(".review-form").fadeOut();
+    $(".review-form").css("transform", "translateY(-100%)");
 });
 
 

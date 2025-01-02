@@ -73,34 +73,32 @@ class CartController extends Controller
 
     public function update(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'cart_item_id' => 'required|exists:cart_items,id',
             'quantity' => 'required|integer|min:1',
         ]);
     
          $cartItem = CartItem::findOrFail($request->cart_item_id);
-        
-         $cartItem->quantity = $request->quantity;
+        $cartItem->quantity = $request->quantity;
     
          $price = $cartItem->product->discount_price ?? $cartItem->product->price;
     
          $cartItem->total = $cartItem->quantity * $price;
         $cartItem->save();
     
-         $subtotal = CartItem::sum('total');
-        
-         $deliveryCharges = Setting::first()->delivery_charges;
-        
+         $subtotal = CartItem::where('user_id', Auth::id())->sum('total');  
+    
+         $deliveryCharges = Setting::first()->delivery_charges;  
+    
          $totalPrice = $subtotal + $deliveryCharges;
     
          return response()->json([
             'newQuantity' => $cartItem->quantity,
-            'newTotal' => number_format($cartItem->total),
-            'newSubtotal' => number_format($subtotal),
-            'newTotalPrice' => number_format($totalPrice),
+            'newTotal' => number_format($cartItem->total),  
+            'newSubtotal' => number_format($subtotal),  
+            'newTotalPrice' => number_format($totalPrice), 
         ]);
     }
     
-
     
 }

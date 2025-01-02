@@ -38,5 +38,10 @@ class Product extends Model
     {
         return $this->hasMany(CartItem::class, 'product_id');
     }
+
+    public function feedbacks()
+{
+    return $this->hasMany(Feedback::class, 'product_id');
+}
 }
 
