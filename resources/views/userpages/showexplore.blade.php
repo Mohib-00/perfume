@@ -62,7 +62,7 @@
                              @foreach($relatedProducts as $relatedProduct)
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div data-product-name="{{ $relatedProduct->name }}" class="single-product-wrapper">
-                                    <div class="product-img">
+                                    <div data-product-name="{{ $relatedProduct->name }}" class="product-img viewdetail">
                                         <img style="height:500px;border-radius:10px 10px 0px 0px" src="{{ asset('images/'.$relatedProduct->image) }}" alt="">
                                         <img style="height:500px;border-radius:10px 10px 0px 0px" class="hover-img" src="{{ asset('images/'.$relatedProduct->hover_image) }}" alt="">
                                         <div class="product-favourite">
@@ -83,15 +83,16 @@
                                         <p class="product-price">{{ $relatedProduct->discount_price }}</p>
                 
                                         <div class="add-to-cart-btn" >
-                                            @if ($product->quantity == 0)
-                                               
-                                            <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; background-color: #ccc; display: flex; justify-content: center; align-items: center; cursor: not-allowed;border-radius:0px 0px 10px 10px">Sold Out</a>
-                                            @elseif ($product->options->isNotEmpty()) 
-                                            <a data-product-name="{{ $relatedProduct->name }}" class="btn essence-btn single-product-wrapper" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">View Options</a>
+                                            <div class="add-to-cart-btn" >
+                                            @if ($relatedProduct->quantity == 0)
+                                            <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; background-color: #ccc; display: flex; justify-content: center; align-items: center; cursor: not-allowed; border-radius:0px 0px 10px 10px">Sold Out</a>
+                                            @elseif ($relatedProduct->options->isNotEmpty()) 
+                                                <a data-product-name="{{ $relatedProduct->name }}" class="btn essence-btn viewdetail" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center; border-radius:0px 0px 10px 10px">View Options</a>
                                             @else
-                                               
-                                                <a data-product-id="{{ $relatedProduct->id }}" class="btn essence-btn addtocartproduct" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">Add to Cart</a>
+                                                <a data-product-id="{{ $relatedProduct->id }}" class="btn essence-btn addtocartproduct" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center; border-radius:0px 0px 10px 10px">Add to Cart</a>
                                             @endif
+                                            
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -100,12 +101,9 @@
                         @endif
                           
                         </div>
-                        
-                       
                          
                     </div>
-                    <!-- Pagination -->
-                    <nav class="paginationforall" aria-label="navigation">
+                     <nav class="paginationforall" aria-label="navigation">
                         <ul class="pagination mt-50 mb-70">
                             <li class="page-item" data-page="prev"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
                              
@@ -113,15 +111,11 @@
                         </ul>
                     </nav>
                     
-
-                   
-
                 </div>
             </div>
         </div>
     </section>
-    <!-- ##### Shop Grid Area End ##### -->
-
+ 
     
     @include('userpages.footer') 
     @include('userpages.js')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CartItem;
 use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,9 +53,54 @@ class CartController extends Controller
 
     public function cart(){
         $user = Auth::check() ? Auth::user() : null;
+        $userId = Auth::id();
 
-        return view('userpages.cart', compact('user'));
+        if (!$userId) {
+            return redirect('/login')->with('message', 'Please log in to view your cart.');
+        }
+    
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
+        $subtotal = $cartItems->sum('total');   
+        $deliveryCharges =Setting::first()->delivery_charges;
+
+        return view('userpages.cart', compact('user','cartItems', 'cartCount','subtotal','deliveryCharges'));
     }
     
+
+    public function update(Request $request)
+    {
+         $request->validate([
+            'cart_item_id' => 'required|exists:cart_items,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+    
+         $cartItem = CartItem::findOrFail($request->cart_item_id);
+        
+         $cartItem->quantity = $request->quantity;
+    
+         $price = $cartItem->product->discount_price ?? $cartItem->product->price;
+    
+         $cartItem->total = $cartItem->quantity * $price;
+        $cartItem->save();
+    
+         $subtotal = CartItem::sum('total');
+        
+         $deliveryCharges = Setting::first()->delivery_charges;
+        
+         $totalPrice = $subtotal + $deliveryCharges;
+    
+         return response()->json([
+            'newQuantity' => $cartItem->quantity,
+            'newTotal' => number_format($cartItem->total),
+            'newSubtotal' => number_format($subtotal),
+            'newTotalPrice' => number_format($totalPrice),
+        ]);
+    }
+    
+
     
 }

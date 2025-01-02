@@ -63,21 +63,17 @@
                         <li><a class="saleeeee">Sale</a></li>
                      </ul>
                 </div>
-                <!-- Nav End -->
-            </div>
+             </div>
         </nav>
 
-        <!-- Header Meta Data -->
-        <div class="header-meta d-flex clearfix justify-content-end">
-            <!-- Search Area -->
-            <div class="search-area">
+         <div class="header-meta d-flex clearfix justify-content-end">
+             <div class="search-area">
                 <form action="#" method="post">
                     <input type="search" name="search" id="headerSearch" placeholder="Type for search">
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
-            <!-- Favourite Area -->
-            <div class="favourite-area">
+             <div class="favourite-area">
                 <a href="#"><img src="{{asset('essence/img/core-img/heart.svg')}}" alt=""></a>
             </div>
             @if ($user)
@@ -99,9 +95,9 @@
             </div>
             @endif
 
-            <!-- Cart Area -->
-            <div class="cart-area opencart">
-                <a id="essenceCartBtn"><img  src="{{asset('essence/img/core-img/bag.svg')}}" alt=""> <span>3</span></a>
+             <div class="cart-area opencart">
+                <a id="essenceCartBtn"><img  src="{{asset('essence/img/core-img/bag.svg')}}" alt=""> <span>{{ $cartCount }}</span>
+                </a>
             </div>
         </div>
     </div>

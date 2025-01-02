@@ -155,3 +155,5 @@ Route::post('/delete-setting', [SettingsController::class, 'deletesetting'])->na
 
 //to add product to cart
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+

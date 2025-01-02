@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use App\Models\Message;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -201,8 +202,15 @@ public function deleteproduct(Request $request)
                   'redirect_url' => route('single.product.page', ['slug' => $slug]),
               ]);
           }
+        $userId = Auth::id();
+
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
       
-          return view('userpages.showexplore', compact('product', 'user', 'relatedProducts'));
+          return view('userpages.showexplore', compact('product', 'user', 'relatedProducts','cartCount','cartItems'));
       }
       
 

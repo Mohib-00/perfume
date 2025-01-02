@@ -1007,7 +1007,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $('.single-product-wrapper').on('click', function() {
+    $('.viewdetail').on('click', function() {
          var productName = $(this).data('product-name');
         
         if (productName) {
@@ -2004,6 +2004,39 @@ $(document).on('click', '.addtocartproduct', function (e) {
     });
 });
 
+
+$(document).ready(function() {
+     $('.update-quantity').on('click', function() {
+        var action = $(this).data('action');  
+        var cartItemId = $(this).data('id');
+        var quantityInput = $('#quantity-' + cartItemId);
+        var currentQuantity = parseInt(quantityInput.val());
+
+         var newQuantity = action === 'increase' ? currentQuantity + 1 : currentQuantity - 1;
+        
+        if (newQuantity > 0) {
+             $.ajax({
+                url: '{{ route('cart.update') }}',   
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',   
+                    cart_item_id: cartItemId,
+                    quantity: newQuantity
+                },
+                success: function(response) {
+                     $('#quantity-' + cartItemId).val(response.newQuantity);
+                    $('#total-' + cartItemId).text('Rs:' + response.newTotal);
+
+                     $('#subtotal').text('Rs:' + response.newSubtotal);
+                    $('#total-price').text('Rs:' + response.newTotalPrice);
+                },
+                error: function() {
+                    alert('Error updating the quantity. Please try again.');
+                }
+            });
+        }
+    });
+});
 
 
 

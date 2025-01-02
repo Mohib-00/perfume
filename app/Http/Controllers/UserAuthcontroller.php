@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carousel;
+use App\Models\CartItem;
 use App\Models\Message;
 use App\Models\Product;
 use App\Models\SectionDetail;
@@ -170,8 +171,15 @@ public function logout() {
         ]);
         $openings = SectionDetail::all();
         $stories = Story::all();
+        $userId = Auth::id();
     
-        return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories'));
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
+    
+        return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories','cartCount','cartItems'));
     }
     
 
@@ -249,7 +257,15 @@ public function logout() {
       {
         $user = Auth::check() ? Auth::user() : null;
         $stories = Story::all();
-        return view('userpages.aboutus', compact('user','stories'));
+        $userId = Auth::id();
+
+         
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
+        return view('userpages.aboutus', compact('user','stories','cartCount','cartItems'));
       }
 
       public function sale()
@@ -258,13 +274,31 @@ public function logout() {
         $saleselections = Product::where('showon_sale_page', 1)
         ->with('options')
         ->get();
-        return view('userpages.sale', compact('user','saleselections'));
+        $userId = Auth::id();
+
+         
+    
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
+        return view('userpages.sale', compact('user','saleselections','cartCount','cartItems'));
       }
 
       public function contactus()
       {
+        $userId = Auth::id();
+
+         
+    
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
         $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.contact', compact('user'));
+          return view('userpages.contact', compact('user','cartCount','cartItems'));
       }
 
       public function womensfragrances()
@@ -273,7 +307,16 @@ public function logout() {
         $womenselections = Product::where('showon_women_page', 1)
         ->with('options')
         ->get();
-        return view('userpages.womensfragrance', compact('user','womenselections'));
+        $userId = Auth::id();
+
+        
+    
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
+        return view('userpages.womensfragrance', compact('user','womenselections','cartCount','cartItems'));
       }
 
 
@@ -283,7 +326,16 @@ public function logout() {
         $menselections = Product::where('showon_men_page', 1)
         ->with('options')
         ->get();
-        return view('userpages.mensfragrance', compact('user','menselections'));
+        $userId = Auth::id();
+
+        
+    
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
+        return view('userpages.mensfragrance', compact('user','menselections','cartCount','cartItems'));
       }
 
 
@@ -293,7 +345,15 @@ public function logout() {
         $travelselections = Product::where('showon_explore_page', 1)
         ->with('options')
         ->get();
-        return view('userpages.travel', compact('user','travelselections'));
+        $userId = Auth::id();
+
+        
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
+        return view('userpages.travel', compact('user','travelselections','cartCount','cartItems'));
       }
 
 
@@ -303,7 +363,15 @@ public function logout() {
         $discoveryselections = Product::where('showon_discovery_page', 1)
         ->with('options')
         ->get();
-        return view('userpages.discover', compact('user','discoveryselections'));
+        $userId = Auth::id();
+
+         
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
+        return view('userpages.discover', compact('user','discoveryselections','cartCount','cartItems'));
       }
 
 
@@ -313,21 +381,49 @@ public function logout() {
         $collectionselections = Product::where('showon_collection_page', 1)
         ->with('options')
         ->get();
-        return view('userpages.collection', compact('user','collectionselections'));
+        $userId = Auth::id();
+
+         
+    
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
+        return view('userpages.collection', compact('user','collectionselections','cartCount','cartItems'));
       }
      
       public function blogs()
       {
         $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.blogs', compact('user'));
+        $userId = Auth::id();
+
+         
+    
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+        $cartCount = $cartItems->count(); 
+        return view('userpages.blogs', compact('user','cartCount','cartItems'));
       }
 
       public function details($productName)
       {
           $user = Auth::check() ? Auth::user() : null;
-           $product = Product::with('options')->where('name', $productName)->firstOrFail();
+          $product = Product::with('options')->where('name', $productName)->firstOrFail();
+          
+          $userId = Auth::id();
+
+           
       
-          return view('userpages.productdetails', compact('user', 'product'));
+          $cartItems = CartItem::with('product', 'product.options')  
+              ->where('user_id', $userId)
+              ->get();
+  
+          $cartCount = $cartItems->count(); 
+      
+          return view('userpages.productdetails', compact('user', 'product','cartCount','cartItems'));
       }
       
 }
