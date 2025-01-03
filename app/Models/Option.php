@@ -21,6 +21,11 @@ class Option extends Model
     {
         return $this->hasMany(CartItem::class, 'option_id');
     }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }
 
      

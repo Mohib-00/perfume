@@ -43,5 +43,17 @@ class Product extends Model
 {
     return $this->hasMany(Feedback::class, 'product_id');
 }
+
+// In Product model
+public function orderItems()
+{
+    return $this->hasMany(OrderItem::class, 'product_id');
+}
+
+public function orders()
+{
+    return $this->belongsToMany(Order::class, 'order_items');
+}
+
 }
 

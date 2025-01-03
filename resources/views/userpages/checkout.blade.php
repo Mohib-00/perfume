@@ -35,11 +35,13 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="first_name">First Name <span>*</span></label>
-                                    <input name="full_name" type="text" class="form-control" id="first_name" value="" required>
+                                    <input name="full_name" type="text" class="form-control" id="first_name">
+                                    <span class="text-danger" id="error-full_name"></span>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="last_name">Last Name <span>*</span></label>
-                                    <input name="last_name" type="text" class="form-control" id="last_name" value="" required>
+                                    <input name="last_name" type="text" class="form-control" id="last_name">
+                                    <span class="text-danger" id="error-last_name"></span>
                                 </div>
                                  
                                 <div class="col-12 mb-3">
@@ -51,27 +53,29 @@
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="street_address">Address <span>*</span></label>
-                                    <input name="address" type="text" class="form-control mb-3" id="street_address" value="">
+                                    <input name="address" type="text" class="form-control mb-3" id="street_address">
+                                    <span class="text-danger" id="error-address"></span>
                                  </div>
-                                <div class="col-12 mb-3">
-                                    <label for="postcode">Postcode <span>*</span></label>
-                                    <inpu name="post_code" type="text" class="form-control" id="postcode" value="">
-                                </div>
+                               
                                 <div class="col-12 mb-3">
                                     <label for="city">Town/City <span>*</span></label>
-                                    <input name="city" type="text" class="form-control" id="city" value="">
+                                    <input name="city" type="text" class="form-control" id="city" >
+                                    <span class="text-danger" id="error-city"></span>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="state">Province <span>*</span></label>
-                                    <input name="province" type="text" class="form-control" id="state" value="">
+                                    <input name="province" type="text" class="form-control" id="state">
+                                    <span class="text-danger" id="error-province"></span>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="phone_number">Phone No <span>*</span></label>
-                                    <input name="phone_number" type="number" class="form-control" id="phone_number" min="0" value="">
+                                    <input name="phone_number" type="number" class="form-control" id="phone_number" min="0">
+                                    <span class="text-danger" id="error-phone_number"></span>
                                 </div>
                                 <div class="col-12 mb-4">
                                     <label  for="email_address">Email Address <span>*</span></label>
-                                    <input name="email" type="email" class="form-control" id="email_address" value="">
+                                    <input name="email" type="email" class="form-control" id="email_address">
+                                    <span class="text-danger" id="error-email"></span>
                                 </div>
 
                                 
@@ -92,9 +96,17 @@
                             @foreach($cartItems as $cartItem)
                             <li>
                                 <span>{{ $cartItem->product->name }} ({{ $cartItem->quantity }})</span>
+                                <span id="size">Size: 
+                                    {{ App\Models\Option::where('product_id', $cartItem->product_id)
+                                        ->where('id', $cartItem->option_id)
+                                        ->first()
+                                        ->option ?? 'N/A' }}
+                                </span>
+                                
                                 <span>Rs:{{ number_format($cartItem->total) }}</span>
                             </li>
-                            @endforeach
+                        @endforeach
+                        
                             <li><span>Subtotal</span> <span>Rs:{{ number_format($subtotal) }}</span></li>
                             <li><span>Shipping</span> <span>Rs:{{ number_format($shipping) }}</span></li>
                             <li><span>Total</span> <span>Rs:{{ number_format($total) }}</span></li>
@@ -105,9 +117,10 @@
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingOne">
                                     <h6 class="mb-0">
-                                        <a style="color:black" >
+                                        <a style="color:black">
                                             <input type="radio" name="payment" id="paypal" value="paypal">
                                             Paypal
+                                            <span class="text-danger" id="error-payment-method"></span> 
                                         </a>
                                     </h6>
                                 </div>
@@ -118,6 +131,7 @@
                                         <a style="color:black">
                                             <input class="cod" type="radio" name="payment" id="cash" value="cash on delivery">
                                             Cash on Delivery
+                                            <span class="text-danger" id="error-payment-method"></span> <!-- Error span for Cash on Delivery -->
                                         </a>
                                     </h6>
                                 </div>
@@ -128,6 +142,7 @@
                                         <a style="color:black">
                                             <input type="radio" name="payment" id="credit-card" value="credit card">
                                             Credit Card
+                                            <span class="text-danger" id="error-payment-method"></span> <!-- Error span for Credit Card -->
                                         </a>
                                     </h6>
                                 </div>
@@ -138,6 +153,7 @@
                                         <a style="color:black" href="javascript:void(0);" id="bank-transfer-link">
                                             <input class="cod" type="radio" name="payment" id="bank-transfer" value="bank transfer">
                                             Direct Bank Transfer
+                                            <span class="text-danger" id="error-payment-method"></span> <!-- Error span for Bank Transfer -->
                                         </a>
                                     </h6>
                                 </div>
@@ -150,6 +166,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         
 
                         <a class="btn essence-btn placeorder">Place Order</a>
