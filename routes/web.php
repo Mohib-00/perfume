@@ -9,6 +9,7 @@ use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OptionController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\RegisterController;
@@ -162,4 +163,7 @@ Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.ad
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::post('/save-review', [ReviewController::class, 'store']);
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeCartItem'])->name('cart.remove');
+
+//to place order
+Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('placeOrder');
 

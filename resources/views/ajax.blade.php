@@ -2221,6 +2221,58 @@ $(document).on('click', '.remove-cart-item', function (e) {
 });
 
 
+//to place order
+$('.placeorder').click(function (e) {
+    e.preventDefault();
+ 
+    let formData = {
+        full_name: $('input[name="full_name"]').val(),
+        last_name: $('input[name="last_name"]').val(),
+        email: $('input[name="email"]').val(),
+        phone_number: $('input[name="phone_number"]').val(),
+        address: $('input[name="address"]').val(),
+        postcode: $('input[name="post_code"]').val(),
+        city: $('input[name="city"]').val(),
+        province: $('input[name="province"]').val(),
+        payment: $('input[name="payment"]:checked').val(),
+    };
+
+    $('.error-message').text("");
+
+    $.ajax({
+        url: '/place-order',
+        type: 'POST',
+        data: formData,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+           
+            Swal.fire({
+                title: 'Order Placed!',
+                text: 'Your order has been placed successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+               
+                window.location.href = "/home";
+            });
+        },
+        error: function (xhr) {
+            if (xhr.status === 422) {  
+                let errors = xhr.responseJSON.errors;
+
+              
+                $.each(errors, function (key, messages) {
+                    $('input[name="' + key + '"]').after('<span class="text-danger error-message">' + messages[0] + '</span>');
+                });
+            } else {
+                alert('Order placement failed');
+                console.error('Error:', xhr.responseText);
+            }
+        }
+    });
+});
 
 
 

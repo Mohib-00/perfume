@@ -31,20 +31,17 @@
                             <h5>Billing Address</h5>
                         </div>
 
-                        <form action="#" method="post">
+                        <form>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="first_name">First Name <span>*</span></label>
-                                    <input type="text" class="form-control" id="first_name" value="" required>
+                                    <input name="full_name" type="text" class="form-control" id="first_name" value="" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="last_name">Last Name <span>*</span></label>
-                                    <input type="text" class="form-control" id="last_name" value="" required>
+                                    <input name="last_name" type="text" class="form-control" id="last_name" value="" required>
                                 </div>
-                                <div class="col-12 mb-3">
-                                    <label for="company">Company Name</label>
-                                    <input type="text" class="form-control" id="company" value="">
-                                </div>
+                                 
                                 <div class="col-12 mb-3">
                                     <label for="country">Country <span>*</span></label>
                                     <select class="w-100" id="country">
@@ -54,34 +51,32 @@
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="street_address">Address <span>*</span></label>
-                                    <input type="text" class="form-control mb-3" id="street_address" value="">
-                                    <input type="text" class="form-control" id="street_address2" value="">
-                                </div>
+                                    <input name="address" type="text" class="form-control mb-3" id="street_address" value="">
+                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="postcode">Postcode <span>*</span></label>
-                                    <input type="text" class="form-control" id="postcode" value="">
+                                    <inpu name="post_code" type="text" class="form-control" id="postcode" value="">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="city">Town/City <span>*</span></label>
-                                    <input type="text" class="form-control" id="city" value="">
+                                    <input name="city" type="text" class="form-control" id="city" value="">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="state">Province <span>*</span></label>
-                                    <input type="text" class="form-control" id="state" value="">
+                                    <input name="province" type="text" class="form-control" id="state" value="">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="phone_number">Phone No <span>*</span></label>
-                                    <input type="number" class="form-control" id="phone_number" min="0" value="">
+                                    <input name="phone_number" type="number" class="form-control" id="phone_number" min="0" value="">
                                 </div>
                                 <div class="col-12 mb-4">
-                                    <label for="email_address">Email Address <span>*</span></label>
-                                    <input type="email" class="form-control" id="email_address" value="">
+                                    <label  for="email_address">Email Address <span>*</span></label>
+                                    <input name="email" type="email" class="form-control" id="email_address" value="">
                                 </div>
 
                                 
                             </div>
-                        </form>
-                    </div>
+                     </div>
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
@@ -110,55 +105,59 @@
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingOne">
                                     <h6 class="mb-0">
-                                        <a style="color:black" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i>Paypal</a>
+                                        <a style="color:black" >
+                                            <input type="radio" name="payment" id="paypal" value="paypal">
+                                            Paypal
+                                        </a>
                                     </h6>
-                                </div>
-
-                                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integ er bibendum sodales arcu id te mpus. Ut consectetur lacus.</p>
-                                    </div>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingTwo">
                                     <h6 class="mb-0">
-                                        <a style="color:black" class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>cash on delievery</a>
+                                        <a style="color:black">
+                                            <input class="cod" type="radio" name="payment" id="cash" value="cash on delivery">
+                                            Cash on Delivery
+                                        </a>
                                     </h6>
-                                </div>
-                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quis in veritatis officia inventore, tempore provident dignissimos.</p>
-                                    </div>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingThree">
                                     <h6 class="mb-0">
-                                        <a style="color:black" class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-circle-o mr-3"></i>credit card</a>
+                                        <a style="color:black">
+                                            <input type="radio" name="payment" id="credit-card" value="credit card">
+                                            Credit Card
+                                        </a>
                                     </h6>
-                                </div>
-                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quo sint repudiandae suscipit ab soluta delectus voluptate, vero vitae</p>
-                                    </div>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingFour">
                                     <h6 class="mb-0">
-                                        <a style="color:black" class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour"><i class="fa fa-circle-o mr-3"></i>direct bank transfer</a>
+                                        <a style="color:black" href="javascript:void(0);" id="bank-transfer-link">
+                                            <input class="cod" type="radio" name="payment" id="bank-transfer" value="bank transfer">
+                                            Direct Bank Transfer
+                                        </a>
                                     </h6>
                                 </div>
-                                <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est cum autem eveniet saepe fugit, impedit magni.</p>
-                                    </div>
+                                <div id="bank-details" style="display: none; padding: 10px;">
+                                    <h6>Bank Details:</h6>
+                                    <p>Bank Name: XYZ Bank</p>
+                                    <p>Account Number: 1234567890</p>
+                                    <p>IFSC Code: XYZ0001234</p>
+                                    <p>Branch: Main Street</p>
                                 </div>
                             </div>
                         </div>
+                        
 
-                        <a href="#" class="btn essence-btn">Place Order</a>
+                        <a class="btn essence-btn placeorder">Place Order</a>
+                        <a style="display:none" class="btn essence-btn debitcardbutton">Pay now</a>
+                        <a style="display:none" class="btn essence-btn paypalbtn">Pay now</a>
+
+
+                    </form>
                     </div>
                 </div>
             </div>
@@ -167,6 +166,47 @@
      @include('userpages.footer')
      @include('userpages.js')
      @include('ajax')
+
+     <script>
+        $(document).ready(function() {
+            
+            $('#bank-transfer').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('#bank-details').slideDown();  
+                } else {
+                    $('#bank-details').slideUp(); 
+                }
+            });
+
+            $('input[name="payment"]').on('change', function() {
+                 if ($(this).val() !== 'bank transfer') {
+                    $('#bank-details').slideUp();  
+                }
+            });
+        });
+        $(document).ready(function() {
+        $("#paypal").click(function() {
+            $(".paypalbtn").show(); 
+            $(".debitcardbutton").hide();  
+            $(".placeorder").hide();
+        });
+    });
+    $(document).ready(function() {
+        $(".cod").click(function() {
+            $(".paypalbtn").hide(); 
+            $(".debitcardbutton").hide();  
+            $(".placeorder").show();
+        });
+    });
+    $(document).ready(function() {
+        $("#credit-card").click(function() {
+            $(".paypalbtn").hide(); 
+            $(".debitcardbutton").show();  
+            $(".placeorder").hide();
+        });
+    });
+    </script>
+     
 </body>
 
 </html>

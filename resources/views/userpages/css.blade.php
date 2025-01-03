@@ -225,13 +225,11 @@
     margin: 5px;
 }
 
-/* Add transition to the review form */
-.review-form {
+ .review-form {
     transition: transform 0.3s ease-in-out;
 }
 
-/* Hide the review form initially */
-.review-form.closed {
+ .review-form.closed {
     display: none;
     transform: translateX(100%);
 }
