@@ -21,13 +21,15 @@
        <h4 class="chokokutai-regular">Logix 199</h4>
        <ul class="list-unstyled components"> 
           <li class="users"><a><i class="fa fa-users orange_color"></i> <span>Users</span></a></li>
-          <li class="carousel"><a><i class="fa fa-comment white_color"></i><span>Add Carousel</span></a></li>
-          <li class="showcaseimage"><a><i class="fa fa-user purple_color"></i><span>Add Showcase </span></a></li>
-          <li class="addproductssssss"><a><i class="fa fa-star green_color"></i><span>Add Products</span></a></li>
-          <li class="opeingdetails"><a><i class="fa fa-folder red_color"></i><span>Add Opening Details</span></a></li>
-          <li class="seeproductoptions"><a><i class="fa fa-comment white_color"></i><span>See Product Options</span></a></li>
+          <li class="carousel"><a><i class="fa fa-star green_color"></i><span>Add Carousel</span></a></li>
+          <li class="showcaseimage"><a><i class="fa fa-folder red_color"></i><span>Add Showcase </span></a></li>
+          <li class="addproductssssss"><a><i style="color:black" class="fa fa-globe white_color"></i><span>Add Products</span></a></li>
+          <li class="opeingdetails"><a><i class="fa fa-folder green_color"></i><span>Add Opening Details</span></a></li>
+          <li class="seeproductoptions"><a><i style="color:black" class="fa fa-star orange_color"></i><span>See Product Options</span></a></li>
           <li class="addstoryyyyyy"><a><i style="color:black" class="fa fa-globe white_color"></i><span>Add Story</span></a></li>
-          <li class="messagessss"><a><i style="color:black" class="fa fa-star orange_color"></i><span>Messages</span></a></li>
+          <li class="messagessss"><a><i class="fa fa-comment white_color"></i><span>Messages</span></a></li>
+          <li class="viewfeedback"><a><i class="fa fa-thumbs-up red_color"></i><span>View Feedback</span></a></li>
+
           <li>
              <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cog yellow_color"></i><span>Settings</span></a>
              <ul class="collapse list-unstyled" id="element">

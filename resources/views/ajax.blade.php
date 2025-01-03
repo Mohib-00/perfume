@@ -297,9 +297,30 @@ $(document).ready(function() {
 
 
         
-if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/change-password' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
+if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/view-feedback' || window.location.pathname === '/admin/change-password' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
         window.location.href = '/';  
     }
+
+    //to open profile  page
+    $('.viewfeedback').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/view-feedback',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/view-feedback';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
 
      //to open profile  page
     $('.changepassword').click(function () {
@@ -1313,6 +1334,61 @@ $(document).on('click', '.delshowcase', function() {
                     Swal.fire(
                         'Error',
                         'An error occurred while deleting the showcase.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
+
+
+//to del feedback
+$(document).on('click', '.delfeedback', function() {
+    const feedbackId = $(this).data('feedback-id');
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const row = $(this).closest('tr');  
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete this feedback?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            });
+
+            $.ajax({
+                url: '/delete-feedback',
+                type: 'POST',
+                data: { feedback_id: feedbackId },  
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        row.remove(); 
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    Swal.fire(
+                        'Error',
+                        'An error occurred while deleting the feedback.',
                         'error'
                     );
                 }

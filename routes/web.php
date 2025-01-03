@@ -86,6 +86,8 @@ Route::group(['middleware' => ['admin.auth'], 'prefix' => 'admin'], function() {
     Route::get("messages", [MessageController::class, "message"]);
     Route::get("settings", [SettingsController::class, "setting"]);
     Route::get("change-password", [SettingsController::class, "changepassword"]);
+    Route::get("view-feedback", [ReviewController::class, "viewfeedback"]);
+
 });
 
 //to get user data
@@ -163,7 +165,14 @@ Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.ad
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::post('/save-review', [ReviewController::class, 'store']);
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeCartItem'])->name('cart.remove');
-
 //to place order
 Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('placeOrder');
+
+
+//to get feedback data
+Route::get('/feedback/{id}', [ReviewController::class, 'show'])->name('feedback.show');
+// Update feedback data
+Route::post('/feedback/{id}', [ReviewController::class, 'update'])->name('feedback.update');
+//to delet feedback
+Route::post('/delete-feedback', [ReviewController::class, 'deletefeedback'])->name('delete.feedback');
 
