@@ -124,14 +124,14 @@
                                         <tr class="user-row" id="feedback-{{ $feedback->id }}">
                                                 <td>{{$counter}}</td>
                                                 <td id="icon">
-                                                     <img height="80" width="80" src="{{ asset('images/' . $feedback->image) }}"/>
+                                                     <img height="80" width="80" src="{{ asset('images/' . $feedback->product->image) }}"/>
                                                 </td>
-                                                <td id="heading">{{$feedback->name}}</td> 
+                                                <td>{{ $feedback->product->name ?? 'No Product' }}</td>
                                                 <td id="rating">{{$feedback->rating}}</td>
                                                 <td id="review_title">{{$feedback->review_title}}</td> 
                                                 <td id="name">{{$feedback->name}}</td>
                                                 <td id="email">{{$feedback->email}}</td>
-                                                <td id="message">{{$feedback->message}}</td>
+                                                <td id="message">{{$feedback->message_review}}</td>
  
                                                 
 

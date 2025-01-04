@@ -210,7 +210,7 @@ public function deleteproduct(Request $request)
 
         $cartCount = $cartItems->count(); 
       
-          return view('userpages.showexplore', compact('product', 'user', 'relatedProducts','cartCount','cartItems'));
+          return view('userpages.showexplore', compact('product', 'user', 'relatedProducts','cartCount','cartItems','product'));
       }
       
 

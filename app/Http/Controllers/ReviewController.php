@@ -13,7 +13,7 @@ class ReviewController extends Controller
 
     public function  viewfeedback(){ 
         $user = Auth::user();
-        $feedbacks = Feedback::all();
+        $feedbacks = Feedback::with('product')->get();
         $count = Message::whereHas('messageStatus', function ($query) {
             $query->where('status', 1);
             })->count();

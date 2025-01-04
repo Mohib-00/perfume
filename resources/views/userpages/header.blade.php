@@ -54,6 +54,10 @@
                                 <ul class="single-mega cn-col-4">
                                     <li style="font-size:25px" class="title discovery">Discovery</li>
                                 </ul>
+
+                                <ul class="single-mega cn-col-4">
+                                    <li style="font-size:25px" class="title viewcollection">View Collection</li>
+                                </ul>
                                  
                             </div>
                         </li>

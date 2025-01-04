@@ -23,7 +23,7 @@ class DetailsController extends Controller
       public function store(Request $request)
       {
           $validator = Validator::make($request->all(), [
-               'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+               'image' => 'required|image|max:2048',
                'heading' => 'required|string|max:255',
                'paragraph' => 'nullable',
            ]);
@@ -70,7 +70,7 @@ class DetailsController extends Controller
           $detail = SectionDetail::findOrFail($id);   
       
           $validator = Validator::make($request->all(), [
-              'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+              'image' => 'nullable|image|max:2048',
               'name' => 'nullable|string|max:255',
               'paragraph' => 'nullable',
            ]);

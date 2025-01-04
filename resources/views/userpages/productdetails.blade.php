@@ -30,7 +30,9 @@
                 @endif
             </p>
             <p class="product-price">{{ $product->discount_price }}</p>
-            <p class="product-desc">{{ $product->description }}</p>
+            <h3 class="mt-3">Description</h3>
+
+            <p class="product-description-under-button mt-3">{{ $product->description }}</p>
 
             
              
@@ -46,19 +48,15 @@
                 @endif
                 <div class="cart-fav-box d-flex align-items-center">
                     @if ($product->quantity == 0)            
-                    <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; background-color: #ccc; display: flex; justify-content: center; align-items: center; cursor: not-allowed;">Sold Out</a>
+                    <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center; cursor: not-allowed;border:1px solid black;background:none;color:black">Sold Out</a>
                     @else
-                    <a data-product-id="{{ $product->id }}" class="btn essence-btn addtocartproduct" style="  padding: 15px; display: flex; justify-content: center; align-items: center;">Add to Cart</a>
+                    <a data-product-id="{{ $product->id }}" class="btn essence-btn addtocartproduct" style="  padding: 15px; display: flex; justify-content: center; align-items: center;border:1px solid black;background:none">Add to Cart</a>
                     @endif
                      <div class="product-favourite ml-4">
                         <a href="#" class="favme fa fa-heart"></a>
                     </div>
                 </div>
             </form>
-
-            <h3 class="mt-3">Description</h3>
-
-            <p class="product-description-under-button mt-3">{{ $product->description }}</p>
 
          
  

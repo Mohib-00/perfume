@@ -1,8 +1,9 @@
+@if ($showcaseimages->isNotEmpty())
 <div class="top_catagory_area section-padding-80 clearfix">
     <div class="container-fluid">
         <div class="row justify-content-center">
 
-            @if ($showcaseimages->isNotEmpty())
+            
             @foreach ($showcaseimages as $product)
 
              <div class="col-6 col-sm-4 col-md-2 my-2">
@@ -14,8 +15,9 @@
             </div>
 
             @endforeach
-            @endif
+            
 
         </div>
     </div>
 </div>
+@endif
