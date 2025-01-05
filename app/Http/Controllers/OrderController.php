@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderSuccess;
 use App\Models\CartItem;
 use App\Models\Customer;
 use App\Models\Option;
@@ -10,6 +11,7 @@ use App\Models\OrderItem;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -48,7 +50,7 @@ class OrderController extends Controller
                 return response()->json(['error' => 'Your cart is empty'], 400);
             }
     
-             $subtotal = $cartItems->sum(fn($item) => $item->product->price * $item->quantity);
+            $subtotal = $cartItems->sum(fn($item) => $item->product->price * $item->quantity);
             $shippingPrice = Setting::first()->delivery_charges ?? 10;
             $total = $subtotal + $shippingPrice;
     
@@ -98,6 +100,8 @@ class OrderController extends Controller
             }
     
              CartItem::where('user_id', auth()->id())->delete();
+
+             Mail::to($customer->email)->send(new OrderSuccess($order));
     
              DB::commit();
     
