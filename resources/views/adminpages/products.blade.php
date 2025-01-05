@@ -277,10 +277,10 @@
                                                 <td id="hoverimage">
                                                     <img height="80" width="80" src="{{ asset('images/' . $product->hover_image) }}"/>
                                                </td>
-                                                <td id="name">{{$product->name}}</td>     
+                                                <td style="white-space: nowrap;" id="name">{{$product->name}}</td>     
                                                 <td id="price">{{$product->price}}</td>                                            
                                                 <td id="discountprice">{{$product->discount_price}}</td>
-                                                <td id="description">{{$product->description}}</td> 
+                                                <td style="white-space: nowrap;" id="description">{{$product->description}}</td> 
                                                 <td id="slug">{{$product->slug}}</td>  
                                                 <td id="quantity">{{$product->quantity}}</td> 
                                                  <td>
