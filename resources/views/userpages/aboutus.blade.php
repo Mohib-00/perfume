@@ -10,14 +10,13 @@
     @include('userpages.cartmodel')
      
     <div class="container py-5">
-        <div class="row justify-content-center my-5">
+        <div class="row justify-content-center">
             @if ($stories->isNotEmpty())
             @foreach ($stories as $product)
             <div class="col-lg-6 col-md-12 d-flex justify-content-center">
-                <img src="{{ asset('images/'.$product->image_story) }}" alt="Descriptive Alt Text" class="img-fluid" style="max-width: 100%; height: 500px;">
+                <img style="margin-top:50px" src="{{ asset('images/'.$product->image_story) }}" alt="Descriptive Alt Text" class="img-fluid" style="max-width: 100%; height: 500px;">
             </div>
-            <!-- Big Paragraph -->
-            <div class="col-12 text-center mb-4 my-5">
+             <div class="col-12 text-center mb-4 my-5">
                 <h4>{{$product->heading_story}}</h4>
                 <i style="font-size: 1.5rem; line-height: 2rem;color:black">
                    {{$product->paragraph_story}}
@@ -28,10 +27,9 @@
 
 
 
-    <div class="container-fluid py-5">
+    <div class="container-fluid">
         <div class="row">
-            <!-- Image Section -->
-            <div class="col-12">
+             <div class="col-12">
                 <img src="{{ asset('images/'.$product->image_1) }}" alt="Descriptive Alt Text" class="img-fluid" style="width: 100%; max-height: 500px;  ">
             </div>
         </div>
@@ -40,14 +38,12 @@
     @endif
     
     <div class="container py-5">
-        <!-- Section Heading -->
-        <div class="text-center mb-5">
+         <div class="text-center mb-5">
             <h2 class="fw-bold">Get in Touch</h2>
             <p class="text-muted">Have questions or feedback? Fill out the form below, and we’ll respond promptly!</p>
         </div>
     
-        <!-- Form Section -->
-        <div class="row justify-content-center">
+         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <form id="contactForm" class="bg-light p-4 p-md-5 contact-form">
                     @csrf

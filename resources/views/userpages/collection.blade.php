@@ -66,33 +66,44 @@
                                     <div data-product-name="{{ $product->name }}" class="product-img viewdetail">
                                         <img style="height:500px;border-radius:10px 10px 0px 0px" src="{{ asset('images/'.$product->hover_image) }}" alt="">
                                         <img style="height:500px;border-radius:10px 10px 0px 0px" class="hover-img" src="{{ asset('images/'.$product->image) }}" alt="">
-                                        <div class="product-favourite">
-                                         <a href="#" class="favme fa fa-heart"></a>
+                                        <div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+                                            <a class="favme fa fa-heart"></a>
                                         </div>
                                     </div>
-                                    <div class="product-description" style="background-color: whitesmoke">
-                                         <a>
-                                            <h6>{{$product->name}}</h6>
+                                    <div class="product-description" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px;">
+                                        <a>
+                                            <h6>{{ $product->name }}</h6>
                                         </a>
                                         <p class="product-price">
                                             @if($product->discount_price)
-                                                <span style="text-decoration: line-through; color: #999;">${{ $product->price }}</span>
+                                                <span style="text-decoration: line-through; color: #999;">Rs:{{ $product->price }}</span>
                                             @else
-                                                ${{ $product->price }}
+                                            Rs:{{ $product->price }}
                                             @endif
-                                            </p>
-                                            <p class="product-price">{{ $product->discount_price }}</p>
-                                            <div class="add-to-cart-btn" >
-                                                @if ($product->quantity == 0)
-                                                   
-                                                <a href="#" class="btn essence-btn" style="width: 100%; padding: 15px; background-color: #ccc; display: flex; justify-content: center; align-items: center; cursor: not-allowed;border-radius:0px 0px 10px 10px">Sold Out</a>
-                                                @elseif ($product->options->isNotEmpty()) 
-                                                <a  data-product-name="{{ $product->name }}" class="btn essence-btn viewdetail" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">View Options</a>
-                                                @else
-                                                   
-                                                    <a data-product-id="{{ $product->id }}" class="btn essence-btn addtocartproduct" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center;border-radius:0px 0px 10px 10px">Add to Cart</a>
-                                                @endif
-                                            </div>
+                                      
+                                         
+                                            @if($product->discount_price)
+                                                Rs:{{ $product->discount_price }}
+                                            @endif
+                                        </p>
+                                        <div style="color: #FFD700; font-size: 20px; margin-bottom: 10px;">
+                                            <span style="margin-right: 8px; color: black; font-size: 16px;">4.5</span>
+                                            <i class="fa fa-star" style="margin-right: 3px;"></i>
+                                            <i class="fa fa-star" style="margin-right: 3px;"></i>
+                                            <i class="fa fa-star" style="margin-right: 3px;"></i>
+                                            <i class="fa fa-star-half-o" style="margin-right: 3px;"></i>
+                                            <i class="fa fa-star-o" style="margin-right: 3px;"></i>
+                                        </div>
+                        
+                                        <div style="width: 109%;">
+                                            @if ($product->quantity == 0)
+                                                <a href="#" class="btn eesence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center; cursor: not-allowed; color:black; border:1px solid black;">Sold Out</a>
+                                            @elseif ($product->options->isNotEmpty())
+                                                <a data-product-name="{{ $product->name }}" class="btn eesence-btn viewdetail" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center; color: black; border:1px solid black;">View Options</a>
+                                            @else
+                                                <a data-product-id="{{ $product->id }}" class="btn eesence-btn addtocartproduct" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center; color:black; border:1px solid black;">Add to Cart</a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
