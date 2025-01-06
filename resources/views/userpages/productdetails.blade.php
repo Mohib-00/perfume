@@ -30,11 +30,7 @@
                 @endif
             </p>
             <p class="product-price">{{ $product->discount_price }}</p>
-            <h3 class="mt-3">Description</h3>
 
-            <p class="product-description-under-button mt-3">{{ $product->description }}</p>
-
-            
              
             <form class="cart-form clearfix" method="post">
                 @if ($product->options->isNotEmpty())
@@ -69,6 +65,25 @@
                    Write a Review
                 </a>
             </div>
+
+            <h3 class="mt-3">Description</h3>
+
+            <p class="product-description-under-button mt-3">{{ $product->description }}</p>
+            @if ($averageRating > 0) 
+            <div style="color: #FFD700; font-size: 20px; margin-bottom: 10px;">
+               
+                @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= $averageRating)
+                        <i class="fa fa-star" style="margin-right: 3px;"></i>
+                    @elseif ($i - 0.5 <= $averageRating)
+                        <i class="fa fa-star-half-o" style="margin-right: 3px;"></i>
+                    @else
+                        <i class="fa fa-star-o" style="margin-right: 3px;"></i>
+                    @endif
+                @endfor
+               
+            </div>
+        @endif
             
         </div>
     </section>

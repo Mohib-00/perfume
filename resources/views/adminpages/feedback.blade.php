@@ -97,7 +97,7 @@
                           <div class="white_shd full margin_bottom_30">
                             <div class="full graph_head">
                                 <div class="search-container" style="display: inline-block; float: right; margin-top: 10px;">
-                                   <input type="text" class="form-control search-input" placeholder="Search Showcase...">
+                                   <input type="text" class="form-control search-input" placeholder="Search Feedback...">
                                </div>
                                 
                            </div>

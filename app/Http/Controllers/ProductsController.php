@@ -194,24 +194,29 @@ public function deleteproduct(Request $request)
       {
           $user = Auth::user();
           $product = Product::where('slug', $slug)->firstOrFail();
-          $relatedProducts = Product::where('slug', $slug)->where('id', '!=', $product->id)->get();
+          
+           $relatedProducts = Product::where('slug', $slug)->where('id', '!=', $product->id)->get();
       
+           foreach ($relatedProducts as $relatedProduct) {
+              $relatedProduct->average_rating = $relatedProduct->averageRating();
+          }
+          
           if (request()->ajax()) {
               return response()->json([
                   'success' => true,
                   'redirect_url' => route('single.product.page', ['slug' => $slug]),
               ]);
           }
-        $userId = Auth::id();
-
-        $cartItems = CartItem::with('product', 'product.options')  
-            ->where('user_id', $userId)
-            ->get();
-
-        $cartCount = $cartItems->count(); 
       
-          return view('userpages.showexplore', compact('product', 'user', 'relatedProducts','cartCount','cartItems','product'));
+          $userId = Auth::id();
+          $cartItems = CartItem::with('product', 'product.options')
+              ->where('user_id', $userId)
+              ->get();
+          $cartCount = $cartItems->count();
+          
+          return view('userpages.showexplore', compact('product', 'user', 'relatedProducts', 'cartCount', 'cartItems', 'product'));
       }
+      
       
 
       

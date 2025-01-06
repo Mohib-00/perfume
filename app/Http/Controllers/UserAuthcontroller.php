@@ -157,12 +157,18 @@ public function logout() {
        
         $favouriteProducts = Product::where('show_favourite_product', 1)->get();
         $saleProducts = Product::where('show_sale_product', 1)
-            ->with('options') 
+            ->with(['options', 'reviews'])  
             ->get();
+            $saleProducts->each(function ($product) {
+                $product->average_rating = round($product->reviews->avg('rating'), 1);
+            });
 
         $selectionProducts = Product::where('show_selection_product', 1)
-        ->with('options')
+        ->with(['options', 'reviews'])
         ->get();
+        $selectionProducts->each(function ($product) {
+            $product->average_rating = round($product->reviews->avg('rating'), 1);
+        });
 
         $showcaseimages = ShowcaseImage::all();
         $carousels = Carousel::first() ?? new Carousel([
@@ -178,8 +184,13 @@ public function logout() {
             ->get();
 
         $cartCount = $cartItems->count(); 
+
+        $reviews = \DB::table('feedbacks')
+        ->join('products', 'feedbacks.product_id', '=', 'products.id')
+        ->select('feedbacks.*', 'products.name as product_name')
+        ->get();
     
-        return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories','cartCount','cartItems'));
+        return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories','cartCount','cartItems','reviews'));
     }
     
 
@@ -272,8 +283,11 @@ public function logout() {
       {
         $user = Auth::check() ? Auth::user() : null;
         $saleselections = Product::where('showon_sale_page', 1)
-        ->with('options')
+        ->with(['options', 'reviews'])
         ->get();
+        $saleselections->each(function ($product) {
+            $product->average_rating = round($product->reviews->avg('rating'), 1);
+        });
         $userId = Auth::id();
 
          
@@ -305,12 +319,13 @@ public function logout() {
       {
         $user = Auth::check() ? Auth::user() : null;
         $womenselections = Product::where('showon_women_page', 1)
-        ->with('options')
+        ->with(['options', 'reviews'])
         ->get();
+        $womenselections->each(function ($product) {
+            $product->average_rating = round($product->reviews->avg('rating'), 1);
+        });
         $userId = Auth::id();
 
-        
-    
         $cartItems = CartItem::with('product', 'product.options')  
             ->where('user_id', $userId)
             ->get();
@@ -324,8 +339,11 @@ public function logout() {
       {
         $user = Auth::check() ? Auth::user() : null;
         $menselections = Product::where('showon_men_page', 1)
-        ->with('options')
+        ->with(['options', 'reviews'])
         ->get();
+        $menselections->each(function ($product) {
+            $product->average_rating = round($product->reviews->avg('rating'), 1);
+        });
         $userId = Auth::id();
 
         
@@ -343,8 +361,11 @@ public function logout() {
       {
         $user = Auth::check() ? Auth::user() : null;
         $travelselections = Product::where('showon_explore_page', 1)
-        ->with('options')
+        ->with(['options', 'reviews'])
         ->get();
+        $travelselections->each(function ($product) {
+            $product->average_rating = round($product->reviews->avg('rating'), 1);
+        });
         $userId = Auth::id();
 
         
@@ -361,8 +382,11 @@ public function logout() {
       {
         $user = Auth::check() ? Auth::user() : null;
         $discoveryselections = Product::where('showon_discovery_page', 1)
-        ->with('options')
+        ->with(['options', 'reviews'])
         ->get();
+        $discoveryselections->each(function ($product) {
+            $product->average_rating = round($product->reviews->avg('rating'), 1);
+        });
         $userId = Auth::id();
 
          
@@ -379,8 +403,11 @@ public function logout() {
       {
         $user = Auth::check() ? Auth::user() : null;
         $collectionselections = Product::where('showon_collection_page', 1)
-        ->with('options')
+        ->with(['options', 'reviews'])
         ->get();
+        $collectionselections->each(function ($product) {
+            $product->average_rating = round($product->reviews->avg('rating'), 1);
+        });
         $userId = Auth::id();
 
          
@@ -409,21 +436,21 @@ public function logout() {
       }
 
       public function details($productName)
-      {
-          $user = Auth::check() ? Auth::user() : null;
-          $product = Product::with('options')->where('name', $productName)->firstOrFail();
-          
-          $userId = Auth::id();
+{
+    $user = Auth::check() ? Auth::user() : null;
+    $product = Product::with('options', 'reviews')->where('name', $productName)->firstOrFail();
 
-           
-      
-          $cartItems = CartItem::with('product', 'product.options')  
-              ->where('user_id', $userId)
-              ->get();
-  
-          $cartCount = $cartItems->count(); 
-      
-          return view('userpages.productdetails', compact('user', 'product','cartCount','cartItems'));
-      }
+    $averageRating = $product->reviews()->avg('rating');
+    $averageRating = round($averageRating, 1); 
+
+    $userId = Auth::id();
+    $cartItems = CartItem::with('product', 'product.options')  
+        ->where('user_id', $userId)
+        ->get();
+    $cartCount = $cartItems->count();
+
+    return view('userpages.productdetails', compact('user', 'product', 'cartCount', 'cartItems', 'averageRating'));
+}
+
       
 }

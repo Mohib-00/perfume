@@ -70,7 +70,7 @@
                                             <a class="favme fa fa-heart"></a>
                                         </div>
                                     </div>
-                                    <div class="product-description" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px;">
+                                    <div class="product-description" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; padding: 20px; height: 200px;">
                                         <a>
                                             <h6>{{ $product->name }}</h6>
                                         </a>
@@ -86,14 +86,30 @@
                                                 Rs:{{ $product->discount_price }}
                                             @endif
                                         </p>
-                                        <div style="color: #FFD700; font-size: 20px; margin-bottom: 10px;">
-                                            <span style="margin-right: 8px; color: black; font-size: 16px;">4.5</span>
-                                            <i class="fa fa-star" style="margin-right: 3px;"></i>
-                                            <i class="fa fa-star" style="margin-right: 3px;"></i>
-                                            <i class="fa fa-star" style="margin-right: 3px;"></i>
-                                            <i class="fa fa-star-half-o" style="margin-right: 3px;"></i>
-                                            <i class="fa fa-star-o" style="margin-right: 3px;"></i>
+                                        @if ($product->reviews->isNotEmpty())
+                                        <div style="color: #FFD700; font-size: 20px; ">
+                                            @php
+                                                $averageRating = $product->average_rating;  
+                                                $fullStars = floor($averageRating);
+                                                $halfStar = $averageRating - $fullStars >= 0.5 ? 1 : 0;
+                                                $emptyStars = 5 - $fullStars - $halfStar;
+                                            @endphp
+                            
+                                            <span style="margin-right: 8px; color: black; font-size: 16px;">{{ $averageRating }}</span>
+                            
+                                            @for ($i = 0; $i < $fullStars; $i++)
+                                                <i class="fa fa-star" style="margin-right: 3px;"></i>
+                                            @endfor
+                            
+                                            @if ($halfStar)
+                                                <i class="fa fa-star-half-o" style="margin-right: 3px;"></i>
+                                            @endif
+                            
+                                            @for ($i = 0; $i < $emptyStars; $i++)
+                                                <i class="fa fa-star-o" style="margin-right: 3px;"></i>
+                                            @endfor
                                         </div>
+                                        @endif
                         
                                         <div style="width: 109%;">
                                             @if ($product->quantity == 0)

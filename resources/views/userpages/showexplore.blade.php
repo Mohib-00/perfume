@@ -72,7 +72,7 @@
                                             <a class="favme fa fa-heart"></a>
                                         </div>
                                     </div>
-                                    <div class="product-description" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px;">
+                                    <div class="product-description" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; padding: 20px; height: 200px;">
                                         <a>
                                             <h6>{{ $relatedProduct->name }}</h6>
                                         </a>
@@ -88,15 +88,31 @@
                                                 ${{ $relatedProduct->discount_price }}
                                             @endif
                                         </p>
+
+                                        @if ($relatedProduct->reviews->isNotEmpty())
                                         <div style="color: #FFD700; font-size: 20px; margin-bottom: 10px;">
-                                            <span style="margin-right: 8px; color: black; font-size: 16px;">4.5</span>
-                                            <i class="fa fa-star" style="margin-right: 3px;"></i>
-                                            <i class="fa fa-star" style="margin-right: 3px;"></i>
-                                            <i class="fa fa-star" style="margin-right: 3px;"></i>
-                                            <i class="fa fa-star-half-o" style="margin-right: 3px;"></i>
-                                            <i class="fa fa-star-o" style="margin-right: 3px;"></i>
+                                            <span style="margin-right: 8px; color: black; font-size: 16px;">
+                                                {{ number_format($relatedProduct->average_rating, 1) }}
+                                            </span>
+                                            @php
+                                                $fullStars = floor($relatedProduct->average_rating);
+                                                $halfStar = $relatedProduct->average_rating - $fullStars >= 0.5 ? 1 : 0;
+                                                $emptyStars = 5 - $fullStars - $halfStar;
+                                            @endphp
+                    
+                                            @for ($i = 0; $i < $fullStars; $i++)
+                                                <i class="fa fa-star" style="margin-right: 3px;"></i>
+                                            @endfor
+                    
+                                            @if ($halfStar)
+                                                <i class="fa fa-star-half-o" style="margin-right: 3px;"></i>
+                                            @endif
+                    
+                                            @for ($i = 0; $i < $emptyStars; $i++)
+                                                <i class="fa fa-star-o" style="margin-right: 3px;"></i>
+                                            @endfor
                                         </div>
-                        
+                                        @endif
                                         <div style="width: 100%;">
                                             @if ($relatedProduct->quantity == 0)
                                                 <a href="#" class="btn eesence-btn" style="width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center; cursor: not-allowed; color:black; border:1px solid black;">Sold Out</a>
@@ -109,8 +125,8 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                        @endif
+                            @endforeach
+                            @endif
                         
                             
                           

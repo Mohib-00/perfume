@@ -116,36 +116,6 @@
 }
 
 
-     .reviews-scroll-container {
-        overflow-x: auto;
-        display: flex;
-        gap: 15px;
-        padding-bottom: 20px;
-        height: fit-content;
-        scrollbar-width: thin;  
-        scrollbar-color: #000 #ccc;  
-    }
-
-     .reviews-scroll-container::-webkit-scrollbar {
-        width: 8px;  
-        height: 8px;  
-    }
-
-    .reviews-scroll-container::-webkit-scrollbar-track {
-        background-color: #f1f1f1;  
-        border-radius: 10px;
-    }
-
-    .reviews-scroll-container::-webkit-scrollbar-thumb {
-        background-color: #888;  
-        border-radius: 10px;
-        border: 2px solid #f1f1f1;  
-    }
-
-    .reviews-scroll-container::-webkit-scrollbar-thumb:hover {
-        background-color: #555;  
-    }
-
     #whatsapp-chat {
     position: fixed;
     bottom: 10px;
@@ -235,6 +205,68 @@
 }
 
 
+.w-item {
+    background-color: #f8f9fa;  
+    padding: 20px;
+    border-radius: 12px;  
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  
+}
 
+.w-item:hover {
+    transform: scale(1.05);  
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);  
+}
+
+
+.stars .fa-star {
+    color: #ffd700; 
+    background-color: #343a40;  
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 50%;
+    margin: 0 3px;  
+    transition: transform 0.2s ease;  
+}
+
+.stars .fa-star:hover {
+    transform: scale(1.2);  
+}
+
+.reviews-scroll-container {
+    overflow-x: auto;
+    display: flex;
+    gap: 15px;
+    padding-bottom: 20px;
+    height: fit-content;
+    scroll-behavior: smooth;  
+    scrollbar-width: thin; 
+    scrollbar-color: #6c757d #f8f9fa;  
+}
+
+.reviews-scroll-container::-webkit-scrollbar {
+    height: 6px;  
+}
+
+.reviews-scroll-container::-webkit-scrollbar-track {
+    background: #f8f9fa; 
+    border-radius: 10px;  
+}
+
+.reviews-scroll-container::-webkit-scrollbar-thumb {
+    background-color: #6c757d; 
+    border-radius: 10px; 
+    border: 2px solid #f8f9fa;  
+}
+
+.reviews-scroll-container::-webkit-scrollbar-thumb:hover {
+    background-color: #495057;  
+}
 
     </style>

@@ -19,21 +19,22 @@ class ReviewController extends Controller
             })->count();
         return view('adminpages.feedback', ['userName' => $user->name, 'count' => $count],compact('feedbacks'));
       }
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'rating' => 'required|integer|min:1|max:5',
-            'review_title' => 'required|string|max:255',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'message_review' => 'required|string',
-        ]);
-
-        Feedback::create($validated);
-
-        return response()->json(['message' => 'Review submitted successfully.']);
-    }
+      public function store(Request $request)
+      {
+          $validated = $request->validate([
+              'product_id' => 'required|exists:products,id',
+              'rating' => 'required|integer|min:1|max:5',
+              'review_title' => 'nullable|string|max:255',
+              'name' => 'nullable|string|max:255',
+              'email' => 'nullable|email|max:255',
+              'message_review' => 'nullable|string',
+          ]);
+      
+          Feedback::create($validated);
+      
+          return response()->json(['message' => 'Review submitted successfully.']);
+      }
+      
 
 
     public function show($id)

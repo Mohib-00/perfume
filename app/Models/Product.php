@@ -55,5 +55,15 @@ public function orders()
     return $this->belongsToMany(Order::class, 'order_items');
 }
 
+public function reviews()
+{
+    return $this->hasMany(Feedback::class);  
+}
+
+public function averageRating()
+{
+    return $this->reviews()->avg('rating'); 
+}
+
 }
 
