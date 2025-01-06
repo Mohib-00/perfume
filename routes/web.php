@@ -58,7 +58,8 @@ Route::get('/product-details/{product_name}', [UserAuthController::class, 'detai
 Route::get('/cart', [Cartcontroller::class, 'cart']);
 //to open checkout page
 Route::get('/checkout', [CheckoutController::class, 'checkout']);
-
+//to open sale page
+Route::get('/policies/terms-of-service', [SettingsController::class, 'termsofservice']);
 
 
 Route::group([

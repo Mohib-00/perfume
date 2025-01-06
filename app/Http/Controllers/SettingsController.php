@@ -102,4 +102,10 @@ $count = Message::whereHas('messageStatus', function ($query) {
  return view('adminpages.profile', ['userName' => $user->name, 'count' => $count]);
 }
 
+public function termsofservice()
+{
+    $user = Auth::check() ? Auth::user() : null;
+    return view('userpages.terms', compact('user'));
+}
+
 }

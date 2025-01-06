@@ -43,14 +43,13 @@
             <div class="col-12 col-md-2 my-3">
                 <div class="footer_menu">
                     <ul style="list-style-type: none; padding: 0;">
-                        <li style="color:white;">Home page</li>
-                        <li style="color:white;">Our Story</li>
-                        <li style="color:white;">Blogs</li>
-                        <li style="color:white;">Stores</li>
-                        <li style="color:white;">Terms of service</li>
-                        <li style="color:white;">Refund Policy</li>
-                        <li style="color:white;">Shipping Policy</li>
-                        <li style="color:white;">Privacy Policy</li>
+                        <li class="home my-2" style="color:white;">Home page</li>
+                        <li class="storypage my-2" style="color:white;">Our Story</li>
+                        <li class="openblogs my-2" style="color:white;">Blogs</li>
+                        <li class="terms my-2" style="color:white;">Terms of service</li>
+                        <li class="refund my-2" style="color:white;">Refund Policy</li>
+                        <li class="shipping my-2" style="color:white;">Shipping Policy</li>
+                        <li class="privacy my-2" style="color:white;">Privacy Policy</li>
                     </ul>
                 </div>
             </div>

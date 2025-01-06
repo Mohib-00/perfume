@@ -2485,5 +2485,20 @@ $(document).on('click', '.editorderstatus', function(e) {
 });
 
 
+$('.terms').click(function () {
+$.ajax({
+    url:'/policies/terms-of-service',
+    type: 'GET',
+    success: function (response) {
+        window.location.href ='/policies/terms-of-service';
+         
+    },
+    error: function (xhr, status, error) {
+        console.error('AJAX Error: ', status, error);
+    }
+});
+});
+
+
 </script>
 </body>
