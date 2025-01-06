@@ -297,9 +297,47 @@ $(document).ready(function() {
 
 
         
-if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/view-feedback' || window.location.pathname === '/admin/change-password' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
+if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/orderview' || window.location.pathname === '/admin/view-order' || window.location.pathname === '/admin/view-feedback' || window.location.pathname === '/admin/change-password' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
         window.location.href = '/';  
     }
+
+
+$('.vieww').click(function () {
+var orderId = $(this).data('order-id');
+var baseUrl = "{{ url('') }}";
+$.ajax({
+    url: baseUrl + '/admin/orderview/${orderId',
+    type: 'GET',
+    success: function (response) {
+        window.location.href = `${baseUrl}/admin/orderview/${orderId}`;
+         
+    },
+    error: function (xhr, status, error) {
+        console.error('AJAX Error: ', status, error);
+    }
+});
+});
+
+     //to open order page
+     $('.vieworder').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/view-order',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/view-order';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
 
     //to open profile  page
     $('.viewfeedback').click(function () {
@@ -2347,7 +2385,104 @@ $('.placeorder').click(function (e) {
     });
 });
 
+//to cnfrm delivery status
+$(document).on('click', '#dlvrycnfrm', function (e) {
+    e.preventDefault();
 
+    var orderId = $(this).data('order-id');
+
+    
+    Swal.fire({
+        title: 'Confirm Delivery',
+        text: "Are you sure you want to mark this order as delivered?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, mark as delivered!',
+        cancelButtonText: 'No, cancel!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+           
+            $.ajax({
+                url: '{{ route("order.deliveryConfirm") }}',
+                type: 'POST',
+                data: {
+                    order_id: orderId,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (response) {
+                    if (response.success) {
+                        
+                        $('tr[data-order-id="' + orderId + '"] .status').text('completed');
+
+                         
+                        $('tr[data-order-id="' + orderId + '"] .btnhide').remove();  
+                        $('tr[data-order-id="' + orderId + '"] td:eq(13)').append('<a class="btn btn-success mx-5 btnshow">Delivered</a>'); 
+
+                        Swal.fire(
+                            'Delivered!',
+                            'The order status has been updated to completed.',
+                            'success'
+                        );
+                    }
+                },
+                error: function (xhr) {
+                    console.error(xhr.responseText);
+                    Swal.fire(
+                        'Error!',
+                        'An error occurred while updating the status.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
+
+
+//to chng order status
+$(document).on('click', '.editorderstatus', function(e) {
+    e.preventDefault();
+    const orderId = $(this).data('order-id');
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to mark this customer as active?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, change it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/updateorder-status",  
+                type: "POST",
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    order_id: orderId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire('Updated!', 'Customer status has been changed to Active.', 'success');
+
+                         const statusTd = $(`a[data-order-id="${orderId}"]`).closest('tr').find('td.statuss');
+                         statusTd.html('<span style="background-color: red; color: white; padding: 13px 13px; border-radius: 50px; display: inline-block;">Old</span>'); 
+
+                        $(`a[data-order-id="${orderId}"]`).prop('disabled', true);
+                    } else {
+                        Swal.fire('Error!', response.message, 'error');
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire('Error!', 'Something went wrong.', 'error');
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    });
+});
 
 
 </script>

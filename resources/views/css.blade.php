@@ -14,6 +14,7 @@
        align-items: center;
        overflow: hidden;
        position: relative;
+       background: #fcfcfc;
      }
  
       
@@ -24,7 +25,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("{{ asset('logix.png') }}") no-repeat center;
+    background: url("{{ asset('perfume.png') }}") no-repeat center;
     background-size: contain;   
     background-attachment: fixed;  
     opacity: 0.8;
@@ -33,13 +34,12 @@
 
 
 
-     /* Form container */
      .container {
        position: relative;
        background: rgba(255, 239, 213, 0.3);
        padding: 40px;
        border-radius: 20px;
-       backdrop-filter: blur(10px);
+       backdrop-filter: blur(1px);
        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
        z-index: 3;
        width: 500px;

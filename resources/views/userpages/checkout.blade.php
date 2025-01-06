@@ -114,46 +114,26 @@
                         
 
                         <div id="accordion" role="tablist" class="mb-4">
-                            <div class="card">
-                                <div class="card-header" role="tab" id="headingOne">
-                                    <h6 class="mb-0">
-                                        <a style="color:black">
-                                            <input type="radio" name="payment" id="paypal" value="paypal">
-                                            Paypal
-                                            <span class="text-danger" id="error-payment-method"></span> 
-                                        </a>
-                                    </h6>
-                                </div>
-                            </div>
+                           
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingTwo">
                                     <h6 class="mb-0">
                                         <a style="color:black">
                                             <input class="cod" type="radio" name="payment" id="cash" value="cash on delivery">
                                             Cash on Delivery
-                                            <span class="text-danger" id="error-payment-method"></span> <!-- Error span for Cash on Delivery -->
+                                            <span class="text-danger" id="error-payment-method"></span> 
                                         </a>
                                     </h6>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-header" role="tab" id="headingThree">
-                                    <h6 class="mb-0">
-                                        <a style="color:black">
-                                            <input type="radio" name="payment" id="credit-card" value="credit card">
-                                            Credit Card
-                                            <span class="text-danger" id="error-payment-method"></span> <!-- Error span for Credit Card -->
-                                        </a>
-                                    </h6>
-                                </div>
-                            </div>
+                           
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingFour">
                                     <h6 class="mb-0">
                                         <a style="color:black" href="javascript:void(0);" id="bank-transfer-link">
                                             <input class="cod" type="radio" name="payment" id="bank-transfer" value="bank transfer">
                                             Direct Bank Transfer
-                                            <span class="text-danger" id="error-payment-method"></span> <!-- Error span for Bank Transfer -->
+                                            <span class="text-danger" id="error-payment-method"></span> 
                                         </a>
                                     </h6>
                                 </div>

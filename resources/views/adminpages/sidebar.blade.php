@@ -29,7 +29,7 @@
           <li class="addstoryyyyyy"><a><i style="color:black" class="fa fa-globe white_color"></i><span>Add Story</span></a></li>
           <li class="messagessss"><a><i class="fa fa-comment white_color"></i><span>Messages</span></a></li>
           <li class="viewfeedback"><a><i class="fa fa-thumbs-up red_color"></i><span>View Feedback</span></a></li>
-
+          <li class="vieworder"><a><i class="fa fa-star white_color"></i><span>View Order</span></a></li>
           <li>
              <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cog yellow_color"></i><span>Settings</span></a>
              <ul class="collapse list-unstyled" id="element">

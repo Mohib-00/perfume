@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Mail\OrderSuccess;
 use App\Models\CartItem;
 use App\Models\Customer;
+use App\Models\Message;
 use App\Models\Option;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -114,24 +116,31 @@ class OrderController extends Controller
     }
     
     
-    
-    
-    
-
     public function  order(){ 
+        $user = Auth::user();
         $orders = Order::with('customer')->get();
-        return view('order',compact('orders'));
+        $count = Message::whereHas('messageStatus', function ($query) {
+            $query->where('status', 1);
+            })->count();
+        return view('adminpages.order',['userName' => $user->name, 'count' => $count], compact('orders','user'));
      }
 
      public function orderview($order_id)
      {
-         
-         $orderItems = OrderItem::where('order_id', $order_id)
-             ->with('product')  
-             ->get();
+        $user = Auth::user();
+        $count = Message::whereHas('messageStatus', function ($query) {
+            $query->where('status', 1);
+            })->count();
+
+            $orderItems = OrderItem::where('order_id', $order_id)
+            ->with(['product', 'option'])  
+            ->get();
+        
      
-         return view('orderview', [
-             'orderItems' => $orderItems
+         return view('adminpages.orderview', [
+             'orderItems' => $orderItems,
+             'userName' => $user->name,
+             'count' => $count
          ]);
      }
 
@@ -147,7 +156,7 @@ public function confirmDelivery(Request $request)
     $order = Order::find($request->order_id);
 
     
-    $order->status = 'completed';
+    $order->delivery_status = 'completed';
     $order->save();
 
    
@@ -168,5 +177,27 @@ public function destroy(Request $request)
 
     return response()->json(['success' => false, 'message' => 'Order not found.']);
 }
+
+public function updateorderStatus(Request $request)
+{
+    $order = Order::find($request->order_id);
+
+    if ($order) {
+        $customer = $order->customer;  
+
+        if ($customer && $customer->status == '0') {
+            $customer->status = '1'; 
+            $customer->save();
+
+            return response()->json(['success' => true, 'message' => 'Customer status updated to active.']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Customer is already active or not found.'], 404);
+    }
+
+    return response()->json(['success' => false, 'message' => 'Order not found.'], 404);
+}
+
+
 
 }

@@ -4,10 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
  
     <!-- Title  -->
-    <title>Ecommerce</title>
+    <title>Atir'z</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="{{asset('essence/img/core-img/favicon.ico')}}">
+    <link rel="icon" href="{{asset('perfume.png')}}">
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{{asset('essence/css/core-style.css')}}">

@@ -12,13 +12,11 @@ class Order extends Model
         'customer_id', 'total', 'delivery_status', 'payment_type'
     ];
 
-    // Relationship with customer
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class, 'customer_id', 'id');
     }
 
-    // Relationship with order items
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);

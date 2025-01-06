@@ -67,7 +67,6 @@
             </div>
 
             <h3 class="mt-3">Description</h3>
-
             <p class="product-description-under-button mt-3">{{ $product->description }}</p>
             @if ($averageRating > 0) 
             <div style="color: #FFD700; font-size: 20px; margin-bottom: 10px;">
