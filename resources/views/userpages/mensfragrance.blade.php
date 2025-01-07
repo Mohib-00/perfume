@@ -30,19 +30,20 @@
 
                          <div class="widget catagory mb-50">
                             <h2 class="mx-5 mt-5">Men's Fragrance</h2>
-                            <p style="margin:0px 20px 0px 50px">Discover our Travel Collection, featuring pocket-sized 10ml bottles that are perfect for your on-the-go lifestyle. Easily slip one into your bag for a quick refresh throughout the day or pack several for your next adventure. Whether you're commuting to work or embarking on a journey, our travel size perfumes are the ideal companions for keeping you beautifully scented wherever you go.</p>
-                        </div>
+                         </div>
 
-                        <div class="product-sorting d-flex mx-5">
+                        <div class="product-sorting d-flex mx-5 ">
                             <p class="mt-1">Sort by:</p>
-                            <form class="mx-1" action="#" method="get">
-                                <select name="select" id="sortByselect">
-                                    <option value="value">Highest Rated</option>
-                                    <option value="value">Newest</option>
-                                    <option value="value">Price: $$ - $</option>
-                                    <option value="value">Price: $ - $$</option>
+                            <form class="mx-1" id="sortForm" method="get">
+                                <select class="sort-by-select" name="select">
+                                    <option value="featured">Featured</option>
+                                    <option value="date-old-new">Date, Old-New</option>
+                                    <option value="date-new-old">Date, New-Old</option>
+                                    <option value="alphabetical-a-z">Alphabetically, A-Z</option>
+                                    <option value="alphabetical-z-a">Alphabetically, Z-A</option>
+                                    <option value="price-low-high">Price, low to high</option>
+                                    <option value="price-high-low">Price, high to low</option>
                                 </select>
-                                <input type="submit" class="d-none" value="">
                             </form>
                         </div>
                     </div>

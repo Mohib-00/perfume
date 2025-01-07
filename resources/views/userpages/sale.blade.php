@@ -31,18 +31,22 @@
                             <h2 class="mx-5 mt-5">Sale</h2>
                         </div>
 
-                        <div class="product-sorting d-flex mx-5">
+                        <div class="product-sorting d-flex mx-5 ">
                             <p class="mt-1">Sort by:</p>
-                            <form class="mx-1" action="#" method="get">
-                                <select name="select" id="sortByselect">
-                                    <option value="value">Highest Rated</option>
-                                    <option value="value">Newest</option>
-                                    <option value="value">Price: $$ - $</option>
-                                    <option value="value">Price: $ - $$</option>
+                            <form class="mx-1" id="sortForm" method="get">
+                                <select class="sort-by-select" name="select">
+                                    <option value="featured">Featured</option>
+                                    <option value="date-old-new">Date, Old-New</option>
+                                    <option value="date-new-old">Date, New-Old</option>
+                                    <option value="alphabetical-a-z">Alphabetically, A-Z</option>
+                                    <option value="alphabetical-z-a">Alphabetically, Z-A</option>
+                                    <option value="price-low-high">Price, low to high</option>
+                                    <option value="price-high-low">Price, high to low</option>
                                 </select>
-                                <input type="submit" class="d-none" value="">
                             </form>
                         </div>
+                        
+                        
                     </div>
                 </div>
 
@@ -56,7 +60,7 @@
                             </div>
                         </div>
 
-                        <div class="row all">
+                        <div class="row all product-list">
                             @if ($saleselections->isNotEmpty())
                             @foreach ($saleselections as $product)
                              <div class="col-12 col-sm-6 col-lg-4">
@@ -68,7 +72,7 @@
                                     </div>
                                     <div class="product-description" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; padding: 20px; height: 200px;">
                                         <a>
-                                            <h6>{{ $product->name }}</h6>
+                                            <h6  class="product-name">{{ $product->name }}</h6>
                                         </a>
                                         <p class="product-price">
                                             @if($product->discount_price)
@@ -82,6 +86,8 @@
                                                 Rs:{{ $product->discount_price }}
                                             @endif
                                         </p>
+                                        <p class="product-date" style="display: none;">{{ $product->created_at }}</p>
+
                                         @if ($product->reviews->isNotEmpty())
                                         <div style="color: #FFD700; font-size: 20px; ">
                                             @php
@@ -124,7 +130,6 @@
                            
                          </div>
                     </div>
-                    <!-- Pagination -->
                     <nav class="paginationforall" aria-label="navigation">
                         <ul class="pagination mt-50 mb-70">
                             <li class="page-item" data-page="prev"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
@@ -140,13 +145,12 @@
             </div>
         </div>
     </section>
-    <!-- ##### Shop Grid Area End ##### -->
 
     
     @include('userpages.footer') 
     @include('userpages.js')
     @include('ajax')
+    
 
 </body>
-
 </html>
