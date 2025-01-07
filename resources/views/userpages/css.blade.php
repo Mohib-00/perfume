@@ -270,9 +270,6 @@
 }
 
 
-<style>
-  
-     
     @media (max-width: 768px) {
         .nav-brandimg {
             height: 150px;
@@ -287,9 +284,15 @@
 
     @media (min-width: 200px) and (max-width: 768px) {
         .nav-brand img {
-            margin-top: 35px;  
+            margin-top: 40px;  
+        }
+    }
+    @media (min-width: 200px) and (max-width: 504px) {
+        .nav-brand img {
+            margin-left: -40px; 
+            margin-top:40px; 
         }
     }
 </style>
 
-    </style>
+    
