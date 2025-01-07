@@ -14,7 +14,6 @@
        align-items: center;
        overflow: hidden;
        position: relative;
-       background: #fcfcfc;
      }
  
       
@@ -25,7 +24,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("{{ asset('perfume.png') }}") no-repeat center;
+    background: url("{{ asset('images/' . $settings->image) }}") no-repeat center;
     background-size: contain;   
     background-attachment: fixed;  
     opacity: 0.8;

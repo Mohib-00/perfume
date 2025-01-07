@@ -22,9 +22,7 @@
                             <img style="height:500px; width: 100%; object-fit: cover;" src="{{ asset('images/'.$product->hover_image) }}" alt="">
                             <img style="height:500px; width: 100%; object-fit: cover;" class="hover-img" src="{{ asset('images/'.$product->image) }}" alt="">
                 
-                            <div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
-                                <a class="favme fa fa-heart"></a>
-                            </div>
+                             
                         </div>
                         
                         <div class="product-description" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; padding: 20px; height: 200px;">

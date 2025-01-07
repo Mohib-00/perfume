@@ -94,12 +94,11 @@
                 </div>
             </div>
             @else
+            
             <div class="user-login-info">
-                <a class="signUp">SignUp</a>
+                <a class="signIn"><img style="height:30px"  class="signIn"  src="{{asset('download.png')}}" alt=""> </a>
             </div>
-            <div class="user-login-info">
-                <a class="signIn">SignIn</a>
-            </div>
+            
             @endif
 
              <div class="cart-area opencart">
