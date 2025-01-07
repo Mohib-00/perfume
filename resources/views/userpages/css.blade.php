@@ -269,4 +269,27 @@
     background-color: #495057;  
 }
 
+
+<style>
+  
+     
+    @media (max-width: 768px) {
+        .nav-brandimg {
+            height: 150px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .nav-brandimg {
+            height: 120px;
+        }
+    }
+
+    @media (min-width: 200px) and (max-width: 768px) {
+        .nav-brand img {
+            margin-top: 35px;  
+        }
+    }
+</style>
+
     </style>

@@ -4,7 +4,6 @@
 <head>
     @include('userpages.css')
     <style>
-        /* Global Styles */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
@@ -99,7 +98,6 @@
             font-weight: bold;
         }
 
-        /* Media Queries for responsiveness */
         @media (max-width: 767px) {
             .col-lg-8,
             .col-lg-4 {

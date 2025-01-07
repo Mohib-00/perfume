@@ -10,7 +10,15 @@ class Setting extends Model
 {
     use HasFactory;
 
-     protected $fillable = [
+    protected $fillable = [
+        'image',
+        'email',
+        'number',
+        'youtube',
+        'tiktok',
+        'instagram',
+        'facebook',
+        'twitter',
         'delivery_charges',
     ];
 }

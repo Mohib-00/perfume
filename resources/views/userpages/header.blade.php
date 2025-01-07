@@ -17,8 +17,11 @@
         <!-- Classy Menu -->
         <nav class="classy-navbar" id="essenceNav">
             <!-- Logo -->
-            <a class="nav-brand"><img src="{{asset('essence/img/core-img/logo.png')}}" alt=""></a>
-            <!-- Navbar Toggler -->
+            <a class="nav-brand">
+                <img class="nav-brandimg" src="{{ asset('images/' . $settings->image) }}" alt="Logo" style="height: 160px; width: auto;">
+            </a>
+            
+                        <!-- Navbar Toggler -->
             <div class="classy-navbar-toggler">
                 <span class="navbarToggler"><span></span><span></span><span></span></span>
             </div>

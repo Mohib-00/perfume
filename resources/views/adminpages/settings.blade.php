@@ -110,7 +110,15 @@
                                       <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Delivery Charges</th>
+                                            <th>Image</th>
+                                            <th>Email</th>
+                                            <th>Number</th>
+                                            <th style="white-space: nowrap;">Youtube Link</th>
+                                            <th style="white-space: nowrap;">Tiktok Link</th>
+                                            <th style="white-space: nowrap;">Instagram Link</th>
+                                            <th style="white-space: nowrap;">Facebook Link</th>
+                                            <th style="white-space: nowrap;">Twitter Link</th>
+                                            <th style="white-space: nowrap;">Delivery Charges</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                          </tr>
@@ -120,7 +128,17 @@
                                         @foreach($settings as $setting)
                                         <tr class="user-row" id="setting-{{ $setting->id }}">
                                                 <td>{{$counter}}</td>
-                                                <td id="heading">{{$setting->delivery_charges}}</td>                                                
+                                                <td id="image">
+                                                    <img height="80" width="80" src="{{ asset('images/' . $setting->image) }}"/>
+                                               </td>
+                                               <td id="email">{{$setting->email}}</td>  
+                                               <td id="number">{{$setting->number}}</td>    
+                                               <td id="youtube">{{$setting->youtube}}</td> 
+                                               <td id="tiktok">{{$setting->tiktok}}</td> 
+                                               <td id="instagram">{{$setting->instagram}}</td> 
+                                               <td id="facebook">{{$setting->facebook}}</td>   
+                                               <td id="twitter">{{$setting->twitter}}</td>                                    
+                                               <td id="deliverycharges">{{$setting->delivery_charges}}</td>                                                
                                                 <td>
                                                     <a id="settingedit" data-setting-id="{{ $setting->id }}" class="btn btn-warning mx-5 edit-setting-btn">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
@@ -178,6 +196,56 @@
                     <form id="settingform">
                         <input type="hidden" id="settingforminput_add" value=""/>
                         <div class="row mt-5">
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="image_add">Image</label>
+                                    <input type="file" id="image_add" name="image" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="email_add">Email</label>
+                                    <input type="email" id="email_add" name="email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="number_add">Number</label>
+                                    <input type="number" id="number_add" name="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="youtube_add">Youtube Link</label>
+                                    <input type="text" id="youtube_add" name="youtube" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="tiktok_add">Tiktok Link</label>
+                                    <input type="text" id="tiktok_add" name="tiktok" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="instagram_add">Insta Link</label>
+                                    <input type="text" id="instagram_add" name="instagram" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="facebook_add">Facebook Link</label>
+                                    <input type="text" id="facebook_add" name="facebook" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="twitter_add">Twitter Link</label>
+                                    <input type="text" id="twitter_add" name="twitter" class="form-control">
+                                </div>
+                            </div>
                             
                             <div class="col-6">
                                 <div class="form-group">
@@ -213,6 +281,56 @@
                     <form id="settingeditform">
                         <input type="hidden" id="settingforminput_edit" value=""/>
                         <div class="row mt-5">
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="image_edit">Image</label>
+                                    <input type="file" id="imageedit" name="image" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="email_edit">Email</label>
+                                    <input type="email" id="email_edit" name="email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="number_edit">Number</label>
+                                    <input type="number" id="number_edit" name="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="youtube_edit">Youtube Link</label>
+                                    <input type="text" id="youtube_edit" name="youtube" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="tiktok_edit">Tiktok Link</label>
+                                    <input type="text" id="tiktok_edit" name="tiktok" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="instagram_edit">Insta Link</label>
+                                    <input type="text" id="instagram_edit" name="instagram" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="facebook_edit">Facebook Link</label>
+                                    <input type="text" id="facebook_edit" name="facebook" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="twitter_edit">Twitter Link</label>
+                                    <input type="text" id="twitter_edit" name="twitter" class="form-control">
+                                </div>
+                            </div>
                              
                             <div class="col-6">
                                 <div class="form-group">
@@ -265,7 +383,15 @@
                     const newRow = `
                         <tr data-setting-id="${setting.id}">
                             <td>${$('.table tbody tr').length + 1}</td>
-                             <td>${setting.delivery_charges}</td>
+                            <td><img height="80" width="80" src="{{ asset('images/') }}/${setting.image}" /></td>
+                            <td>${setting.email}</td>
+                            <td>${setting.number}</td>
+                            <td>${setting.youtube}</td>
+                            <td>${setting.tiktok}</td>
+                            <td>${setting.instagram}</td>
+                            <td>${setting.facebook}</td>
+                            <td>${setting.twitter}</td>
+                            <td>${setting.delivery_charges}</td>
                             <td>
                                 <a id="settingedit" data-setting-id="${setting.id}" class="btn btn-warning mx-5 edit-setting-btn">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
@@ -315,8 +441,19 @@ $(document).on('click', '.edit-setting-btn', function () {
         success: function (response) {
             if (response.success) {
                  $('#settingeditform #settingforminput_edit').val(response.setting.id);
-                 $('#settingeditform #heading_edit').val(response.setting.delivery_charges);
-                 $('.custom-modal.settingedit').fadeIn();
+                if (response.setting.image) {
+                    $('#settingeditform #image_edit').attr('src', "{{ asset('images') }}/" + response.setting.image);
+                }
+
+                $('#settingeditform #email_edit').val(response.setting.email);
+                $('#settingeditform #number_edit').val(response.setting.number);
+                $('#settingeditform #youtube_edit').val(response.setting.youtube);
+                $('#settingeditform #tiktok_edit').val(response.setting.tiktok);
+                $('#settingeditform #instagram_edit').val(response.setting.instagram);
+                $('#settingeditform #facebook_edit').val(response.setting.facebook);
+                $('#settingeditform #twitter_edit').val(response.setting.twitter);
+                $('#settingeditform #heading_edit').val(response.setting.delivery_charges);
+                $('.custom-modal.settingedit').fadeIn();
             }
         },
         error: function (xhr) {
@@ -354,7 +491,15 @@ $('#settingeditform').on('submit', function (e) {
                     $('#settingeditform')[0].reset();
                     $('.custom-modal.settingedit').fadeOut();
                     const setting = $(`a[data-setting-id="${settingId}"]`).closest('tr');
-                    setting.find('td:nth-child(2)').text(response.setting.delivery_charges); 
+                    showcase.find('td:nth-child(2) img').attr('src', `/images/${response.showcase.image}`);
+                    setting.find('td:nth-child(3)').text(response.setting.email); 
+                    setting.find('td:nth-child(4)').text(response.setting.number); 
+                    setting.find('td:nth-child(5)').text(response.setting.youtube); 
+                    setting.find('td:nth-child(6)').text(response.setting.tiktok); 
+                    setting.find('td:nth-child(7)').text(response.setting.instagram); 
+                    setting.find('td:nth-child(8)').text(response.setting.facebook); 
+                    setting.find('td:nth-child(9)').text(response.setting.twitter); 
+                    setting.find('td:nth-child(10)').text(response.setting.delivery_charges); 
                 });
             }
         },

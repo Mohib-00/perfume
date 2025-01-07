@@ -26,24 +26,54 @@ class SettingsController extends Controller
   public function store(Request $request)
   {
       $validator = Validator::make($request->all(), [
-            'delivery_charges' => 'nullable|string|max:255',
-       ]);
+          'image' => 'nullable|image',
+          'email' => 'nullable',
+          'number' => 'nullable',
+          'youtube' => 'nullable',
+          'tiktok' => 'nullable',
+          'instagram' => 'nullable',
+          'facebook' => 'nullable',
+          'twitter' => 'nullable',
+          'delivery_charges' => 'nullable',
+      ]);
   
       if ($validator->fails()) {
           return response()->json(['errors' => $validator->errors()], 422);
       }
-       
   
-      $setting = Setting::create([
-           'delivery_charges' => $request->delivery_charges,
-      ]);
+      $fileName = null; 
+  
+      if ($request->hasFile('image')) {
+          $file = $request->file('image');
+          if ($file->isValid()) {
+              $uniqueTimestamp = time();
+              $fileName = $uniqueTimestamp . '-' . $file->getClientOriginalName();
+              $file->move(public_path('images'), $fileName);
+          }
+      }
+  
+      $setting = Setting::updateOrCreate(
+          [],
+          [
+              'image' => $fileName,
+              'email' => $request->email,
+              'number' => $request->number,
+              'youtube' => $request->youtube,
+              'tiktok' => $request->tiktok,
+              'instagram' => $request->instagram,
+              'facebook' => $request->facebook,
+              'twitter' => $request->twitter,
+              'delivery_charges' => $request->delivery_charges,
+          ]
+      );
   
       return response()->json([
           'success' => true,
-          'message' => 'Setting added successfully!',
+          'message' => 'Setting saved successfully!',
           'setting' => $setting
       ], 200);
   }
+  
   
   
 
@@ -57,28 +87,53 @@ class SettingsController extends Controller
   }
 
   public function update(Request $request, $id)
-  {
-      $setting = Setting::findOrFail($id);   
-      
-       $validator = Validator::make($request->all(), [
-          'delivery_charges' => 'nullable|numeric',  
-      ]);
-  
-      if ($validator->fails()) {
-          return response()->json(['errors' => $validator->errors()], 422);
-      }
-  
-       $setting->delivery_charges = $request->delivery_charges;
-      
-       $setting->save();
-  
-      return response()->json([
-          'success' => true,
-          'message' => 'Setting updated successfully!',
-          'setting' => $setting
-      ], 200);
-  }
-  
+{
+    $setting = Setting::findOrFail($id);
+
+    $validator = Validator::make($request->all(), [
+        'image' => 'nullable|image',
+        'email' => 'nullable|email',
+        'number' => 'nullable|numeric',
+        'youtube' => 'nullable|url',
+        'tiktok' => 'nullable|url',
+        'instagram' => 'nullable|url',
+        'facebook' => 'nullable|url',
+        'twitter' => 'nullable|url',
+        'delivery_charges' => 'nullable|numeric',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors()], 422);
+    }
+
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        if ($file->isValid()) {
+            $uniqueTimestamp = time();
+            $fileName = $uniqueTimestamp . '-' . $file->getClientOriginalName();
+            $file->move(public_path('images'), $fileName);
+            $setting->image = $fileName;  
+        }
+    }
+
+    $setting->email = $request->email;
+    $setting->number = $request->number;
+    $setting->youtube = $request->youtube;
+    $setting->tiktok = $request->tiktok;
+    $setting->instagram = $request->instagram;
+    $setting->facebook = $request->facebook;
+    $setting->twitter = $request->twitter;
+    $setting->delivery_charges = $request->delivery_charges;
+
+    $setting->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Setting updated successfully!',
+        'setting' => $setting
+    ], 200);
+}
+
   
 
 public function deletesetting(Request $request)
