@@ -32,17 +32,15 @@ class OrderController extends Controller
         DB::beginTransaction();
     
         try {
-             $customer = Customer::updateOrCreate(
-                ['email' => $request->input('email')],
-                [
-                    'first_name' => $request->input('full_name'),
-                    'last_name' => $request->input('last_name'),
-                    'province' => $request->input('province'),
-                    'phone_number' => $request->input('phone_number'),
-                    'address' => $request->input('address'),
-                    'city' => $request->input('city')
-                ]
-            );
+            $customer = Customer::create([
+                'email' => $request->input('email'),
+                'first_name' => $request->input('full_name'),
+                'last_name' => $request->input('last_name'),
+                'province' => $request->input('province'),
+                'phone_number' => $request->input('phone_number'),
+                'address' => $request->input('address'),
+                'city' => $request->input('city')
+            ]);
     
              $cartItems = CartItem::where('user_id', auth()->id())
                 ->with('product', 'option')  

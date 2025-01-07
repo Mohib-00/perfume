@@ -140,8 +140,9 @@
                                 <div id="bank-details" style="display: none; padding: 10px;">
                                     <h6>Bank Details:</h6>
                                     <p>Bank Name: XYZ Bank</p>
+                                    <p>Title: XYZ Bank</p>
                                     <p>Account Number: 1234567890</p>
-                                    <p>IFSC Code: XYZ0001234</p>
+                                    <p>IBAN: XYZ0001234</p>
                                     <p>Branch: Main Street</p>
                                 </div>
                             </div>
@@ -149,7 +150,7 @@
                         
                         
 
-                        <a class="btn essence-btn placeorder">Place Order</a>
+                        <a STYLE="COLOR:WHITE" class="btn essence-btn placeorder">Place Order</a>
                         <a style="display:none" class="btn essence-btn debitcardbutton">Pay now</a>
                         <a style="display:none" class="btn essence-btn paypalbtn">Pay now</a>
 

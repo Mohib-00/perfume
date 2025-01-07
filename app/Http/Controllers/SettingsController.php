@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use App\Models\Message;
+use App\Models\Policy;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -105,7 +107,165 @@ $count = Message::whereHas('messageStatus', function ($query) {
 public function termsofservice()
 {
     $user = Auth::check() ? Auth::user() : null;
-    return view('userpages.terms', compact('user'));
+    $userId = Auth::id();
+    $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+    $cartCount = $cartItems->count(); 
+    $terms = Policy::where('show_terms', 1)->get();
+
+    return view('userpages.terms', compact('user','cartCount','terms'));
 }
+public function refundpolicy()
+{
+    $user = Auth::check() ? Auth::user() : null;
+    $userId = Auth::id();
+    $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+    $cartCount = $cartItems->count(); 
+    $terms = Policy::where('show_refund', 1)->get();
+
+    return view('userpages.refund', compact('user','cartCount','terms'));
+}
+public function shippingpolicy()
+{
+    $user = Auth::check() ? Auth::user() : null;
+    $userId = Auth::id();
+    $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+    $cartCount = $cartItems->count(); 
+    $terms = Policy::where('show_shipping', 1)->get();
+
+    return view('userpages.shipping', compact('user','cartCount','terms'));
+}
+public function privacypolicy()
+{
+    $user = Auth::check() ? Auth::user() : null;
+    $userId = Auth::id();
+    $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+
+    $cartCount = $cartItems->count(); 
+    $terms = Policy::where('show_privacy', 1)->get();
+
+    return view('userpages.privacy', compact('user','cartCount','terms'));
+}
+
+public function addpolicies()
+{
+ $user = Auth::user();   
+ $privacies = Policy::all();  
+ $count = Message::whereHas('messageStatus', function ($query) {
+ $query->where('status', 1);
+ })->count();
+ return view('adminpages.policy', ['userName' => $user->name, 'count' => $count], compact('privacies'));
+}
+
+
+
+public function storeprivacy(Request $request)
+{
+    try {
+        $validatedData = $request->validate([
+            
+            'main_heading' => 'nullable|string|max:255',
+            'sub_heading' => 'nullable|string|max:255',
+            'paragraph' => 'nullable|string',
+            'show_terms' => 'nullable|boolean',
+            'show_refund' => 'nullable|boolean',
+            'show_shipping' => 'nullable|boolean',
+            'show_privacy' => 'nullable|boolean',
+
+        ]);
+
+        $privacy = new Policy();
+
+        $privacy->main_heading = $request->main_heading;
+        $privacy->sub_heading = $request->sub_heading;
+        $privacy->paragraph = $request->paragraph;
+
+        $privacy->show_terms = $request->input('show_terms', 0) ? 1 : 0;
+        $privacy->show_refund = $request->input('show_refund', 0) ? 1 : 0;
+        $privacy->show_shipping = $request->input('show_shipping', 0) ? 1 : 0;
+        $privacy->show_privacy = $request->input('show_privacy', 0) ? 1 : 0;
+
+        $privacy->save();
+
+        return response()->json(['success' => true, 'privacy' => $privacy]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+public function showprivacy($id)
+{
+    $privacy = Policy::find($id);
+
+    if ($privacy) {
+        return response()->json([
+            'success' => true,
+            'privacy' => $privacy
+        ]);
+    }
+
+    return response()->json([
+        'success' => false,
+        'message' => 'policy not found'
+    ], 404);
+}
+
+public function updatePrivacy(Request $request, $id)
+{
+    try {
+        $validatedData = $request->validate([
+            'main_heading' => 'nullable|string|max:255',
+            'sub_heading' => 'nullable|string|max:255',
+            'paragraph' => 'nullable|string',
+            'show_terms' => 'nullable|boolean',
+            'show_refund' => 'nullable|boolean',
+            'show_shipping' => 'nullable|boolean',
+            'show_privacy' => 'nullable|boolean',
+        ]);
+
+        $privacy = Policy::findOrFail($id);
+
+        $privacy->main_heading = $validatedData['main_heading'];
+        $privacy->sub_heading = $validatedData['sub_heading'];
+        $privacy->paragraph = $validatedData['paragraph'];
+        $privacy->show_terms = $validatedData['show_terms'] ?? 0;
+        $privacy->show_refund = $validatedData['show_refund'] ?? 0;
+        $privacy->show_shipping = $validatedData['show_shipping'] ?? 0;
+        $privacy->show_privacy = $validatedData['show_privacy'] ?? 0;
+
+        $privacy->save();
+
+        return response()->json(['success' => true, 'privacy' => $privacy]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+
+
+
+
+public function deleteprivacy(Request $request)
+      {
+          $privacy = Policy::find($request->privacy_id);
+      
+          if ($privacy) {
+              $privacy->delete();
+      
+              return response()->json(['success' => true, 'message' => 'Policy deleted successfully']);
+          }
+      
+          return response()->json(['success' => false, 'message' => 'Policy not found']);
+      }
 
 }

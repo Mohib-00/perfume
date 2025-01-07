@@ -35,7 +35,8 @@
              <ul class="collapse list-unstyled" id="element">
                <li class="addsettingggss"><a><span>Add Setting</span></a></li>
                <li class="changepassword"><a><span>Change Password</span></a></li>
-                <li class="logout"><a> <span>Logout</span></a></li>
+               <li class="addpolicyyyyyy"><a><span>Add Policy</span></a></li>
+               <li class="logout"><a> <span>Logout</span></a></li>
              </ul>
           </li>
         </ul>

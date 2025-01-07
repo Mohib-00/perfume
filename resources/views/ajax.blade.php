@@ -297,9 +297,30 @@ $(document).ready(function() {
 
 
         
-if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/orderview' || window.location.pathname === '/admin/view-order' || window.location.pathname === '/admin/view-feedback' || window.location.pathname === '/admin/change-password' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
+if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/add-policies' || window.location.pathname === '/admin/orderview' || window.location.pathname === '/admin/view-order' || window.location.pathname === '/admin/view-feedback' || window.location.pathname === '/admin/change-password' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
         window.location.href = '/';  
     }
+
+     //to open policy page
+    $('.addpolicyyyyyy').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/add-policies',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/add-policies';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
 
 
 $('.vieww').click(function () {
@@ -2499,6 +2520,125 @@ $.ajax({
 });
 });
 
+
+$('.refund').click(function () {
+$.ajax({
+    url:'/policies/refund-policy',
+    type: 'GET',
+    success: function (response) {
+        window.location.href ='/policies/refund-policy';
+         
+    },
+    error: function (xhr, status, error) {
+        console.error('AJAX Error: ', status, error);
+    }
+});
+});
+
+
+
+$('.shipping').click(function () {
+$.ajax({
+    url:'/policies/shipping-policy',
+    type: 'GET',
+    success: function (response) {
+        window.location.href ='/policies/shipping-policy';
+         
+    },
+    error: function (xhr, status, error) {
+        console.error('AJAX Error: ', status, error);
+    }
+});
+});
+
+
+$('.privacyyyyyy').click(function () {
+$.ajax({
+    url:'/policies/privacy-policy',
+    type: 'GET',
+    success: function (response) {
+        window.location.href ='/policies/privacy-policy';
+         
+    },
+    error: function (xhr, status, error) {
+        console.error('AJAX Error: ', status, error);
+    }
+});
+});
+
+
+
+
+//to open add privacy model
+$(document).ready(function() {
+     $('.addprivacy').click(function() {
+         $('.custom-modal.privacy').fadeIn();  
+    });
+
+     $('.closeModal').click(function() {
+        $('.custom-modal.privacy').fadeOut(); 
+    });
+
+     $(document).click(function(event) {
+        if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.addprivacy')) {
+            $('.custom-modal.privacy').fadeOut(); 
+        }
+    });
+});
+
+//to del privacy
+$(document).on('click', '.delprivacy', function() {
+    const privacyId = $(this).data('privacy-id');
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const row = $(this).closest('tr');  
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete this policy?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            });
+
+            $.ajax({
+                url: '/delete-privacy',
+                type: 'POST',
+                data: { privacy_id: privacyId },  
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        row.remove(); 
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    Swal.fire(
+                        'Error',
+                        'An error occurred while deleting the policy.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+});
 
 </script>
 </body>

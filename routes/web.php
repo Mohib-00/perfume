@@ -58,8 +58,11 @@ Route::get('/product-details/{product_name}', [UserAuthController::class, 'detai
 Route::get('/cart', [Cartcontroller::class, 'cart']);
 //to open checkout page
 Route::get('/checkout', [CheckoutController::class, 'checkout']);
-//to open sale page
+
 Route::get('/policies/terms-of-service', [SettingsController::class, 'termsofservice']);
+Route::get('/policies/refund-policy', [SettingsController::class, 'refundpolicy']);
+Route::get('/policies/shipping-policy', [SettingsController::class, 'shippingpolicy']);
+Route::get('/policies/privacy-policy', [SettingsController::class, 'privacypolicy']);
 
 
 Route::group([
@@ -90,6 +93,8 @@ Route::group(['middleware' => ['admin.auth'], 'prefix' => 'admin'], function() {
     Route::get("view-feedback", [ReviewController::class, "viewfeedback"]);
     Route::get("view-order", [OrderController::class, "order"]);
     Route::get("orderview/{order_id}", [Ordercontroller::class, 'orderview'])->name('orderview');
+    Route::get("add-policies", [SettingsController::class, "addpolicies"]);
+
 });
 
 //to get user data
@@ -180,4 +185,14 @@ Route::post('/delete-feedback', [ReviewController::class, 'deletefeedback'])->na
 Route::post('/order/delivery-confirm', [OrderController::class, 'confirmDelivery'])->name('order.deliveryConfirm');
 //to chng order status
 Route::post('/updateorder-status', [OrderController::class, 'updateorderStatus'])->name('updateorder.status');
+
+//to add privacy data
+Route::post('/save-privacy', [SettingsController::class, 'storeprivacy'])->name('privacy.store');
+//to get privacy data
+Route::get('/privacy/{id}', [SettingsController::class, 'showprivacy'])->name('privacy.show');
+// Update privacy data
+Route::post('/privacy/update/{id}', [SettingsController::class, 'updatePrivacy'])->name('privacy.update');
+//to delet privacy
+Route::post('/delete-privacy', [SettingsController::class, 'deleteprivacy'])->name('delete.privacy');
+ 
 
