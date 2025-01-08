@@ -78,14 +78,14 @@
                                         </a>
                                         <p class="product-price">
                                             @if($relatedProduct->discount_price)
-                                                <span style="text-decoration: line-through; color: #999;">${{ $relatedProduct->price }}</span>
+                                                <span style="text-decoration: line-through; color: #999;">Rs:{{ $relatedProduct->price }}</span>
                                             @else
-                                                ${{ $relatedProduct->price }}
+                                                Rs:{{ $relatedProduct->price }}
                                             @endif
                                       
                                          
                                             @if($relatedProduct->discount_price)
-                                                ${{ $relatedProduct->discount_price }}
+                                                Rs:{{ $relatedProduct->discount_price }}
                                             @endif
                                         </p>
 
