@@ -137,14 +137,19 @@
                                         </a>
                                     </h6>
                                 </div>
+                                @if ($banks->isNotEmpty())
+                                @foreach ($banks as $bank)
                                 <div id="bank-details" style="display: none; padding: 10px;">
                                     <h6>Bank Details:</h6>
-                                    <p>Bank Name: XYZ Bank</p>
-                                    <p>Title: XYZ Bank</p>
-                                    <p>Account Number: 1234567890</p>
-                                    <p>IBAN: XYZ0001234</p>
-                                    <p>Branch: Main Street</p>
+                                    <p>{{$bank->paragraph}}</p>
+                                    <p>Bank Name:{{$bank->name}}</p>
+                                    <p>Title: {{$bank->title}}</p>
+                                    <p>Account Number: {{$bank->account_number}}</p>
+                                    <p>IBAN: {{$bank->iban}}</p>
+                                    <p>Branch: {{$bank->branch_name}}</p>
                                 </div>
+                                @endforeach
+                                @endif
                             </div>
                         </div>
                         

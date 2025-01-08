@@ -94,7 +94,7 @@ Route::group(['middleware' => ['admin.auth'], 'prefix' => 'admin'], function() {
     Route::get("view-order", [OrderController::class, "order"]);
     Route::get("orderview/{order_id}", [Ordercontroller::class, 'orderview'])->name('orderview');
     Route::get("add-policies", [SettingsController::class, "addpolicies"]);
-
+    Route::get("add-bank-details", [SettingsController::class, "addbankdetails"]);
 });
 
 //to get user data
@@ -174,18 +174,15 @@ Route::post('/save-review', [ReviewController::class, 'store']);
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeCartItem'])->name('cart.remove');
 //to place order
 Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('placeOrder');
-
 //to get feedback data
 Route::get('/feedback/{id}', [ReviewController::class, 'show'])->name('feedback.show');
 // Update feedback data
 Route::post('/feedback/{id}', [ReviewController::class, 'update'])->name('feedback.update');
 //to delet feedback
 Route::post('/delete-feedback', [ReviewController::class, 'deletefeedback'])->name('delete.feedback');
-
 Route::post('/order/delivery-confirm', [OrderController::class, 'confirmDelivery'])->name('order.deliveryConfirm');
 //to chng order status
 Route::post('/updateorder-status', [OrderController::class, 'updateorderStatus'])->name('updateorder.status');
-
 //to add privacy data
 Route::post('/save-privacy', [SettingsController::class, 'storeprivacy'])->name('privacy.store');
 //to get privacy data
@@ -194,5 +191,16 @@ Route::get('/privacy/{id}', [SettingsController::class, 'showprivacy'])->name('p
 Route::post('/privacy/update/{id}', [SettingsController::class, 'updatePrivacy'])->name('privacy.update');
 //to delet privacy
 Route::post('/delete-privacy', [SettingsController::class, 'deleteprivacy'])->name('delete.privacy');
+//to add detail data
+Route::post('/detail/store', [SettingsController::class, 'storedetail'])->name('detail.store');
+//to get detail data
+Route::get('/detail/{id}', [SettingsController::class, 'showdetail'])->name('detail.show');
+// Update detail data
+Route::post('/detail/{id}', [SettingsController::class, 'updatedetail'])->name('detail.update');
+//to delet detail
+Route::post('/delete-detail', [SettingsController::class, 'deletedetail'])->name('delete.detail');
+//to del order
+Route::post('/order/delete', [OrderController::class, 'destroy'])->name('order.delete');
+
  
 

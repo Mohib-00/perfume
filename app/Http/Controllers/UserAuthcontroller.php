@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use App\Models\CartItem;
+use App\Models\Customer;
 use App\Models\Message;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\SectionDetail;
 use App\Models\ShowcaseImage;
@@ -200,8 +202,29 @@ public function logout() {
         $count = Message::whereHas('messageStatus', function ($query) {
             $query->where('status', 1);
             })->count();
-         return view('adminpages.admin',['userName' => $user->name, 'count' => $count]);
-     }
+        $userCount = User::count();
+        $message=Message::count(); 
+        $product= Product::count();   
+        $newOrders = Order::where('delivery_status', 'pending')->count();
+        $oldOrders = Order::where('delivery_status', 'completed')->count();     
+        $customer= Customer::count();   
+        $outOfStockProducts = Product::where('quantity', 0)->get();
+        $totalAmount = Order::sum('total');
+
+
+        return view('adminpages.admin', [
+            'userName' => $user->name, 
+            'userCount' => $userCount,
+            'count' => $count,
+            'message' => $message,
+            'product' => $product,
+            'newOrders' => $newOrders,
+            'oldOrders' => $oldOrders,
+            'customer' => $customer,
+            'totalAmount' => $totalAmount,
+
+        ], compact('outOfStockProducts'));     
+    }
  
      public function  users(){ 
         $user = Auth::user();

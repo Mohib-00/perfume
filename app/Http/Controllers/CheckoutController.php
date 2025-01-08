@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bank;
 use App\Models\CartItem;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -35,8 +36,9 @@ class CheckoutController extends Controller
         ->get();
 
     $cartCount = $cartItems->count();
+    $banks=Bank::all();
 
-    return view('userpages.checkout', compact('cartItems', 'subtotal', 'shipping', 'total','user','cartCount'));
+    return view('userpages.checkout', compact('cartItems', 'subtotal', 'shipping', 'total','user','cartCount','banks'));
 }
 
     

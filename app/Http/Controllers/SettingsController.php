@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bank;
 use App\Models\CartItem;
 use App\Models\Message;
 use App\Models\Policy;
@@ -323,4 +324,108 @@ public function deleteprivacy(Request $request)
           return response()->json(['success' => false, 'message' => 'Policy not found']);
       }
 
+
+      public function addbankdetails()
+      {
+       $user = Auth::user();   
+       $details = Bank::all();  
+       $count = Message::whereHas('messageStatus', function ($query) {
+       $query->where('status', 1);
+       })->count();
+       return view('adminpages.bankdetails', ['userName' => $user->name, 'count' => $count], compact('details'));
+    }
+
+
+    public function storedetail(Request $request)
+{
+    try {
+        $validatedData = $request->validate([
+            
+            'paragraph' => 'nullable',
+            'name' => 'nullable',
+            'title' => 'nullable',
+            'account_number' => 'nullable',
+            'iban' => 'nullable',
+            'branch_name' => 'nullable',
+        ]);
+
+        $detail = new Bank();
+        $detail->paragraph = $request->paragraph;
+        $detail->name = $request->name;
+        $detail->title = $request->title;
+        $detail->account_number = $request->account_number;
+        $detail->iban = $request->iban;
+        $detail->branch_name = $request->branch_name;
+        $detail->save();
+
+        return response()->json(['success' => true, 'detail' => $detail]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+public function showdetail($id)
+{
+    $detail = Bank::find($id);
+
+    if ($detail) {
+        return response()->json([
+            'success' => true,
+            'detail' => $detail
+        ]);
+    }
+
+    return response()->json([
+        'success' => false,
+        'message' => 'policy not found'
+    ], 404);
+}
+
+public function updatedetail(Request $request, $id)
+{
+    try {
+        $validatedData = $request->validate([
+            'paragraph' => 'nullable',
+            'name' => 'nullable',
+            'title' => 'nullable',
+            'account_number' => 'nullable',
+            'iban' => 'nullable',
+            'branch_name' => 'nullable',
+        ]);
+
+        $detail = Bank::findOrFail($id);
+
+        $detail->paragraph = $request->paragraph;
+        $detail->name = $request->name;
+        $detail->title = $request->title;
+        $detail->account_number = $request->account_number;
+        $detail->iban = $request->iban;
+        $detail->branch_name = $request->branch_name;
+
+        $detail->save();
+
+        return response()->json(['success' => true, 'detail' => $detail]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+
+
+
+
+public function deletedetail(Request $request)
+      {
+          $detail = Bank::find($request->detail_id);
+      
+          if ($detail) {
+              $detail->delete();
+      
+              return response()->json(['success' => true, 'message' => 'detail deleted successfully']);
+          }
+      
+          return response()->json(['success' => false, 'message' => 'detail not found']);
+      }
+
+ 
 }
