@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Carousel;
 use App\Models\CartItem;
 use App\Models\Customer;
@@ -455,7 +456,8 @@ public function logout() {
             ->get();
 
         $cartCount = $cartItems->count(); 
-        return view('userpages.blogs', compact('user','cartCount','cartItems'));
+        $blogs=Blog::all();
+        return view('userpages.blogs', compact('user','cartCount','cartItems','blogs'));
       }
 
       public function details($productName)

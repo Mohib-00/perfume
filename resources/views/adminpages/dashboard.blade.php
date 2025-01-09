@@ -148,7 +148,7 @@
                      <div class="couter_icon">
                         <div>
                            <p style="color:black;font-weight:bolder" class="total_no">{{ $product->name }}</p>
-                           <p sty class="head_couter">This product is out of stock now</p>
+                           <p style="color:red" class="head_couter">This product is out of stock now</p>
                        </div>
                      </div>
                       

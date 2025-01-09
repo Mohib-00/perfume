@@ -491,7 +491,7 @@ $('#settingeditform').on('submit', function (e) {
                     $('#settingeditform')[0].reset();
                     $('.custom-modal.settingedit').fadeOut();
                     const setting = $(`a[data-setting-id="${settingId}"]`).closest('tr');
-                    showcase.find('td:nth-child(2) img').attr('src', `/images/${response.showcase.image}`);
+                    setting.find('td:nth-child(2) img').attr('src', `/images/${response.setting.image}`);
                     setting.find('td:nth-child(3)').text(response.setting.email); 
                     setting.find('td:nth-child(4)').text(response.setting.number); 
                     setting.find('td:nth-child(5)').text(response.setting.youtube); 

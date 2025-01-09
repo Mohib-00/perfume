@@ -95,6 +95,7 @@ Route::group(['middleware' => ['admin.auth'], 'prefix' => 'admin'], function() {
     Route::get("orderview/{order_id}", [Ordercontroller::class, 'orderview'])->name('orderview');
     Route::get("add-policies", [SettingsController::class, "addpolicies"]);
     Route::get("add-bank-details", [SettingsController::class, "addbankdetails"]);
+    Route::get("add-blogs", [BlogsController::class, "addblogs"]);
 });
 
 //to get user data
@@ -201,6 +202,14 @@ Route::post('/detail/{id}', [SettingsController::class, 'updatedetail'])->name('
 Route::post('/delete-detail', [SettingsController::class, 'deletedetail'])->name('delete.detail');
 //to del order
 Route::post('/order/delete', [OrderController::class, 'destroy'])->name('order.delete');
+//to add blog data
+Route::post('/blog/store', [BlogsController::class, 'store'])->name('blog.store');
+//to get blog data
+Route::get('/blog/{id}', [BlogsController::class, 'show'])->name('blog.show');
+// Update blog data
+Route::post('/blog/{id}', [BlogsController::class, 'update'])->name('blog.update');
+//to delet blog
+Route::post('/delete-blog', [BlogsController::class, 'deleteblog'])->name('delete.blog');
 
  
 

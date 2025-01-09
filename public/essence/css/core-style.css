@@ -1578,7 +1578,6 @@ img {
           height: 100%;
           top: 0;
           left: 0;
-          background-color: rgba(0, 0, 0, 0.6);
           display: -webkit-box;
           display: -ms-flexbox;
           display: flex;
