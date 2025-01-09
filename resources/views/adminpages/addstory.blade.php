@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="heading1 margin_0">
                                 @if(!$hasStoryData)
-                                <button class="addstory">Add Story Data</button>
+                                <button class="addstory">Add</button>
                                 @endif
                                 </div>
                            </div>

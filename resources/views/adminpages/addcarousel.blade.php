@@ -101,7 +101,7 @@
                           <div class="white_shd full margin_bottom_30">
                              <div class="full graph_head">
                                 <div class="heading1 margin_0">
-                                    <button class="addsettingsbtn">Add Carousel</button>
+                                    <button class="addsettingsbtn">Add</button>
                                 </div>
                              </div>
                              <div class="table_section padding_infor_info">

@@ -71,7 +71,7 @@
         <div class="row mt-5">
             <div class="col-md-12 text-center">
                 <p>
-                    &copy;<script>document.write(new Date().getFullYear());</script> Atir'z
+                    &copy;<script>document.write(new Date().getFullYear());</script> Aatir'z
                 </p>
             </div>
         </div>

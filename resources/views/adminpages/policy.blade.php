@@ -235,7 +235,7 @@
                                    <input type="text" class="form-control search-input" placeholder="Search policy...">
                                </div>
                                <div class="heading1 margin_0">
-                                <button class="addprivacy">Add Policy</button>
+                                <button class="addprivacy">Add</button>
                                </div>
                            </div>
                              <div class="table_section padding_infor_info">

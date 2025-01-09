@@ -101,7 +101,7 @@
                                    <input type="text" class="form-control search-input" placeholder="Search details...">
                                </div>
                                <div class="heading1 margin_0">
-                                <button class="adddetail">Add Details</button>
+                                <button class="adddetail">Add</button>
                                </div>
                            </div>
                              <div class="table_section padding_infor_info">

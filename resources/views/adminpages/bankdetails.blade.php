@@ -87,7 +87,7 @@
                     <div class="row column_title">
                        <div class="col-md-12">
                           <div class="page_title">
-                             <h2>Add Data</h2>
+                             <h2>Add Bank Details</h2>
                           </div>
                        </div>
                     </div>
@@ -101,7 +101,7 @@
                                    <input type="text" class="form-control search-input" placeholder="Search detail...">
                                </div>
                                <div class="heading1 margin_0">
-                                <button class="adddetail">Add Data</button>
+                                <button class="adddetail">Add</button>
                                </div>
                            </div>
                              <div class="table_section padding_infor_info">

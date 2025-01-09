@@ -235,7 +235,7 @@
                                    <input type="text" class="form-control search-input" placeholder="Search product...">
                                </div>
                                <div class="heading1 margin_0">
-                                <button class="addproduct">Add Product</button>
+                                <button class="addproduct">Add</button>
                                </div>
                            </div>
                              <div class="table_section padding_infor_info">

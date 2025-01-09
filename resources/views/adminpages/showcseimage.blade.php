@@ -91,7 +91,6 @@
                           </div>
                        </div>
                     </div>
-                    <!-- row -->
                     <div class="row">
                       
                        <div class="col-md-12">
@@ -101,7 +100,7 @@
                                    <input type="text" class="form-control search-input" placeholder="Search Showcase...">
                                </div>
                                <div class="heading1 margin_0">
-                                <button class="addshowcase">Add Showcase Data</button>
+                                <button class="addshowcase">Add</button>
                                </div>
                            </div>
                              <div class="table_section padding_infor_info">
