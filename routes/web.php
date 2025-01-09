@@ -59,6 +59,8 @@ Route::get('/product-details/{product_name}', [UserAuthController::class, 'detai
 Route::get('/cart', [Cartcontroller::class, 'cart']);
 //to open checkout page
 Route::get('/checkout', [CheckoutController::class, 'checkout']);
+//to open wishlist page
+Route::get('/wishlist', [WishlistController::class, 'wishlist']);
 
 Route::get('/policies/terms-of-service', [SettingsController::class, 'termsofservice']);
 Route::get('/policies/refund-policy', [SettingsController::class, 'refundpolicy']);

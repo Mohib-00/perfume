@@ -903,6 +903,22 @@ $.ajax({
 });
 
 
+$('.wishlistpage').click(function () {
+
+$.ajax({
+    url:'/wishlist',
+    type: 'GET',
+    success: function (response) {
+        window.location.href ='/wishlist';
+         
+    },
+    error: function (xhr, status, error) {
+        console.error('AJAX Error: ', status, error);
+    }
+});
+});
+
+
 
 $('.checkout').click(function () {
 

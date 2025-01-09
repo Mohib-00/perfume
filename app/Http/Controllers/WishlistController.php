@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carousel;
+use App\Models\CartItem;
+use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -50,6 +54,51 @@ class WishlistController extends Controller
         ]);
     }
     
+    public function wishlist()
+    {
+        $user = Auth::check() ? Auth::user() : null;
+        $discoveryselections = Product::where('showon_discovery_page', 1)
+            ->with(['options', 'reviews'])
+            ->get();
+        
+        $discoveryselections->each(function ($product) {
+            $product->average_rating = round($product->reviews->avg('rating'), 1);
+        });
+    
+        $userId = Auth::id();
+    
+        $cartItems = CartItem::with('product', 'product.options')  
+            ->where('user_id', $userId)
+            ->get();
+    
+        $cartCount = $cartItems->count(); 
+    
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        }
+    
+        $wishlistItems = Auth::user()->wishlists()->with('product.reviews')->get();
+    
+        $wishlistItems->each(function ($wishlistItem) {
+            $wishlistItem->product->average_rating = round($wishlistItem->product->reviews->avg('rating'), 1);
+        });
+    
+        $carousels = Carousel::first() ?? new Carousel([
+            'name' => '',
+            'image' => '',
+        ]);
+    
+        $selectionProducts = Product::where('show_selection_product', 1)
+            ->with(['options', 'reviews'])
+            ->get();
+    
+        $selectionProducts->each(function ($product) {
+            $product->average_rating = round($product->reviews->avg('rating'), 1);
+        });
+    
+        return view('userpages.wishlist', compact('user', 'discoveryselections', 'selectionProducts', 'cartCount', 'cartItems', 'wishlistCount', 'carousels', 'wishlistItems'));
+    }
     
 }
 
