@@ -902,21 +902,29 @@ $.ajax({
 });
 });
 
-
 $('.wishlistpage').click(function () {
+    $.ajax({
+        url: '/wishlist',
+        type: 'GET',
+        success: function (response) {
+            if (response.noItemsInWishlist) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'No Items in Wishlist',
+                    text: 'You have not added any items to your wishlist yet!',
+                    confirmButtonText: 'OK'
+                });
+            } else {
+                window.location.href = '/wishlist';
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
 
-$.ajax({
-    url:'/wishlist',
-    type: 'GET',
-    success: function (response) {
-        window.location.href ='/wishlist';
-         
-    },
-    error: function (xhr, status, error) {
-        console.error('AJAX Error: ', status, error);
-    }
-});
-});
+
 
 
 

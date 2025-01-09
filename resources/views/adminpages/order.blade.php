@@ -109,6 +109,7 @@
                                       <thead>
                                         <tr>
                                             <th>Id</th>
+                                            <th>Date</th>
                                             <th>FirstName</th>
                                             <th>LastName</th>
                                             <th>Email</th>
@@ -132,6 +133,7 @@
                                         @foreach($orders as $order)
                                         <tr class="user-row"  data-order-id="{{ $order->id }}">
                                         <td>{{$counter}}</td>
+                                        <td style="white-space: nowrap;">{{ $order->customer->created_at ?? '' }}</td>
                                         <td>{{ $order->customer->first_name ?? '' }}</td>
                                         <td>{{ $order->customer->last_name ?? '' }}</td>
                                         <td>{{ $order->customer->email ?? '' }}</td>

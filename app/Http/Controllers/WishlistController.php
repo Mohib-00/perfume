@@ -57,48 +57,82 @@ class WishlistController extends Controller
     public function wishlist()
     {
         $user = Auth::check() ? Auth::user() : null;
+    
+        // Fetch products shown on discovery page
         $discoveryselections = Product::where('showon_discovery_page', 1)
             ->with(['options', 'reviews'])
             ->get();
-        
+    
+        // Calculate average rating for each discovery product
         $discoveryselections->each(function ($product) {
             $product->average_rating = round($product->reviews->avg('rating'), 1);
         });
     
         $userId = Auth::id();
     
+        // Fetch cart items for the current user
         $cartItems = CartItem::with('product', 'product.options')  
             ->where('user_id', $userId)
             ->get();
     
         $cartCount = $cartItems->count(); 
     
+        // Initialize wishlist count and items
         $wishlistCount = 0;
+        $wishlistItems = [];
+    
+        // If the user is authenticated, fetch the wishlist items
         if (Auth::check()) {
             $wishlistCount = Auth::user()->wishlists()->count();
+            $wishlistItems = Auth::user()->wishlists()->with('product.reviews')->get();
+    
+            // Calculate the average rating for each wishlist product
+            $wishlistItems->each(function ($wishlistItem) {
+                $wishlistItem->product->average_rating = round($wishlistItem->product->reviews->avg('rating'), 1);
+            });
         }
     
-        $wishlistItems = Auth::user()->wishlists()->with('product.reviews')->get();
-    
-        $wishlistItems->each(function ($wishlistItem) {
-            $wishlistItem->product->average_rating = round($wishlistItem->product->reviews->avg('rating'), 1);
-        });
-    
+        // Fetch carousel data, if available
         $carousels = Carousel::first() ?? new Carousel([
             'name' => '',
             'image' => '',
         ]);
     
+        // Fetch selection products
         $selectionProducts = Product::where('show_selection_product', 1)
             ->with(['options', 'reviews'])
             ->get();
     
+        // Calculate the average rating for each selection product
         $selectionProducts->each(function ($product) {
             $product->average_rating = round($product->reviews->avg('rating'), 1);
         });
     
-        return view('userpages.wishlist', compact('user', 'discoveryselections', 'selectionProducts', 'cartCount', 'cartItems', 'wishlistCount', 'carousels', 'wishlistItems'));
+        // Check if wishlist is empty
+        $noItemsInWishlist = $wishlistItems->isEmpty();
+    
+        if (request()->ajax()) {
+            return response()->json([
+                'wishlistItems' => $wishlistItems,
+                'noItemsInWishlist' => $noItemsInWishlist,
+            ]);
+        }
+    
+        // Return view for normal request
+        return view('userpages.wishlist', compact(
+            'user', 
+            'discoveryselections', 
+            'selectionProducts', 
+            'cartCount', 
+            'cartItems', 
+            'wishlistCount', 
+            'carousels', 
+            'wishlistItems',
+            'noItemsInWishlist' 
+        ));
     }
+    
+    
     
 }
 
