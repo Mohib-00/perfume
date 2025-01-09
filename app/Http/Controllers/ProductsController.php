@@ -213,8 +213,11 @@ public function deleteproduct(Request $request)
               ->where('user_id', $userId)
               ->get();
           $cartCount = $cartItems->count();
-          
-          return view('userpages.showexplore', compact('product', 'user', 'relatedProducts', 'cartCount', 'cartItems', 'product'));
+          $wishlistCount = 0;
+          if (Auth::check()) {
+              $wishlistCount = Auth::user()->wishlists()->count();
+          }           
+          return view('userpages.showexplore', compact('product', 'user', 'relatedProducts', 'cartCount', 'cartItems', 'product','wishlistCount'));
       }
       
       

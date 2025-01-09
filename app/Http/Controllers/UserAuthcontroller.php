@@ -192,8 +192,11 @@ public function logout() {
         ->join('products', 'feedbacks.product_id', '=', 'products.id')
         ->select('feedbacks.*', 'products.name as product_name')
         ->get();
-    
-        return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories','cartCount','cartItems','reviews'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        }    
+        return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories','cartCount','cartItems','reviews','wishlistCount'));
     }
     
 
@@ -300,7 +303,11 @@ public function logout() {
             ->get();
 
         $cartCount = $cartItems->count(); 
-        return view('userpages.aboutus', compact('user','stories','cartCount','cartItems'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        } 
+        return view('userpages.aboutus', compact('user','stories','cartCount','cartItems','wishlistCount'));
       }
 
       public function sale()
@@ -321,7 +328,11 @@ public function logout() {
             ->get();
 
         $cartCount = $cartItems->count(); 
-        return view('userpages.sale', compact('user','saleselections','cartCount','cartItems'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        } 
+        return view('userpages.sale', compact('user','saleselections','cartCount','cartItems','wishlistCount'));
       }
 
       public function contactus()
@@ -336,7 +347,11 @@ public function logout() {
 
         $cartCount = $cartItems->count(); 
         $user = Auth::check() ? Auth::user() : null;
-          return view('userpages.contact', compact('user','cartCount','cartItems'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        } 
+          return view('userpages.contact', compact('user','cartCount','cartItems','wishlistCount'));
       }
 
       public function womensfragrances()
@@ -355,7 +370,11 @@ public function logout() {
             ->get();
 
         $cartCount = $cartItems->count(); 
-        return view('userpages.womensfragrance', compact('user','womenselections','cartCount','cartItems'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        } 
+        return view('userpages.womensfragrance', compact('user','womenselections','cartCount','cartItems','wishlistCount'));
       }
 
 
@@ -377,7 +396,11 @@ public function logout() {
             ->get();
 
         $cartCount = $cartItems->count(); 
-        return view('userpages.mensfragrance', compact('user','menselections','cartCount','cartItems'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        } 
+        return view('userpages.mensfragrance', compact('user','menselections','cartCount','cartItems','wishlistCount'));
       }
 
 
@@ -398,7 +421,11 @@ public function logout() {
             ->get();
 
         $cartCount = $cartItems->count(); 
-        return view('userpages.travel', compact('user','travelselections','cartCount','cartItems'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        } 
+        return view('userpages.travel', compact('user','travelselections','cartCount','cartItems','wishlistCount'));
       }
 
 
@@ -419,7 +446,11 @@ public function logout() {
             ->get();
 
         $cartCount = $cartItems->count(); 
-        return view('userpages.discover', compact('user','discoveryselections','cartCount','cartItems'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        } 
+        return view('userpages.discover', compact('user','discoveryselections','cartCount','cartItems','wishlistCount'));
       }
 
 
@@ -441,7 +472,11 @@ public function logout() {
             ->get();
 
         $cartCount = $cartItems->count(); 
-        return view('userpages.collection', compact('user','collectionselections','cartCount','cartItems'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        } 
+        return view('userpages.collection', compact('user','collectionselections','cartCount','cartItems','wishlistCount'));
       }
      
       public function blogs()
@@ -457,7 +492,10 @@ public function logout() {
 
         $cartCount = $cartItems->count(); 
         $blogs=Blog::all();
-        return view('userpages.blogs', compact('user','cartCount','cartItems','blogs'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        }         return view('userpages.blogs', compact('user','cartCount','cartItems','blogs','wishlistCount'));
       }
 
       public function details($productName)
@@ -473,8 +511,11 @@ public function logout() {
         ->where('user_id', $userId)
         ->get();
     $cartCount = $cartItems->count();
-
-    return view('userpages.productdetails', compact('user', 'product', 'cartCount', 'cartItems', 'averageRating'));
+    $wishlistCount = 0;
+    if (Auth::check()) {
+        $wishlistCount = Auth::user()->wishlists()->count();
+    } 
+    return view('userpages.productdetails', compact('user', 'product', 'cartCount', 'cartItems', 'averageRating','wishlistCount'));
 }
 
       

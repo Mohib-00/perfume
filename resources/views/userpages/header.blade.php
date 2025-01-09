@@ -80,8 +80,11 @@
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
-             <div class="favourite-area">
-                <a href="#"><img src="{{asset('essence/img/core-img/heart.svg')}}" alt=""></a>
+            <div class="favourite-area">
+                <a class="wishlistpage">
+                    <img src="{{ asset('essence/img/core-img/heart.svg') }}" alt="">
+                    <span>{{ isset($wishlistCount) ? $wishlistCount : 0 }}</span>
+                </a>
             </div>
             @if ($user)
             <div class="user-dropdown mt-2">

@@ -48,9 +48,9 @@
                     @else
                     <a data-product-id="{{ $product->id }}" class="btn essence-btn addtocartproduct" style="  padding: 15px; display: flex; justify-content: center; align-items: center;border:1px solid black;background:none">Add to Cart</a>
                     @endif
-                     <div class="product-favourite ml-4">
+                    <div class="product-favourite ml-4 add-to-wishlist">
                         <a data-product-id="{{ $product->id }}" class="favme fa fa-heart"></a>
-                    </div>
+                    </div>                    
                 </div>
             </form>
 

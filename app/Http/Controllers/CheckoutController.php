@@ -37,8 +37,11 @@ class CheckoutController extends Controller
 
     $cartCount = $cartItems->count();
     $banks=Bank::all();
-
-    return view('userpages.checkout', compact('cartItems', 'subtotal', 'shipping', 'total','user','cartCount','banks'));
+    $wishlistCount = 0;
+    if (Auth::check()) {
+        $wishlistCount = Auth::user()->wishlists()->count();
+    } 
+    return view('userpages.checkout', compact('cartItems', 'subtotal', 'shipping', 'total','user','cartCount','banks','wishlistCount'));
 }
 
     

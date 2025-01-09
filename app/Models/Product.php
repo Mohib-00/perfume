@@ -65,5 +65,11 @@ public function averageRating()
     return $this->reviews()->avg('rating'); 
 }
 
+public function wishlists()
+{
+    return $this->hasMany(Wishlist::class,'product_id');
+}
+
+
 }
 

@@ -62,8 +62,11 @@ class CartController extends Controller
         $cartCount = $cartItems->count(); 
         $subtotal = $cartItems->sum('total');   
         $deliveryCharges =Setting::first()->delivery_charges;
-
-        return view('userpages.cart', compact('user','cartItems', 'cartCount','subtotal','deliveryCharges'));
+        $wishlistCount = 0;
+        if (Auth::check()) {
+            $wishlistCount = Auth::user()->wishlists()->count();
+        } 
+        return view('userpages.cart', compact('user','cartItems', 'cartCount','subtotal','deliveryCharges','wishlistCount'));
     }
     
 

@@ -170,8 +170,11 @@ public function termsofservice()
 
     $cartCount = $cartItems->count(); 
     $terms = Policy::where('show_terms', 1)->get();
-
-    return view('userpages.terms', compact('user','cartCount','terms'));
+    $wishlistCount = 0;
+    if (Auth::check()) {
+        $wishlistCount = Auth::user()->wishlists()->count();
+    } 
+    return view('userpages.terms', compact('user','cartCount','terms','wishlistCount'));
 }
 public function refundpolicy()
 {
@@ -183,8 +186,11 @@ public function refundpolicy()
 
     $cartCount = $cartItems->count(); 
     $terms = Policy::where('show_refund', 1)->get();
-
-    return view('userpages.refund', compact('user','cartCount','terms'));
+    $wishlistCount = 0;
+    if (Auth::check()) {
+        $wishlistCount = Auth::user()->wishlists()->count();
+    } 
+    return view('userpages.refund', compact('user','cartCount','terms','wishlistCount'));
 }
 public function shippingpolicy()
 {
@@ -196,8 +202,11 @@ public function shippingpolicy()
 
     $cartCount = $cartItems->count(); 
     $terms = Policy::where('show_shipping', 1)->get();
-
-    return view('userpages.shipping', compact('user','cartCount','terms'));
+    $wishlistCount = 0;
+    if (Auth::check()) {
+        $wishlistCount = Auth::user()->wishlists()->count();
+    } 
+    return view('userpages.shipping', compact('user','cartCount','terms','wishlistCount'));
 }
 public function privacypolicy()
 {
@@ -209,8 +218,11 @@ public function privacypolicy()
 
     $cartCount = $cartItems->count(); 
     $terms = Policy::where('show_privacy', 1)->get();
-
-    return view('userpages.privacy', compact('user','cartCount','terms'));
+    $wishlistCount = 0;
+    if (Auth::check()) {
+        $wishlistCount = Auth::user()->wishlists()->count();
+    } 
+    return view('userpages.privacy', compact('user','cartCount','terms','wishlistCount'));
 }
 
 public function addpolicies()

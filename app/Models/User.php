@@ -52,4 +52,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(CartItem::class, 'user_id');
     }
+
+    public function wishlists()
+{
+    return $this->hasMany(Wishlist::class, 'user_id');
+}
+
+
+
 }

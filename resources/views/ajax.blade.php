@@ -2883,5 +2883,71 @@ $(document).on('click', '.delblog', function() {
     });
 });
 
+//to add product to wishlist
+$(document).on('click', '.add-to-wishlist a', function (e) {
+    e.preventDefault();  
+    
+    let productId = $(this).data('product-id');
+   
+
+    var token = localStorage.getItem('token');
+
+    if (!token) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'You need to log in to add items to your wishlist.',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.href = '/login';
+        });
+        return;  
+    }
+
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        url: '/wishlist/add',
+        type: 'POST',
+        data: {
+            product_id: productId,
+            _token: csrfToken,  
+        },
+        success: function (response) {
+            if (response.status === 'success') {
+                $('.wishlistpage span').text(response.wishlist_count);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: response.message,
+                });
+            } else if (response.status === 'error') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: response.message,
+                });
+            }
+        },
+        error: function (xhr) {
+            if (xhr.status === 401) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Login Required',
+                    text: 'Please log in to add products to your wishlist.',
+                }).then(() => {
+                    window.location.href = '/login';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred. Please try again.',
+                });
+            }
+        },
+    });
+});
+
 </script>
 </body>

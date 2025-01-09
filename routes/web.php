@@ -20,6 +20,7 @@ use App\Http\Controllers\ShowcaseController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\UserAuthcontroller;
 use App\Http\Controllers\Websitecontroller;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 //User Page    
@@ -210,6 +211,5 @@ Route::get('/blog/{id}', [BlogsController::class, 'show'])->name('blog.show');
 Route::post('/blog/{id}', [BlogsController::class, 'update'])->name('blog.update');
 //to delet blog
 Route::post('/delete-blog', [BlogsController::class, 'deleteblog'])->name('delete.blog');
-
- 
-
+//add product in wishlist
+Route::post('/wishlist/add', [WishlistController::class, 'addToWishlist']);
