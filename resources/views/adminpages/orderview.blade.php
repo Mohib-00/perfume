@@ -114,6 +114,7 @@
                                             <th>Name</th>
                                             <th>Price</th>
                                             <th>Quantity</th>
+                                            <th>Option</th>
                                             <th>Subtotal</th>
                                          </tr>
                                     </thead>
@@ -128,6 +129,13 @@
                                                 <td style="white-space: nowrap;">{{ $item->product->name }}</td>
                                                 <td style="white-space: nowrap;">Pkr {{ number_format($item->product->price, 2) }}</td>
                                                 <td style="white-space: nowrap;">{{ $item->quantity }}</td>
+                                                <td style="white-space: nowrap;">
+                                                   @if($item->option)
+                                                       {{ $item->option->option }}
+                                                   @else
+                                                       No Option
+                                                   @endif
+                                               </td>
                                                 <td style="white-space: nowrap;">Pkr {{ number_format($item->product->price * $item->quantity, 2) }}</td>
                                             </tr>
                                             @php $counter++; @endphp
@@ -152,7 +160,6 @@
 </div>
                   
                </div>
-             
             </div>
          </div>
       </div>

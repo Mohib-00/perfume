@@ -7,10 +7,7 @@
 </div>
 
 <header class="header_area">
-    <!-- Notification Bar -->
-<div style="background-color: black; text-align: center; padding: 15px; font-weight: bold; color: white;">
-    FREE SHIPPING ON ORDERS ABOVE PKR 8000
-</div>
+
     <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
 
         
