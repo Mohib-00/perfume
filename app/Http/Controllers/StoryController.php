@@ -24,9 +24,9 @@ class StoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'image' => 'required|image|max:2048',
-            'image_story' => 'required|image|max:2048',
-            'image_1' => 'required|image|max:2048',
+            'image' => 'required',
+            'image_story' => 'required',
+            'image_1' => 'required',
             'heading' => 'nullable|string|max:255',
             'heading_story' => 'nullable|string|max:255',
             'paragraph' => 'nullable|string|max:255',
@@ -105,9 +105,9 @@ class StoryController extends Controller
           $story = Story::findOrFail($id);   
       
           $validator = Validator::make($request->all(), [
-            'image' => 'nullable|image|max:2048',
-            'image_story' => 'nullable|image|max:2048',
-            'image_1' => 'nullable|image|max:2048',
+            'image' => 'nullable',
+            'image_story' => 'nullable',
+            'image_1' => 'nullable',
             'heading' => 'nullable|string|max:255',
             'heading_story' => 'nullable|string|max:255',
             'paragraph' => 'nullable|string|max:255',

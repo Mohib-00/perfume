@@ -24,8 +24,8 @@ class ProductsController extends Controller
 {
     try {
         $validatedData = $request->validate([
-            'image' => 'nullable|file|image|max:2048',
-            'hover_image' => 'nullable|file|image|max:2048',
+            'image' => 'nullable',
+            'hover_image' => 'nullable',
             'name' => 'nullable|string|max:255',
             'price' => 'nullable|numeric',
             'discount_price' => 'nullable|numeric',
@@ -110,8 +110,8 @@ public function update(Request $request, $id)
 {
     try {
         $validatedData = $request->validate([
-            'image' => 'nullable|file|image|max:2048',
-            'hover_image' => 'nullable|file|image|max:2048',
+            'image' => 'nullable',
+            'hover_image' => 'nullable',
             'name' => 'nullable|string|max:255',
             'price' => 'nullable|numeric',
             'discount_price' => 'nullable|numeric',
@@ -219,13 +219,5 @@ public function deleteproduct(Request $request)
           }           
           return view('userpages.showexplore', compact('product', 'user', 'relatedProducts', 'cartCount', 'cartItems', 'product','wishlistCount'));
       }
-      
-      
 
-      
-
-      
-
- 
     }
-

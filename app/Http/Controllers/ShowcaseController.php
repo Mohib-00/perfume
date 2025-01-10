@@ -23,7 +23,7 @@ class ShowcaseController extends Controller
       public function store(Request $request)
       {
           $validator = Validator::make($request->all(), [
-               'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+               'image' => 'required',
                'name' => 'nullable|string|max:255',
            ]);
       
@@ -68,7 +68,7 @@ class ShowcaseController extends Controller
           $showcase = ShowcaseImage::findOrFail($id);   
       
           $validator = Validator::make($request->all(), [
-              'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+              'image' => 'nullable',
               'name' => 'nullable|string|max:255',
            ]);
       

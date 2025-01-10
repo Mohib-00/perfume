@@ -22,9 +22,8 @@ class DetailsController extends Controller
 
       public function store(Request $request)
       {
-          // Validation
           $validator = Validator::make($request->all(), [
-              'image' => 'required|image|max:2048',
+              'image' => 'required',
               'heading' => 'required|string|max:255',
               'paragraph' => 'nullable|string',
           ]);
@@ -35,7 +34,6 @@ class DetailsController extends Controller
   
           $fileName = null;
   
-          // Check if image file exists and upload it
           if ($request->hasFile('image')) {
               $file = $request->file('image');
               if ($file->isValid()) {
@@ -45,7 +43,6 @@ class DetailsController extends Controller
               }
           }
   
-          // Create new SectionDetail
           $detail = SectionDetail::create([
               'image' => $fileName,
               'heading' => $request->heading,
@@ -73,9 +70,8 @@ class DetailsController extends Controller
       {
           $detail = SectionDetail::findOrFail($id);
   
-          // Validation
           $validator = Validator::make($request->all(), [
-              'image' => 'nullable|image|max:2048',
+              'image' => 'nullable',
               'heading' => 'nullable|string|max:255',
               'paragraph' => 'nullable|string',
           ]);
@@ -86,7 +82,6 @@ class DetailsController extends Controller
   
           $fileName = $detail->image;
   
-          // Check if image is being uploaded
           if ($request->hasFile('image')) {
               $file = $request->file('image');
               if ($file->isValid()) {
@@ -96,7 +91,6 @@ class DetailsController extends Controller
               }
           }
   
-          // Update details
           $detail->image = $fileName;
           if ($request->has('heading')) {
               $detail->heading = $request->heading;
