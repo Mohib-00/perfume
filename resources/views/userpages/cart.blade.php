@@ -159,17 +159,17 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-danger btn-minus update-quantity" 
+                                        <button style="background:black;color:white" class="btn btn-sm  btn-minus update-quantity" 
                                                 data-action="decrease" 
                                                 data-id="{{ $cartItem->id }}">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" 
+                                    <input style="color:white" type="text" class="form-control form-control-sm bg-secondary border-0 text-center" 
                                            value="{{ $cartItem->quantity }}" 
                                            id="quantity-{{ $cartItem->id }}">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus update-quantity" 
+                                        <button style="background:black;color:white" class="btn btn-sm btn-plus update-quantity" 
                                                 data-action="increase" 
                                                 data-id="{{ $cartItem->id }}">
                                             <i class="fa fa-plus"></i>
@@ -219,7 +219,7 @@
                             <h5 id="total-price">Rs:{{ number_format($subtotal + $deliveryCharges) }}</h5>
                         </div>
                         @if ($cartItems->isNotEmpty())
-                         <button class="btn btn-block btn-primary my-3 py-3 checkout">Proceed To Checkout</button>
+                         <button style="background:black;color:white" class="btn btn-block my-3 py-3 checkout">Proceed To Checkout</button>
                         @else
                          <button class="btn btn-block btn-secondary my-3 py-3 cart-empty-message" style="cursor: not-allowed;" disabled>
                             Cart is Empty

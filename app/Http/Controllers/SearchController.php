@@ -7,6 +7,7 @@ use App\Models\CartItem;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
@@ -19,8 +20,17 @@ class SearchController extends Controller
         }
     
         $products = Product::where('name', 'LIKE', "%$query%")
-            ->orWhere('description', 'LIKE', "%$query%")
-            ->get();
+        ->orWhere('description', 'LIKE', "%$query%")
+        ->with(['feedbacks' => function ($query) {
+            $query->select('product_id', DB::raw('AVG(rating) as average_rating'))
+                  ->groupBy('product_id');
+        }])
+        ->get();
+    
+        $products->each(function ($product) {
+           $product->average_rating = $product->feedbacks->first()->average_rating ?? 0;
+        });
+    
     
         $pages = [
             'women fragrance' => route('womens.fragrances'),
