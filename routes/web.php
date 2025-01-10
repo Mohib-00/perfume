@@ -14,6 +14,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ShowcaseController;
@@ -39,20 +40,20 @@ Route::get('/pages/about-us', [UserAuthcontroller::class, 'aboutUs'])->name('abo
 //to open sale page
 Route::get('/collection/sale-products', [UserAuthcontroller::class, 'sale'])->name('sale');
 //to open sale page
-Route::get('/contact-us', [UserAuthcontroller::class, 'contactus'])->name('contactus');
+Route::get('/contact-us', [UserAuthcontroller::class, 'contactus'])->name('contact');
 //to open collections page
-Route::get('/collections', [UserAuthcontroller::class, 'collections'])->name('collections');
+Route::get('/collections', [UserAuthcontroller::class, 'collections'])->name('view.collection');
 
 //to open womens-fragrances page
-Route::get('/collections/womens-fragrances', [UserAuthcontroller::class, 'womensfragrances']);
+Route::get('/collections/womens-fragrances', [UserAuthcontroller::class, 'womensfragrances'])->name('womens.fragrances');
 //to open mens-fragrances page
-Route::get('/collections/mens-fragrances', [UserAuthcontroller::class, 'mensfragrances']);
+Route::get('/collections/mens-fragrances', [UserAuthcontroller::class, 'mensfragrances'])->name('mens.fragrances');
 //to open sale page
-Route::get('/collections/travel-size', [UserAuthcontroller::class, 'travelsize']);
+Route::get('/collections/travel-size', [UserAuthcontroller::class, 'travelsize'])->name('travel.size');
 //to open sale page
-Route::get('/collections/discovery', [UserAuthcontroller::class, 'discovery']);
+Route::get('/collections/discovery', [UserAuthcontroller::class, 'discovery'])->name('discovery');
 //to open blogs page
-Route::get('/blogs', [UserAuthcontroller::class, 'blogs']);
+Route::get('/blogs', [UserAuthcontroller::class, 'blogs'])->name('blog');
 //to open product details page
 Route::get('/product-details/{product_name}', [UserAuthController::class, 'details'])->name('product.options');
 //to open cart page
@@ -215,3 +216,5 @@ Route::post('/blog/{id}', [BlogsController::class, 'update'])->name('blog.update
 Route::post('/delete-blog', [BlogsController::class, 'deleteblog'])->name('delete.blog');
 //add product in wishlist
 Route::post('/wishlist/add', [WishlistController::class, 'addToWishlist']);
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
