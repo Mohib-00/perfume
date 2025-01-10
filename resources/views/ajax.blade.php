@@ -1616,7 +1616,7 @@ $(document).ready(function() {
 });
 
 //to del detail
-$(document).on('click', '.deldetail', function() {
+$(document).on('click', '.deldetaillllll', function() {
     const detailId = $(this).data('detail-id');
     const csrfToken = $('meta[name="csrf-token"]').attr('content');
     const row = $(this).closest('tr');  
@@ -1636,7 +1636,7 @@ $(document).on('click', '.deldetail', function() {
             });
 
             $.ajax({
-                url: '/delete-detail',
+                url: '/delete-detaill',
                 type: 'POST',
                 data: { detail_id: detailId },  
                 dataType: 'json',

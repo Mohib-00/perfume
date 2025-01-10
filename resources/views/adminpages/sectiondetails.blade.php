@@ -128,14 +128,14 @@
                                                 <td id="heading">{{$detail->heading}}</td>  
                                                 <td id="heading">{{$detail->paragraph}}</td>                                               
                                                 <td>
-                                                    <a id="detailedit" data-detail-id="{{ $detail->id }}" class="btn btn-warning mx-5 edit-detail-btn">
+                                                    <a id="detailedit" data-detail-id="{{ $detail->id }}" class="btn btn-warning edit-detail-btn">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
                                                             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
                                                         </svg>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a data-detail-id="{{ $detail->id }}" class="btn btn-danger deldetail">
+                                                    <a data-detail-id="{{ $detail->id }}" class="btn btn-danger deldetaillllll">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                                             <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
                                                         </svg>                                                        
@@ -271,13 +271,14 @@
        <script>
      $(document).ready(function () {
     
-    $('#detailform').on('submit', function (e) {
-    e.preventDefault();   
+   // Add new detail
+$('#detailform').on('submit', function (e) {
+    e.preventDefault();
 
     let formData = new FormData(this);
 
     $.ajax({
-        url: "{{ route('detail.store') }}",
+        url: "/detailopening/store",
         type: "POST",
         data: formData,
         contentType: false,
@@ -299,16 +300,16 @@
                             <td>${$('.table tbody tr').length + 1}</td>
                             <td><img height="80" width="80" src="{{ asset('images/') }}/${detail.image}" /></td>
                             <td>${detail.heading}</td>
-                            <td>${detail.paragraph}
+                            <td>${detail.paragraph}</td>
                             <td>
-                                <a id="detailedit" data-detail-id="${detail.id}" class="btn btn-warning mx-5 edit-detail-btn">
+                                <a id="detailedit" data-detail-id="${detail.id}" class="btn btn-warning edit-detail-btn">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
                                         <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
                                     </svg>
                                 </a>
                             </td>
                             <td>
-                                <a data-detail-id="${detail.id}" class="btn btn-danger deldetail">
+                                <a data-detail-id="${detail.id}" class="btn btn-danger deldetaillllll">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
                                     </svg>
@@ -316,7 +317,6 @@
                             </td>
                         </tr>
                     `;
-
                     $('table tbody').append(newRow);
                 });
             }
@@ -338,23 +338,22 @@
     });
 });
 
-
-// get detail data
+// Edit detail data
 $(document).on('click', '.edit-detail-btn', function () {
     var detailId = $(this).data('detail-id');
- 
-     $.ajax({
-        url: "{{ route('detail.show', '') }}/" + detailId, 
-        type: "GET",  
+
+    $.ajax({
+        url: "/detailopens/" + detailId,
+        type: "GET",
         success: function (response) {
             if (response.success) {
-                 $('#detaileditform #detailforminput_edit').val(response.detail.id);
-                 if (response.detail.image) {
+                $('#detaileditform #detailforminput_edit').val(response.detail.id);
+                if (response.detail.image) {
                     $('#detaileditform #icon_edit').attr('src', "{{ asset('images') }}/" + response.detail.image);
                 }
-                 $('#detaileditform #heading_edit').val(response.detail.heading);
-                 $('#detaileditform #paragraph_edit').val(response.detail.paragraph);
-                 $('.custom-modal.detailedit').fadeIn();
+                $('#detaileditform #heading_edit').val(response.detail.heading);
+                $('#detaileditform #paragraph_edit').val(response.detail.paragraph);
+                $('.custom-modal.detailedit').fadeIn();
             }
         },
         error: function (xhr) {
@@ -368,56 +367,54 @@ $(document).on('click', '.edit-detail-btn', function () {
     });
 });
 
-// Edit detail 
+// Update detail
 $('#detaileditform').on('submit', function (e) {
     e.preventDefault();
 
-    var formData = new FormData(this); 
-    var detailId = $('#detailforminput_edit').val(); 
+    var formData = new FormData(this);
+    var detailId = $('#detailforminput_edit').val();
 
-  
     $.ajax({
-    url: "{{ route('detail.update', '') }}/" + detailId,  
-    type: "POST",  
-    data: formData,
-    contentType: false, 
-    processData: false, 
-    success: function (response) {
-        if (response.success) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Detail Updated!',
-                text: response.message || 'Detail updated successfully.',
-                confirmButtonText: 'Ok'
-            }).then(() => {
-                $('#detaileditform')[0].reset();
-                $('.custom-modal.detailedit').fadeOut();
-                const detail = $(`a[data-detail-id="${detailId}"]`).closest('tr');
+        url: "/detailupdate/" + detailId,
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if (response.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Detail Updated!',
+                    text: response.message || 'Detail updated successfully.',
+                    confirmButtonText: 'Ok'
+                }).then(() => {
+                    $('#detaileditform')[0].reset();
+                    $('.custom-modal.detailedit').fadeOut();
 
-                detail.find('td:nth-child(2) img').attr('src', `/images/${response.detail.image}`);
-                detail.find('td:nth-child(3)').text(response.detail.heading);
-                detail.find('td:nth-child(4)').text(response.detail.paragraph);
-                
-            });
+                    const detail = $(`a[data-detail-id="${detailId}"]`).closest('tr');
+                    detail.find('td:nth-child(2) img').attr('src', `/images/${response.detail.image}`);
+                    detail.find('td:nth-child(3)').text(response.detail.heading);
+                    detail.find('td:nth-child(4)').text(response.detail.paragraph);
+                });
+            }
+        },
+        error: function (xhr) {
+            let errors = xhr.responseJSON.errors;
+            if (errors) {
+                let errorMessages = Object.values(errors)
+                    .map(err => err.join('\n'))
+                    .join('\n');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: errorMessages,
+                    confirmButtonText: 'Ok'
+                });
+            }
         }
-    },
-    error: function (xhr) {
-        let errors = xhr.responseJSON.errors;
-        if (errors) {
-            let errorMessages = Object.values(errors)
-                .map(err => err.join('\n'))
-                .join('\n');
-            Swal.fire({
-                icon: 'error',
-                title: 'Error!',
-                text: errorMessages,
-                confirmButtonText: 'Ok'
-            });
-        }
-    }
+    });
 });
 
-});
 
 
 });

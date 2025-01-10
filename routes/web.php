@@ -132,14 +132,12 @@ Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.
 Route::post('/product/update/{id}', [ProductsController::class, 'update'])->name('product.update');
 //to delet product
 Route::post('/delete-product', [ProductsController::class, 'deleteproduct'])->name('delete.product');
-//to add detail data
-Route::post('/detail/store', [DetailsController::class, 'store'])->name('detail.store');
-//to get detail data
-Route::get('/detail/{id}', [DetailsController::class, 'show'])->name('detail.show');
-// Update detail data
-Route::post('/detail/{id}', [DetailsController::class, 'update'])->name('detail.update');
-//to delet detail
-Route::post('/delete-detail', [DetailsController::class, 'deletedetail'])->name('delete.detail');
+
+Route::post('/detailopening/store', [DetailsController::class, 'store']);
+Route::get('/detailopens/{id}', [DetailsController::class, 'show']);
+Route::post('/detailupdate/{id}', [DetailsController::class, 'update']);
+Route::post('/delete-detaill', [DetailsController::class, 'deletedetail']);
+
 //to show explore page
 Route::get('/explore-product/{slug}', [ProductsController::class, 'exploreProduct'])->name('single.product.page');
 //to add option

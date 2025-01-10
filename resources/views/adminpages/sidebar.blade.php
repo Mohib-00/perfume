@@ -18,7 +18,7 @@
        </div>
     </div>
     <div class="sidebar_blog_2">
-       <h4 class="chokokutai-regular">Logix 199</h4>
+       <h4 class="chokokutai-regular">Aatir'z</h4>
        <ul class="list-unstyled components"> 
           <li class="users"><a><i class="fa fa-users orange_color"></i> <span>Users</span></a></li>
           <li class="carousel"><a><i class="fa fa-star green_color"></i><span>Add Carousel</span></a></li>

@@ -22,103 +22,107 @@ class DetailsController extends Controller
 
       public function store(Request $request)
       {
+          // Validation
           $validator = Validator::make($request->all(), [
-               'image' => 'required|image|max:2048',
-               'heading' => 'required|string|max:255',
-               'paragraph' => 'nullable',
-           ]);
-      
+              'image' => 'required|image|max:2048',
+              'heading' => 'required|string|max:255',
+              'paragraph' => 'nullable|string',
+          ]);
+  
           if ($validator->fails()) {
               return response()->json(['errors' => $validator->errors()], 422);
           }
+  
+          $fileName = null;
+  
+          // Check if image file exists and upload it
           if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            if ($file->isValid()) {
-                $uniqueTimestamp = time();
-                $fileName = $uniqueTimestamp . '-' . $file->getClientOriginalName();
-                $file->move(public_path('images'), $fileName);
-                $imagePath = $fileName;  
-            }
-        }
-      
+              $file = $request->file('image');
+              if ($file->isValid()) {
+                  $uniqueTimestamp = time();
+                  $fileName = $uniqueTimestamp . '-' . $file->getClientOriginalName();
+                  $file->move(public_path('images'), $fileName);
+              }
+          }
+  
+          // Create new SectionDetail
           $detail = SectionDetail::create([
               'image' => $fileName,
               'heading' => $request->heading,
               'paragraph' => $request->paragraph,
           ]);
-      
+  
           return response()->json([
               'success' => true,
               'message' => 'Service added successfully!',
               'detail' => $detail
           ], 200);
       }
-      
-      
-
+  
       public function show($id)
       {
           $detail = SectionDetail::findOrFail($id);
+  
           return response()->json([
               'success' => true,
               'detail' => $detail
           ]);
       }
-
+  
       public function update(Request $request, $id)
       {
-          $detail = SectionDetail::findOrFail($id);   
-      
+          $detail = SectionDetail::findOrFail($id);
+  
+          // Validation
           $validator = Validator::make($request->all(), [
               'image' => 'nullable|image|max:2048',
-              'name' => 'nullable|string|max:255',
-              'paragraph' => 'nullable',
-           ]);
-      
+              'heading' => 'nullable|string|max:255',
+              'paragraph' => 'nullable|string',
+          ]);
+  
           if ($validator->fails()) {
               return response()->json(['errors' => $validator->errors()], 422);
           }
-      
-           if ($request->hasFile('image')) {
+  
+          $fileName = $detail->image;
+  
+          // Check if image is being uploaded
+          if ($request->hasFile('image')) {
               $file = $request->file('image');
               if ($file->isValid()) {
                   $uniqueTimestamp = time();
                   $fileName = $uniqueTimestamp . '-' . $file->getClientOriginalName();
                   $file->move(public_path('images'), $fileName);
-                  $imagePath = $fileName;
-      
-                   $detail->image = $imagePath;
               }
           }
-      
-    
+  
+          // Update details
+          $detail->image = $fileName;
           if ($request->has('heading')) {
               $detail->heading = $request->heading;
           }
-
           if ($request->has('paragraph')) {
-            $detail->paragraph = $request->paragraph;
-        }
-      
-           $detail->save();
-      
+              $detail->paragraph = $request->paragraph;
+          }
+  
+          $detail->save();
+  
           return response()->json([
               'success' => true,
               'message' => 'Detail updated successfully!',
               'detail' => $detail
           ], 200);
       }
-      
-
-public function deletedetail(Request $request)
-{
-    $detail = SectionDetail::find($request->detail_id);
-
-    if ($detail) {
-        $detail->delete();
-        return response()->json(['success' => true, 'message' => 'Detail deleted successfully']);
-    }
-
-    return response()->json(['success' => false, 'message' => 'Detail not found']);
-}
+  
+      public function deletedetail(Request $request)
+      {
+          $detail = SectionDetail::find($request->detail_id);
+  
+          if ($detail) {
+              $detail->delete();
+              return response()->json(['success' => true, 'message' => 'Detail deleted successfully']);
+          }
+  
+          return response()->json(['success' => false, 'message' => 'Detail not found']);
+      }
 }
