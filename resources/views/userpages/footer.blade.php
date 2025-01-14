@@ -1,4 +1,4 @@
-<footer class="footer_area clearfix" style="text-align: center;">
+<footer class="footer_area clearfix" style="display:flex;justfy-content:center;align-items:center;">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-5 my-3">
@@ -21,7 +21,7 @@
                         <h3 style="color:white">Get Connected</h3>
                     </div>
                 </div>
-                <div class="footer_social_area" style="margin-right:10px">
+                <div class="footer_social_area">
                     @if($settings->facebook)
                     <a  href="{{ $settings->facebook }}" data-toggle="tooltip" data-placement="top" title="Facebook" style="margin-right: 10px;">
                         <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path d="M14.1667 1.66663H11.6667C10.5616 1.66663 9.50179 2.10561 8.72039 2.88701C7.93899 3.66842 7.5 4.72822 7.5 5.83329V8.33329H5V11.6666H7.5V18.3333H10.8333V11.6666H13.3333L14.1667 8.33329H10.8333V5.83329C10.8333 5.61228 10.9211 5.40032 11.0774 5.24404C11.2337 5.08776 11.4457 4.99996 11.6667 4.99996H14.1667V1.66663Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>

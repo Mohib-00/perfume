@@ -2505,7 +2505,7 @@ $(document).on('click', '#dlvrycnfrm', function (e) {
 
                          
                         $('tr[data-order-id="' + orderId + '"] .btnhide').remove();  
-                        $('tr[data-order-id="' + orderId + '"] td:eq(14)').append('<a class="btn btn-success mx-5 btnshow">Delivered</a>'); 
+                        $('tr[data-order-id="' + orderId + '"] td:eq(15)').append('<a class="btn btn-success mx-5 btnshow">Delivered</a>'); 
 
                         Swal.fire(
                             'Delivered!',
