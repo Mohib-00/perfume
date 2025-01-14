@@ -42,13 +42,10 @@ class CarouselController extends Controller
           }
       
           
-          $carousel = Carousel::updateOrCreate(
-              ['id' => $carousel ? $carousel->id : null],
-              [
-                  'image' => $imagePath,
-                  'name' => $request->name,
-              ]
-          );
+          $carousel = Carousel::create([
+            'image' => $imagePath,
+            'name' => $request->name,
+        ]);
       
            return response()->json([
               'success' => true,

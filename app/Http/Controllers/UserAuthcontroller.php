@@ -196,7 +196,8 @@ public function logout() {
         if (Auth::check()) {
             $wishlistCount = Auth::user()->wishlists()->count();
         }    
-        return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories','cartCount','cartItems','reviews','wishlistCount'));
+        $carouselsss = Carousel::all();
+        return view('userpages.home', compact('user', 'favouriteProducts','saleProducts','selectionProducts','showcaseimages','carousels','openings','stories','cartCount','cartItems','reviews','wishlistCount','carouselsss'));
     }
     
 
