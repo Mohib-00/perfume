@@ -3089,7 +3089,7 @@ $(document).ready(function() {
                 processData: false,
                 success: function(response) {
                     if (response.success) {
-                        $('.admin img').attr('src', response.imageUrl);
+                        $('.adminimg').attr('src', response.imageUrl);
 
                         Swal.fire({
                             icon: 'success',

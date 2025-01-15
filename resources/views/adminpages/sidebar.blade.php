@@ -3,7 +3,7 @@
     <div class="sidebar_blog_1">
        <div class="sidebar-header">
           <div class="logo_section">
-             <a class="adminimg"><img class="logo_icon img-responsive adminimg"  src="{{ asset('images/' . auth()->user()->image) }}" alt="#" /></a>
+             <a class="admin"><img class="logo_icon img-responsive admin" src="{{ Auth::user()->image ? asset(Auth::user()->image) : asset('dumm.png') }}" alt="#" /></a>
              <input type="file" id="imageInput" style="display: none;" accept="image/*">
              
           </div>
@@ -11,7 +11,9 @@
        <div class="sidebar_user_info">
           <div class="icon_setting"></div>
           <div class="user_profle_side">
-             <div class="user_img"><img class="img-responsive adminimg"  src="{{ asset('images/' . auth()->user()->image) }}"/></div>
+             <div class="user_img">
+               <img style="width:90px" class="img-responsive adminimg" src="{{ Auth::user()->image ? asset(Auth::user()->image) : asset('dumm.png') }}" alt="#" />
+            </div>
              <input type="file" id="imageInput" style="display: none;" accept="image/*">
              <div class="user_info admin">
                 <h6>{{$userName}}</h6>
