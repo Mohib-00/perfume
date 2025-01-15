@@ -35,28 +35,28 @@
                         <li><a href="#">Perfumes</a>
                             <div class="megamenu">
                                 <ul class="single-mega cn-col-4">
-                                    <li style="font-size:25px" class="title womenfragrances">Women's Fragrances</li>
+                                    <li style="font-size:25px" class="title womenfragrances">{{$headersettings->heading1}}</li>
                                 </ul>
                                 
                                 <ul class="single-mega cn-col-4">
-                                    <li style="font-size:25px" class="title menfragrances">Men's Fragrances</li>
+                                    <li style="font-size:25px" class="title menfragrances">{{$headersettings->heading2}}</li>
                                      
                                 </ul>
                                 <ul class="single-mega cn-col-4">
-                                    <li style="font-size:25px" class="title travel">Travel Size</li>
+                                    <li style="font-size:25px" class="title travel">{{$headersettings->heading3}}</li>
                                 </ul>
                                 
 
                                 <div class="single-mega cn-col-4">
-                                    <img style="width:100%" src="{{asset('fragrance.jpg')}}" alt="">
+                                    <img style="width:100%;height:400px" src="{{ asset('images/' . $headersettings->image) }}" alt="">
                                 </div>
 
                                 <ul class="single-mega cn-col-4">
-                                    <li style="font-size:25px" class="title discovery">Discovery</li>
+                                    <li style="font-size:25px" class="title discovery">{{$headersettings->heading4}}</li>
                                 </ul>
 
                                 <ul class="single-mega cn-col-4">
-                                    <li style="font-size:25px" class="title viewcollection">View Collection</li>
+                                    <li style="font-size:25px" class="title viewcollection">{{$headersettings->heading5}}</li>
                                 </ul>
                                  
                             </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\HeaderSettingsController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\OrderController;
@@ -100,6 +101,8 @@ Route::group(['middleware' => ['admin.auth'], 'prefix' => 'admin'], function() {
     Route::get("add-policies", [SettingsController::class, "addpolicies"]);
     Route::get("add-bank-details", [SettingsController::class, "addbankdetails"]);
     Route::get("add-blogs", [BlogsController::class, "addblogs"]);
+    Route::get("header-settings", [HeaderSettingsController::class, "headersettings"]);
+
 });
 
 //to get user data
@@ -216,3 +219,11 @@ Route::post('/delete-blog', [BlogsController::class, 'deleteblog'])->name('delet
 Route::post('/wishlist/add', [WishlistController::class, 'addToWishlist']);
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
+//to add header data
+Route::post('/header/store', [HeaderSettingsController::class, 'store'])->name('header.store');
+//to get header data
+Route::get('/header/{id}', [HeaderSettingsController::class, 'show'])->name('header.show');
+// Update header data
+Route::post('/header/{id}', [HeaderSettingsController::class, 'update'])->name('header.update');
+//to delet header
+Route::post('/delete-header', [HeaderSettingsController::class, 'deleteheader'])->name('delete.header');

@@ -297,9 +297,31 @@ $(document).ready(function() {
 
 
         
-if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/add-blogs' || window.location.pathname === '/admin/add-bank-details' || window.location.pathname === '/admin/add-policies' || window.location.pathname === '/admin/orderview' || window.location.pathname === '/admin/view-order' || window.location.pathname === '/admin/view-feedback' || window.location.pathname === '/admin/change-password' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
+if ((window.location.pathname === '/admin' || window.location.pathname === '/admin/header-settings' || window.location.pathname === '/admin/add-blogs' || window.location.pathname === '/admin/add-bank-details' || window.location.pathname === '/admin/add-policies' || window.location.pathname === '/admin/orderview' || window.location.pathname === '/admin/view-order' || window.location.pathname === '/admin/view-feedback' || window.location.pathname === '/admin/change-password' || window.location.pathname === '/admin/settings' || window.location.pathname === '/admin/messages'|| window.location.pathname === '/admin/add-story' || window.location.pathname === '/admin/product-options' || window.location.pathname === '/admin/add-details' || window.location.pathname === '/admin/add-showcase-data' || window.location.pathname === '/admin/users' || window.location.pathname === '/admin/add-carousel-data') && !localStorage.getItem('token')) {
         window.location.href = '/';  
     }
+
+     //to open header-settings page
+     $('.frontendheader').click(function () {
+    if (!localStorage.getItem('token')) {
+        alert('You need to be logged in to access this page.');
+        window.location.href = '/';   
+        return;
+    }
+
+    var baseUrl = "{{ url('') }}";  
+    $.ajax({
+        url: baseUrl + '/admin/header-settings',   
+        type: 'GET',
+        success: function (response) {
+            window.location.href = '/admin/header-settings';   
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        }
+    });
+});
+
     //to open blogs page
     $('.addblogs').click(function () {
     if (!localStorage.getItem('token')) {
@@ -2970,6 +2992,79 @@ $(document).on('click', '.add-to-wishlist a', function (e) {
                 });
             }
         },
+    });
+});
+
+
+
+//to open add header model
+$(document).ready(function() {
+     $('.addheader').click(function() {
+         $('.custom-modal.header').fadeIn();  
+    });
+
+     $('.closeModal').click(function() {
+        $('.custom-modal.header').fadeOut(); 
+    });
+
+     $(document).click(function(event) {
+        if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.addheader')) {
+            $('.custom-modal.header').fadeOut(); 
+        }
+    });
+});
+
+//to del header
+$(document).on('click', '.delheader', function() {
+    const headerId = $(this).data('header-id');
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    const row = $(this).closest('tr');  
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete this header?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            });
+
+            $.ajax({
+                url: '/delete-header',
+                type: 'POST',
+                data: { header_id: headerId },  
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        row.remove(); 
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    Swal.fire(
+                        'Error',
+                        'An error occurred while deleting the header.',
+                        'error'
+                    );
+                }
+            });
+        }
     });
 });
 
