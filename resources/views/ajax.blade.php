@@ -3068,5 +3068,66 @@ $(document).on('click', '.delheader', function() {
     });
 });
 
+$(document).ready(function() {
+    $('.adminimg').on('click', function () {
+        $('#imageInput').click(); 
+    });
+
+    $('#imageInput').on('change', function (e) {
+        var formData = new FormData();
+        var file = e.target.files[0]; 
+
+        if (file) {
+            formData.append('image', file); 
+            formData.append('_token', '{{ csrf_token() }}');  
+
+            $.ajax({
+                url: '{{ route('user.uploadImage') }}',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response.success) {
+                        $('.admin img').attr('src', response.imageUrl);
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Image uploaded successfully!',
+                            text: 'Your profile image has been updated.',
+                            background: '#FFFFFF',
+                            color: 'black',
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: '#4caf50'
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Image upload failed!',
+                            text: 'Please try again.',
+                            background: '#FFFFFF',
+                            color: 'black',
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: '#f44336'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error uploading image',
+                        text: 'Please try again later.',
+                        background: '#FFFFFF',
+                        color: 'black',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#f44336'
+                    });
+                }
+            });
+        }
+    });
+});
+
+
 </script>
 </body>

@@ -518,6 +518,34 @@ public function logout() {
     } 
     return view('userpages.productdetails', compact('user', 'product', 'cartCount', 'cartItems', 'averageRating','wishlistCount'));
 }
+public function uploadImage(Request $request)
+{
+    $request->validate([
+        'image' => 'required|image', 
+    ]);
+
+    $user = auth()->user();
+
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        
+        if ($file->isValid()) {
+            $uniqueTimestamp = time();
+            $fileName = $uniqueTimestamp . '-' . $file->getClientOriginalName();
+            $file->move(public_path('images'), $fileName);
+
+            $user->image = 'images/' . $fileName; 
+            $user->save();
+            
+            return response()->json([
+                'success' => true,
+                'imageUrl' => asset('images/' . $fileName) 
+            ]);
+        }
+    }
+
+    return response()->json(['success' => false]);
+}
 
       
 }

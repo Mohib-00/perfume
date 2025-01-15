@@ -3,14 +3,17 @@
     <div class="sidebar_blog_1">
        <div class="sidebar-header">
           <div class="logo_section">
-             <a class="admin"><img class="logo_icon img-responsive admin" src="{{asset('dummy.png')}}" alt="#" /></a>
+             <a class="adminimg"><img class="logo_icon img-responsive adminimg"  src="{{ asset('images/' . auth()->user()->image) }}" alt="#" /></a>
+             <input type="file" id="imageInput" style="display: none;" accept="image/*">
+             
           </div>
        </div>
        <div class="sidebar_user_info">
           <div class="icon_setting"></div>
           <div class="user_profle_side">
-             <div class="user_img"><img class="img-responsive admin" src="{{asset('dummy.png')}}" alt="#" /></div>
-             <div class="user_info">
+             <div class="user_img"><img class="img-responsive adminimg"  src="{{ asset('images/' . auth()->user()->image) }}"/></div>
+             <input type="file" id="imageInput" style="display: none;" accept="image/*">
+             <div class="user_info admin">
                 <h6>{{$userName}}</h6>
                 <p><span class="online_animation"></span> Online</p>
              </div>

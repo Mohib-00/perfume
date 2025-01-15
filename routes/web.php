@@ -227,3 +227,5 @@ Route::get('/header/{id}', [HeaderSettingsController::class, 'show'])->name('hea
 Route::post('/header/{id}', [HeaderSettingsController::class, 'update'])->name('header.update');
 //to delet header
 Route::post('/delete-header', [HeaderSettingsController::class, 'deleteheader'])->name('delete.header');
+//to upload img
+Route::post('/upload-image', [UserAuthController::class, 'uploadImage'])->name('user.uploadImage');
