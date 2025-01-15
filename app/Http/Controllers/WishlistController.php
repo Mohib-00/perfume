@@ -107,6 +107,8 @@ class WishlistController extends Controller
                 'noItemsInWishlist' => $noItemsInWishlist,
             ]);
         }
+        $carouselsss = Carousel::all();
+
     
         return view('userpages.wishlist', compact(
             'user', 
@@ -117,7 +119,8 @@ class WishlistController extends Controller
             'wishlistCount', 
             'carousels', 
             'wishlistItems',
-            'noItemsInWishlist' 
+            'noItemsInWishlist' ,
+            'carouselsss',
         ));
     }
     
