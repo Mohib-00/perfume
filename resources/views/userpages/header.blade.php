@@ -71,15 +71,13 @@
         </nav>
 
          <div class="header-meta d-flex clearfix justify-content-end">
-             <div class="search-area">
                 <div class="search-area">
                     <form action="{{ route('search') }}" method="GET">
-                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                        <input type="search" name="search" id="headerSearch" placeholder="Type for Search">
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
                 
-            </div>
             <div class="favourite-area">
                 <a class="wishlistpage">
                     <img src="{{ asset('essence/img/core-img/heart.svg') }}" alt="">

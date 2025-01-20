@@ -293,6 +293,14 @@
             margin-top:40px; 
         }
     }
+
+     
+
+    @media (max-width: 415px) {
+        .search-area {
+            width: 38.5%;
+        }
+    }
 </style>
 
     

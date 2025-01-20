@@ -310,7 +310,6 @@ img {
         border-left: none; } }
     .header_area .search-area form input {
       border: none;
-      background-color: #ffffff;
       width: 200px;
       height: 85px;
       padding: 0 15px 0 60px;

@@ -444,7 +444,7 @@
         
                     <form id="productform">
                         <input type="hidden" id="productforminput_add" value=""/>
-                        <div class="row mt-5">
+                        <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="image_add">Image</label>
@@ -496,7 +496,7 @@
                              
 
                             <div class="col-4 mt-5">
-                                <span for="isShowsaleproduct">Show on Sale Section</span><br>
+                                <span for="isShowsaleproduct">Sale Section</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowsaleproduct" name="show_sale_product">
                                     <span class="slider"></span>
@@ -505,7 +505,7 @@
                             
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowfavouriteproduct">Show on Favourite Section</span>
+                                <span for="isShowfavouriteproduct">Favourite Section</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowfavouriteproduct" name="show_favourite_product">
                                     <span class="slider"></span>
@@ -513,7 +513,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowselectionproduct">Show on Selections Section</span>
+                                <span for="isShowselectionproduct">Selections Section</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowselectionproduct" name="show_selection_product">
                                     <span class="slider"></span>
@@ -521,7 +521,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowwomencollection">Show WomenCollection Page</span>
+                                <span for="isShowwomencollection">Women Collection</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowwomencollection" name="showon_women_page">
                                     <span class="slider"></span>
@@ -529,7 +529,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowmencollection">Show on MenCollection Page</span>
+                                <span for="isShowmencollection">Men's Collection</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowmencollection" name="showon_men_page">
                                     <span class="slider"></span>
@@ -537,7 +537,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowdiscovery">Show on Discovery Page</span>
+                                <span for="isShowdiscovery">Show on Discovery</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowdiscovery" name="showon_discovery_page">
                                     <span class="slider"></span>
@@ -545,7 +545,7 @@
                             </div>
 
                             <div class="col-4 mt-5">
-                                <span for="isShowsaleepage">Show on Sale Page</span><br>
+                                <span for="isShowsaleepage">Show Sale Page</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowsaleepage" name="showon_sale__page">
                                     <span class="slider"></span>
@@ -553,7 +553,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowcollection">Show on Collection Page</span>
+                                <span for="isShowcollection">Collection Page</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowcollection" name="showon_collection_page">
                                     <span class="slider"></span>
@@ -561,7 +561,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowexplore">Show on Travel Page</span><br>
+                                <span for="isShowexplore">Show Travel Page</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowexplore" name="showon_explore_page">
                                     <span class="slider"></span>
@@ -571,7 +571,7 @@
                             
                            
                         </div>
-                        <div class="modal-footer mt-5" style="justify-content: flex-end; display: flex;">
+                        <div class="modal-footer" style="justify-content: flex-end; display: flex; margin-bottom: 50px;">
                             <button id="productadd" type="submit" class="btn btn-primary" style="margin-right: 10px;">Submit</button>
                             <button type="button" class="btn btn-secondary closeModal">Close</button>
                         </div>
@@ -586,7 +586,7 @@
          <!-- Add product edit Modal -->
          <div style="display:none" class="custom-modal productedit" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
+                <div style="overflow:auto;height:750px" class="modal-content">
                     <div class="modal-header">
                         <h2 style="font-weight: bolder" class="modal-title">Edit Product</h2>
                         <button type="button" class="close closeModal" style="background: transparent; border: none; font-size: 2.5rem; color: #333;">
@@ -595,7 +595,7 @@
                     </div>
                     <form id="producteditform">
                         <input type="hidden" id="productforminput_edit" value=""/>
-                        <div class="row mt-5">
+                        <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="image_edit">Image</label>
@@ -647,7 +647,7 @@
                              
 
                             <div class="col-4 mt-5">
-                                <span for="isShowsaleproduct_edit">Show on Sale Section</span><br>
+                                <span for="isShowsaleproduct_edit">Sale Section</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowsaleproduct_edit" name="show_sale_product">
                                     <span class="slider"></span>
@@ -656,7 +656,7 @@
                             
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowfavouriteproduct_edit">Show on Favourite Section</span>
+                                <span for="isShowfavouriteproduct_edit">Favourite Section</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowfavouriteproduct_edit" name="show_favourite_product">
                                     <span class="slider"></span>
@@ -664,7 +664,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowselectionproduct_edit">Show on Selections Section</span>
+                                <span for="isShowselectionproduct_edit">Selections Section</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowselectionproduct_edit" name="show_selection_product">
                                     <span class="slider"></span>
@@ -672,7 +672,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowwomencollection_edit">Show WomenCollection Page</span>
+                                <span for="isShowwomencollection_edit">Women Collection</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowwomencollection_edit" name="showon_women_page">
                                     <span class="slider"></span>
@@ -680,7 +680,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowmencollection_edit">Show on MenCollection Page</span>
+                                <span for="isShowmencollection_edit">Men Collection</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowmencollection_edit" name="showon_men_page">
                                     <span class="slider"></span>
@@ -688,7 +688,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowdiscovery_edit">Show on Discovery Page</span>
+                                <span for="isShowdiscovery_edit">Discovery Page</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowdiscovery_edit" name="showon_discovery_page">
                                     <span class="slider"></span>
@@ -696,7 +696,7 @@
                             </div>
 
                             <div class="col-4 mt-5">
-                                <span for="isShowsaleepage_edit">Show on Sale Page</span><br>
+                                <span for="isShowsaleepage_edit">Show Sale Page</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowsaleepage_edit" name="showon_sale__page">
                                     <span class="slider"></span>
@@ -704,7 +704,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowcollection_edit">Show on Collection Page</span>
+                                <span for="isShowcollection_edit">Collection Page</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowcollection_edit" name="showon_collection_page">
                                     <span class="slider"></span>
@@ -712,7 +712,7 @@
                             </div>
                             
                             <div class="col-4 mt-5">
-                                <span for="isShowexplore_edit">Show on Travel Page</span><br>
+                                <span for="isShowexplore_edit">Show Travel Page</span><br>
                                 <label class="switch">
                                     <input type="checkbox" id="isShowexplore_edit" name="showon_explore_page">
                                     <span class="slider"></span>
@@ -722,7 +722,7 @@
                             
                            
                         </div>
-                        <div class="modal-footer mt-5" style="justify-content: flex-end; display: flex;">
+                        <div class="modal-footer" style="justify-content: flex-end; display: flex;">
                             <button id="editproductForm" type="submit" class="btn btn-primary" style="margin-right: 10px;">Submit</button>
                             <button type="button" class="btn btn-secondary closeModal">Close</button>
                         </div>
@@ -791,10 +791,10 @@
                         <tr class="user-row" id="product-${product.id}">
                             <td>${counter}</td>
                             <td id="image">
-                                <img height="80" width="80" src="{{ asset('images/${product.image}') }}" />
+                                <img height="80" width="80" src="{{ asset('public/images/${product.image}') }}" />
                             </td>
                             <td id="hoverimage">
-                                <img height="80" width="80" src="{{ asset('images/${product.hover_image}') }}" />
+                                <img height="80" width="80" src="{{ asset('public/images/${product.hover_image}') }}" />
                             </td>
                             <td id="name">${product.name}</td>
                             <td id="price">${product.price}</td>
@@ -981,9 +981,8 @@ $(document).on('submit', '#producteditform', function (e) {
         success: function (response) {
             if (response.success) {
                  const productRow = $(`a[data-product-id="${productId}"]`).closest('tr');
-                productRow.find('td:nth-child(2) img').attr('src', `/images/${response.product.image}`);
-                productRow.find('td:nth-child(3) img').attr('src', `/images/${response.product.hover_image}`);
-
+                productRow.find('td:nth-child(2) img').attr('src', `/public/images/${response.product.image}?t=${Date.now()}`);
+                productRow.find('td:nth-child(3) img').attr('src', `/public/images/${response.product.hover_image}?t=${Date.now()}`);
                 productRow.find('td:nth-child(4)').text(response.product.name);
                 productRow.find('td:nth-child(5)').text(response.product.price);
                 productRow.find('td:nth-child(6)').text(response.product.discount_price);
