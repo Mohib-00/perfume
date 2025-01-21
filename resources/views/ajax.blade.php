@@ -1233,6 +1233,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         let formData = new FormData(this);
+        $('#loader').show();
 
         $.ajax({
             url: "{{ route('carousel.store') }}",
@@ -1241,6 +1242,7 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function (response) {
+                $('#loader').hide();
                 if (response.success) {
                     Swal.fire({
                         icon: 'success',
@@ -1282,6 +1284,7 @@ $(document).ready(function() {
                 }
             },
             error: function (xhr) {
+                $('#loader').hide();
                 let errors = xhr.responseJSON.errors;
                 if (errors) {
                     let errorMessages = Object.values(errors)
@@ -1328,6 +1331,8 @@ $('#settingsformm').on('submit', function (e) {
 
     const carouselId = $('#settingsforminput').val(); 
     const formData = new FormData(this);
+    $('#loader').show();
+
 
     $.ajax({
         url: `/update-carousel/${carouselId}`,
@@ -1336,6 +1341,8 @@ $('#settingsformm').on('submit', function (e) {
         processData: false,
         contentType: false,
         success: function (response) {
+            $('#loader').hide();
+
             const carousel = $(`a[data-carousel-id="${carouselId}"]`).closest('tr');
 
             carousel.find('td:nth-child(2) img').attr('src', `/images/${response.carousel.image}`);
@@ -1352,6 +1359,8 @@ $('#settingsformm').on('submit', function (e) {
             });
         },
         error: function (xhr) {
+            $('#loader').hide();
+
             Swal.fire({
                 icon: 'error',
                 title: 'Error!',

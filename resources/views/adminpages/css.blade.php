@@ -10,7 +10,7 @@
  <meta name="description" content="">
  <meta name="author" content="">
  <!-- site icon -->
- <link rel="icon" href="{{asset('perfume.png')}}" type="image/png" />
+ <link rel="icon" href="{{ Auth::user()->image ? asset(Auth::user()->image) : asset('dumm.png') }}" type="image/png" />
  <!-- bootstrap css -->
  <link rel="stylesheet" href="{{asset('adminboard/css/bootstrap.min.css')}}" />
  <!-- site css -->

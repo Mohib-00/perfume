@@ -248,6 +248,9 @@
             </div>
         </div>
     </div>
+    <div id="loader" style="display: none;">
+        <div class="spinner"></div>
+    </div>
 
        @include('adminpages.js')
        @include('ajax')

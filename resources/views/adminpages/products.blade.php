@@ -770,6 +770,7 @@
         formData.append('showon_collection_page', $('#isShowcollection').is(':checked') ? 1 : 0);
         formData.append('showon_explore_page', $('#isShowexplore').is(':checked') ? 1 : 0);
         formData.append('_token', '{{ csrf_token() }}');
+        $('#loader').show();
 
         $.ajax({
             url: '/save-product',
@@ -778,6 +779,7 @@
             contentType: false,
             processData: false,
             success: function (response) {
+                $('#loader').hide();
                 console.log('AJAX Success:', response);
 
                 if (response.success) {
@@ -883,6 +885,7 @@
                 }
             },
             error: function (xhr) {
+                $('#loader').hide();
                 console.log('AJAX Error:', xhr);
                 Swal.fire({
                     icon: 'error',

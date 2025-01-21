@@ -264,6 +264,9 @@
                 </div>
             </div>
         </div>
+        <div id="loader" style="display: none;">
+            <div class="spinner"></div>
+        </div>
 
 
        @include('adminpages.js')
@@ -276,7 +279,7 @@ $('#detailform').on('submit', function (e) {
     e.preventDefault();
 
     let formData = new FormData(this);
-
+    $('#loader').show();
     $.ajax({
         url: "/detailopening/store",
         type: "POST",
@@ -284,6 +287,7 @@ $('#detailform').on('submit', function (e) {
         contentType: false,
         processData: false,
         success: function (response) {
+            $('#loader').hide();
             if (response.success) {
                 Swal.fire({
                     icon: 'success',
@@ -322,6 +326,7 @@ $('#detailform').on('submit', function (e) {
             }
         },
         error: function (xhr) {
+            $('#loader').hide();
             let errors = xhr.responseJSON.errors;
             if (errors) {
                 let errorMessages = Object.values(errors)
@@ -341,11 +346,12 @@ $('#detailform').on('submit', function (e) {
 // Edit detail data
 $(document).on('click', '.edit-detail-btn', function () {
     var detailId = $(this).data('detail-id');
-
+    $('#loader').show();
     $.ajax({
         url: "/detailopens/" + detailId,
         type: "GET",
         success: function (response) {
+            $('#loader').hide();
             if (response.success) {
                 $('#detaileditform #detailforminput_edit').val(response.detail.id);
                 if (response.detail.image) {
@@ -357,6 +363,7 @@ $(document).on('click', '.edit-detail-btn', function () {
             }
         },
         error: function (xhr) {
+            $('#loader').hide();
             Swal.fire({
                 icon: 'error',
                 title: 'Error!',
@@ -373,7 +380,7 @@ $('#detaileditform').on('submit', function (e) {
 
     var formData = new FormData(this);
     var detailId = $('#detailforminput_edit').val();
-
+    $('#loader').show();
     $.ajax({
         url: "/detailupdate/" + detailId,
         type: "POST",
@@ -381,6 +388,7 @@ $('#detaileditform').on('submit', function (e) {
         contentType: false,
         processData: false,
         success: function (response) {
+            $('#loader').hide();
             if (response.success) {
                 Swal.fire({
                     icon: 'success',
@@ -399,6 +407,7 @@ $('#detaileditform').on('submit', function (e) {
             }
         },
         error: function (xhr) {
+            $('#loader').hide();
             let errors = xhr.responseJSON.errors;
             if (errors) {
                 let errorMessages = Object.values(errors)

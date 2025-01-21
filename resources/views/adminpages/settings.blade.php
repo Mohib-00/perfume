@@ -350,6 +350,9 @@
                 </div>
             </div>
         </div>
+        <div id="loader" style="display: none;">
+            <div class="spinner"></div>
+        </div>
 
 
        @include('adminpages.js')
@@ -361,7 +364,7 @@
     e.preventDefault();   
 
     let formData = new FormData(this);
-
+    $('#loader').show();
     $.ajax({
         url: "{{ route('setting.store') }}",
         type: "POST",
@@ -369,6 +372,7 @@
         contentType: false,
         processData: false,
         success: function (response) {
+            $('#loader').hide();
             if (response.success) {
                 Swal.fire({
                     icon: 'success',
@@ -414,6 +418,7 @@
             }
         },
         error: function (xhr) {
+            $('#loader').hide();
             let errors = xhr.responseJSON.errors;
             if (errors) {
                 let errorMessages = Object.values(errors)
@@ -473,7 +478,7 @@ $('#settingeditform').on('submit', function (e) {
 
     var formData = new FormData(this); 
     var settingId = $('#settingforminput_edit').val();  
-
+    $('#loader').show();
     $.ajax({
         url: "{{ route('setting.update', ':id') }}".replace(':id', settingId),  
         type: "POST",
@@ -481,6 +486,7 @@ $('#settingeditform').on('submit', function (e) {
         contentType: false,
         processData: false,
         success: function (response) {
+            $('#loader').hide();
             if (response.success) {
                 Swal.fire({
                     icon: 'success',
@@ -504,6 +510,7 @@ $('#settingeditform').on('submit', function (e) {
             }
         },
         error: function (xhr) {
+            $('#loader').hide();
             let errors = xhr.responseJSON.errors;
             if (errors) {
                 let errorMessages = Object.values(errors)

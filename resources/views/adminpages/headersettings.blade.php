@@ -302,7 +302,9 @@
                 </div>
             </div>
         </div>
-
+        <div id="loader" style="display: none;">
+            <div class="spinner"></div>
+        </div>
 
        @include('adminpages.js')
        @include('ajax')
@@ -313,7 +315,7 @@
     e.preventDefault();   
 
     let formData = new FormData(this);
-
+    $('#loader').show();
     $.ajax({
         url: "{{ route('header.store') }}",
         type: "POST",
@@ -321,6 +323,7 @@
         contentType: false,
         processData: false,
         success: function (response) {
+            $('#loader').hide();
             if (response.success) {
                 Swal.fire({
                     icon: 'success',
@@ -418,7 +421,7 @@ $('#headereditform').on('submit', function (e) {
 
     var formData = new FormData(this); 
     var headerId = $('#headerforminput_edit').val(); 
-
+    $('#loader').show();
   
     $.ajax({
     url: "{{ route('header.update', '') }}/" + headerId,  
@@ -427,6 +430,7 @@ $('#headereditform').on('submit', function (e) {
     contentType: false, 
     processData: false, 
     success: function (response) {
+        $('#loader').hide();
         if (response.success) {
             Swal.fire({
                 icon: 'success',
@@ -449,6 +453,7 @@ $('#headereditform').on('submit', function (e) {
         }
     },
     error: function (xhr) {
+        $('#loader').hide();
         let errors = xhr.responseJSON.errors;
         if (errors) {
             let errorMessages = Object.values(errors)
