@@ -301,6 +301,32 @@
             width: 38.5%;
         }
     }
+ @media (min-width: 768px) {
+  .element {
+    margin-top: 30px; 
+  }
+}
+
+
+@media (max-width: 767px) {
+  .element {
+    margin-top: 10px;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .sigininelemnt {
+    margin-top: 10px; 
+  }
+}
+
+
+@media (max-width: 767px) {
+  .sigininelemnt {
+    margin-top: 5px;
+  }
+}
 </style>
 
     

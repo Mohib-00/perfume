@@ -734,6 +734,11 @@
             </div>
         </div>
 
+        <div id="loader" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+        
+
 
        @include('adminpages.js')
        @include('ajax')
@@ -791,10 +796,10 @@
                         <tr class="user-row" id="product-${product.id}">
                             <td>${counter}</td>
                             <td id="image">
-                                <img height="80" width="80" src="{{ asset('public/images/${product.image}') }}" />
+                                <img height="80" width="80" src="{{ asset('images/${product.image}') }}" />
                             </td>
                             <td id="hoverimage">
-                                <img height="80" width="80" src="{{ asset('public/images/${product.hover_image}') }}" />
+                                <img height="80" width="80" src="{{ asset('images/${product.hover_image}') }}" />
                             </td>
                             <td id="name">${product.name}</td>
                             <td id="price">${product.price}</td>
@@ -889,6 +894,78 @@
     });
 });
 
+
+//to open add option model
+$(document).ready(function() {
+     $('.addoption').click(function() {
+         $('.custom-modal.option').fadeIn();  
+    });
+
+     $('.closeModal').click(function() {
+        $('.custom-modal.option').fadeOut(); 
+    });
+
+     $(document).click(function(event) {
+        if (!$(event.target).closest('.modal-content').length && !$(event.target).is('.addoption')) {
+            $('.custom-modal.option').fadeOut(); 
+        }
+    });
+});
+
+
+$(document).on('click', '.addoption', function () {
+        const productId = $(this).data('product-id');
+        $('#product_id').val(productId);   
+        $('.custom-modal.option').fadeIn();
+    });
+
+     $('.closeModal').click(function () {
+        $('.custom-modal.option').fadeOut();
+    });
+
+     $('#optionform').submit(function (e) {
+        e.preventDefault();
+
+        const productId = $('#product_id').val();
+        const optionData = $('#option_add').val();
+
+        $.ajax({
+            url: '/api/add-option',   
+            method: 'POST',
+            data: {
+                product_id: productId,
+                option: optionData
+            },
+            success: function (response) {
+                if (response.success) {
+                     Swal.fire({
+                        icon: 'success',
+                        title: 'Option Added',
+                        text: 'The option has been added successfully!',
+                    }).then(() => {
+                         $('#option_add').val('');
+                        $('#product_id').val('');
+                        $('.custom-modal.option').fadeOut();   
+                    });
+                } else {
+                     Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message || 'An error occurred while adding the option.',
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+                 Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred. Please try again later.',
+                });
+            }
+        });
+    });
+
 // get product data
 $(document).on('click', '#productedittttt', function () {
     var productId = $(this).data('product-id');
@@ -938,9 +1015,9 @@ $(document).on('submit', '#producteditform', function (e) {
     const formData = new FormData(this);
     const productId = $('#productforminput_edit').val();
 
-     console.log('Product ID:', productId);
+    console.log('Product ID:', productId);
 
-     const image = $('#image_edit')[0].files[0];
+    const image = $('#image_edit')[0].files[0];
     const hoverImage = $('#hoverimage_edit')[0].files[0];
 
     if (image) {
@@ -953,7 +1030,6 @@ $(document).on('submit', '#producteditform', function (e) {
         formData.append('hover_image', hoverImage);
     }
 
-    // Append checkboxes
     formData.append('show_sale_product', $('#isShowsaleproduct_edit').is(':checked') ? 1 : 0);
     formData.append('show_favourite_product', $('#isShowfavouriteproduct_edit').is(':checked') ? 1 : 0);
     formData.append('show_selection_product', $('#isShowselectionproduct_edit').is(':checked') ? 1 : 0);
@@ -964,13 +1040,14 @@ $(document).on('submit', '#producteditform', function (e) {
     formData.append('showon_collection_page', $('#isShowcollection_edit').is(':checked') ? 1 : 0);
     formData.append('showon_explore_page', $('#isShowexplore_edit').is(':checked') ? 1 : 0);
 
-    // Additional fields
     formData.append('name', $('#name_edit').val());
     formData.append('price', $('#price_edit').val());
     formData.append('discount_price', $('#discount_edit').val());
     formData.append('description', $('#description_edit').val());
     formData.append('slug', $('#slug_edit').val());
     formData.append('quantity', $('#quantity_edit').val());
+
+    $('#loader').show();
 
     $.ajax({
         url: `/product/update/${productId}`,
@@ -979,6 +1056,8 @@ $(document).on('submit', '#producteditform', function (e) {
         contentType: false,
         processData: false,
         success: function (response) {
+            $('#loader').hide();
+
             if (response.success) {
                  const productRow = $(`a[data-product-id="${productId}"]`).closest('tr');
                 productRow.find('td:nth-child(2) img').attr('src', `/public/images/${response.product.image}?t=${Date.now()}`);
@@ -1037,6 +1116,8 @@ $(document).on('submit', '#producteditform', function (e) {
             }
         },
         error: function (xhr) {
+            $('#loader').hide();
+
             console.error(xhr.responseText);
             Swal.fire({
                 icon: 'error',
@@ -1047,6 +1128,7 @@ $(document).on('submit', '#producteditform', function (e) {
         }
     });
 });
+
 
  $('.closeModal').on('click', function () {
     $('.custom-modal.productedit').fadeOut();
