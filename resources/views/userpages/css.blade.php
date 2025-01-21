@@ -327,6 +327,46 @@
     margin-top: 5px;
   }
 }
+
+.btn-loader {
+        position: relative;
+        pointer-events: none;
+    }
+
+    .btn-loader::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        border: 3px solid transparent;
+        border-top-color: white;
+        border-right-color: white;
+        border-radius: 50%;
+        animation: spin 0.8s ease-in-out infinite;
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+
+    .btn-loader.active::after {
+        display: block;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+
+    .btn-loader.active {
+        color: transparent !important;
+        transition: color 0.2s ease-in-out;
+    }
+    
 </style>
 
     

@@ -155,7 +155,7 @@
                         
                         
 
-                        <a STYLE="COLOR:WHITE" class="btn essence-btn placeorder">Place Order</a>
+                        <a style="color: white" class="btn essence-btn placeorder">Place Order</a>
                         <a style="display:none" class="btn essence-btn debitcardbutton">Pay now</a>
                         <a style="display:none" class="btn essence-btn paypalbtn">Pay now</a>
 

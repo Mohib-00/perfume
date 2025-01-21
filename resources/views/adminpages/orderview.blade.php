@@ -127,8 +127,11 @@
                                                     <img src="{{ asset('images/' . $item->product->image) }}" width="50">
                                                 </td>
                                                 <td style="white-space: nowrap;">{{ $item->product->name }}</td>
-                                                <td style="white-space: nowrap;">Pkr {{ number_format($item->product->price, 2) }}</td>
-                                                <td style="white-space: nowrap;">{{ $item->quantity }}</td>
+                                                <td style="white-space: nowrap;">
+                                                   Pkr 
+                                                   {{ $item->product->discount_price ? number_format($item->product->discount_price, 2) : number_format($item->product->price, 2) }}
+                                               </td>
+                                                   <td style="white-space: nowrap;">{{ $item->quantity }}</td>
                                                 <td style="white-space: nowrap;">
                                                    @if($item->option)
                                                        {{ $item->option->option }}
@@ -136,8 +139,11 @@
                                                        No Option
                                                    @endif
                                                </td>
-                                                <td style="white-space: nowrap;">Pkr {{ number_format($item->product->price * $item->quantity, 2) }}</td>
-                                            </tr>
+                                               <td style="white-space: nowrap;">
+                                                Pkr 
+                                                {{ number_format(($item->product->discount_price ?? $item->product->price) * $item->quantity, 2) }}
+                                            </td>
+                                                                                        </tr>
                                             @php $counter++; @endphp
                                         @endforeach
                                     </tbody>

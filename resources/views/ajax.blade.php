@@ -2383,21 +2383,22 @@ $(document).on('click', '.remove-cart-item', function (e) {
 //to place order
 $('.placeorder').click(function (e) {
     e.preventDefault();
+    let $button = $(this);
+    $button.addClass('btn-loader active').text('Processing...').prop('disabled', true);
 
     let formData = {
-    full_name: $('input[name="full_name"]').val(),
-    last_name: $('input[name="last_name"]').val(),
-    email: $('input[name="email"]').val(),
-    phone_number: $('input[name="phone_number"]').val(),
-    address: $('input[name="address"]').val(),
-    postcode: $('input[name="post_code"]').val(),  
-    city: $('input[name="city"]').val(),
-    province: $('input[name="province"]').val(),
-    payment: $('input[name="payment"]:checked').val(),
-};
+        full_name: $('input[name="full_name"]').val(),
+        last_name: $('input[name="last_name"]').val(),
+        email: $('input[name="email"]').val(),
+        phone_number: $('input[name="phone_number"]').val(),
+        address: $('input[name="address"]').val(),
+        postcode: $('input[name="post_code"]').val(),
+        city: $('input[name="city"]').val(),
+        province: $('input[name="province"]').val(),
+        payment: $('input[name="payment"]:checked').val(),
+    };
 
-
-     $('.text-danger').text("");
+    $('.text-danger').text("");
 
     $.ajax({
         url: '/place-order',
@@ -2426,9 +2427,13 @@ $('.placeorder').click(function (e) {
                 alert('Order placement failed');
                 console.error('Error:', xhr.responseText);
             }
+        },
+        complete: function () {
+            $button.removeClass('btn-loader active').text('Place Order').prop('disabled', false);
         }
     });
 });
+
 
 //to cnfrm delivery status
 $(document).on('click', '#dlvrycnfrm', function (e) {
